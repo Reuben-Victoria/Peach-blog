@@ -1,0 +1,39 @@
+.formWrap__label {
+  color: #111111;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "Satoshi";
+  text-align: left;
+}
+.formWrap__input {
+  border: 1px solid #c0c0c0;
+  border-radius: 10px;
+  position: relative;
+  padding: 18px 24px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.formWrap__input input {
+  border: none;
+  outline: none;
+  width: 80%;
+}
+.formWrap__input input :focus {
+  border: none;
+}
+.formWrap__input input ::placeholder {
+  color: #757575;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+.formWrap .display {
+  display: none;
+}
+.formWrap .icon {
+  position: absolute;
+  right: 24px;
+}/*# sourceMappingURL=Input.module.css.map */
