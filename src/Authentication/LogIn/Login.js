@@ -30,7 +30,7 @@ function Signup() {
       <p className={styles.formWrap__linksContainer}>
         Dont have an account?
         <span className={styles.formWrap__linksContainer__links}>
-          <Link to="/">SignUp</Link> | <Link to="reset-password">Reset Password</Link>
+          <Link to="/">SignUp</Link> | <Link to="/reset-password">Reset Password</Link>
         </span>
       </p>
     </div>

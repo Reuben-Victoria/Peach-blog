@@ -3,8 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 515px;
-  height: 100vh;
+  padding: 82px 515px;
 }
 .formWrap h1 {
   font-style: normal;
@@ -20,10 +19,11 @@
   line-height: 24px;
   color: #757575;
   margin-bottom: 64px;
-  text-align: center;
 }
-.formWrap form {
+.formWrap__logo {
+  width: 94px;
+  height: 94px;
+}
+.formWrap__logo img {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-}/*# sourceMappingURL=ResetPassword.module.css.map */
+}/*# sourceMappingURL=Success.module.css.map */

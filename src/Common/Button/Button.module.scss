@@ -1,0 +1,36 @@
+@import '../../Styles/variables';
+
+.btn {
+  border: 1px solid $button--color--primary;
+  width: 100%;
+  color: $button--color--primary;
+
+  &__primary {
+    background-color: white;
+    border: 1px solid $button--color--primary;
+    color: $button--color--primary;
+  }
+
+  &__secondary {
+    background-color: $button--color--primary;
+    color: white;
+    border: none;
+  }
+
+  &__lg {
+    padding: 12px 80px;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  &__md{
+    padding: 12px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}

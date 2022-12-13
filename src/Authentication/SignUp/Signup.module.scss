@@ -2,7 +2,8 @@
 
 .formWrap{
     @include formbody;
-    padding: (82px 515px);
+    padding: (0px 515px);
+    height: 100vh;
     h1{
         @include authTitleText;
     }

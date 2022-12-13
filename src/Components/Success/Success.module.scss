@@ -1,0 +1,22 @@
+@import "../../Styles/mixins";
+
+.formWrap{
+    @include formbody;
+    padding: (82px 515px);
+    h1{
+        @include authTitleText;
+    }
+
+    &__description{
+        @include authBodyText;
+    }
+
+    &__logo{
+        width: 94px;
+        height: 94px;
+
+        img{
+            width: 100%;
+        }
+    }
+}
