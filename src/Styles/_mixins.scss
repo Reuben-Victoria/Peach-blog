@@ -1,0 +1,42 @@
+@import './variables';
+
+@mixin authTitleText {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: $text--color--primary;
+}
+
+@mixin authBodyText {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: $text--color--secondary;
+  margin-bottom: 64px;
+}
+
+@mixin formbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin linksContainer {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: $text--color--secondary;
+}
+
+@mixin links {
+  a {
+    text-decoration: none;
+  }
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  color: #7557d3;
+}

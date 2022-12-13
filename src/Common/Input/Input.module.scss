@@ -1,11 +1,12 @@
+@import "../../Styles/variables";
 .formWrap {
+    margin-bottom: 24px;
   &__label {
     color: #111111;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-    font-family: 'Satoshi';
     text-align: left;
   }
   &__input {
@@ -26,7 +27,7 @@
         border: none;
       }
       ::placeholder{
-        color: #757575;
+        color: $text--color--secondary;
         font-weight: 400;
         font-size: 14px;
         line-height: 20px;

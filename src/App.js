@@ -1,13 +1,22 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Signup from './Authentication/SignUp/Signup';
+import Login from './Authentication/LogIn/Login';
+import ResetPassword from './Authentication/ResetPassword/ResetPassword';
+import Header from './Components/Header/Header';
 // import Input from './Common/Input/Input';
 
 function App() {
   return (
     <div className="App">
-      {/* <Input /> */}
-      <Signup />
+      <Header />
+      <Routes>
+        {/* <Input /> */}
+        <Route exact path="/" element={<Signup />} />
+        <Route path="login" element={<Login />} />
+        <Route path="reset-password" element={<ResetPassword />} />
+      </Routes>
     </div>
   );
 }

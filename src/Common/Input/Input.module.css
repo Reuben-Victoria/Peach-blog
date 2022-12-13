@@ -1,10 +1,12 @@
+.formWrap {
+  margin-bottom: 24px;
+}
 .formWrap__label {
   color: #111111;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  font-family: "Satoshi";
   text-align: left;
 }
 .formWrap__input {

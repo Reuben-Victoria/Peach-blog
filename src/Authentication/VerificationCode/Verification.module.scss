@@ -12,22 +12,14 @@
     }
 
     form{
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        
 
-       .name{
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 24px;
-        }
+        
     }
 
     &__linksContainer{
         @include linksContainer;
-
-        &__links{
-            @include links;
-        }
     }
 }
