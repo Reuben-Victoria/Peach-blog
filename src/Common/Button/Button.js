@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from './Button.module.scss';
 
-function Button({ text, theme, size, variant }) {
+function Button({ text, type, theme, size, disabled, variant }) {
   return (
     <button
+      disabled={disabled}
+      type={type}
       className={classnames(
         styles.btn,
         styles[`btn__${theme}`],
@@ -22,6 +24,8 @@ Button.propTypes = {
   theme: PropTypes.string,
   width: PropTypes.string,
   size: PropTypes.string,
-  variant: PropTypes.string
+  type: PropTypes.string,
+  variant: PropTypes.string,
+  disabled: PropTypes.string
 };
 export default Button;

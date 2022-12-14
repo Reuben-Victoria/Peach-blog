@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Button from '../../Common/Button/Button';
 import Input from '../../Common/Input/Input';
 import styles from './CreatePassword.module.scss';
 
@@ -17,21 +19,22 @@ function CreatePassword() {
             showPassword
           />
         </div>
+        <div>
+          <Input
+            label={'Confirm Password'}
+            id="password"
+            placeholder="**********"
+            name={'password'}
+            showPassword
+          />
+        </div>
+        <Button theme={'secondary'} size={'lg'} text={'Login'} />
       </form>
-      <div>
-        <Input
-          label={'Confirm Password'}
-          id="password"
-          placeholder="**********"
-          name={'password'}
-          showPassword
-        />
-      </div>
       <p className={styles.formWrap__linksContainer}>
-        Already have an account?
-        {/* <span className={styles.formWrap__linksContainer__links}>
-          <Link to="login">Login</Link>
-        </span> */}
+        Dont have an account?
+        <span className={styles.formWrap__linksContainer__links}>
+          <Link to="/">SignUp</Link>
+        </span>
       </p>
     </div>
   );

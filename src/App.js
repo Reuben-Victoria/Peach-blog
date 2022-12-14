@@ -5,6 +5,7 @@ import Signup from './Authentication/SignUp/Signup';
 import Login from './Authentication/LogIn/Login';
 import ResetPassword from './Authentication/ResetPassword/ResetPassword';
 import Header from './Components/Header/Header';
+import Successful from './Authentication/Successful/Successful';
 // import Input from './Common/Input/Input';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         {/* <Input /> */}
         <Route exact path="/" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/success" element={<Successful />} />
         <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </div>

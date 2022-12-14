@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '../../Common/Input/Input';
 import styles from './ResetPassword.module.scss';
+import Button from '../../Common/Button/Button';
 function ResetPassword() {
   return (
     <div className={styles.formWrap}>
@@ -18,6 +19,7 @@ function ResetPassword() {
             name={'email'}
           />
         </div>
+        <Button theme={'secondary'} size={'lg'} text={'Reset Password'} />
       </form>
     </div>
   );

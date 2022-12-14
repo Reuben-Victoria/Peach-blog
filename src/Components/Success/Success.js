@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Success.module.scss';
 import PropTypes from 'prop-types';
-import successLogo from '../../assets/successLogo.svg';
+import successLogo from '../../assets/successlogo.svg';
 function Success({ heading, text }) {
   return (
     <div className={styles.formWrap}>

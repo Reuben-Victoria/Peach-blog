@@ -1,29 +1,36 @@
-@import "../../Styles/mixins";
+@import '../../Styles/mixins';
+@import '../../Styles/global';
 
-.formWrap{
-    @include formbody;
-    padding: (82px 515px);
-    h1{
-        @include authTitleText;
+.formWrap {
+  @include formbody;
+  padding: (0px 515px);
+  height: 100vh;
+  h1 {
+    @include authTitleText;
+  }
+
+  &__description {
+    @include authBodyText;
+    margin-bottom: 64px;
+  }
+
+  form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 24px;
+
+    button {
+      margin-top: 20px;
+      margin-bottom: 14px;
     }
+  }
 
-    &__description{
-        @include authBodyText;
+  &__linksContainer {
+    @include linksContainer;
+
+    &__links {
+      @include links;
     }
-
-    form{
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-
-        
-    }
-
-    &__linksContainer{
-        @include linksContainer;
-
-        &__links{
-            @include links;
-        }
-    }
+  }
 }

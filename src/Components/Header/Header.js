@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import image from '../../assets/HeaderLogo.svg';
 import styles from './Header.module.scss';
 
 function Header() {
   return (
     <header>
-      <div className={styles.logo}>
-        <img src={image} alt="Logo" />
-      </div>
+      <Link>
+        <div className={styles.logo}>
+          <img src={image} alt="Logo" />
+        </div>
+      </Link>
     </header>
   );
 }

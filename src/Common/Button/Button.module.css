@@ -1,6 +1,5 @@
 .btn {
   border: 1px solid #7557D3;
-  width: 100%;
   color: #7557D3;
 }
 .btn__primary {
@@ -16,6 +15,7 @@
 .btn__lg {
   padding: 12px 80px;
   width: 100%;
+  border-radius: 10px;
   text-align: center;
   font-weight: 700;
   font-size: 16px;
@@ -27,4 +27,10 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+  max-width: 140px;
+}
+
+:disabled {
+  background-color: #e6e6e6;
+  pointer-events: none;
 }/*# sourceMappingURL=Button.module.css.map */

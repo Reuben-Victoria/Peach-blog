@@ -6,6 +6,7 @@
   font-size: 24px;
   line-height: 32px;
   color: $text--color--primary;
+  margin-bottom: 16px;
 }
 
 @mixin authBodyText {
@@ -14,7 +15,6 @@
   font-size: 16px;
   line-height: 24px;
   color: $text--color--secondary;
-  margin-bottom: 64px;
 }
 
 @mixin formbody {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../Common/Input/Input';
 import styles from './Login.module.scss';
+import Button from '../../Common/Button/Button';
 function Signup() {
   return (
     <div className={styles.formWrap}>
@@ -26,7 +27,11 @@ function Signup() {
             showPassword
           />
         </div>
+        <Link to="">
+          <Button theme={'secondary'} size={'lg'} text={'Log In'} />
+        </Link>
       </form>
+
       <p className={styles.formWrap__linksContainer}>
         Dont have an account?
         <span className={styles.formWrap__linksContainer__links}>

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 515px;
+  padding: 40px 515px;
   height: 100vh;
 }
 .formWrap h1 {
@@ -12,6 +12,7 @@
   font-size: 24px;
   line-height: 32px;
   color: #111111;
+  margin-bottom: 16px;
 }
 .formWrap__description {
   font-style: normal;
@@ -24,11 +25,16 @@
 .formWrap form {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
+  row-gap: 24px;
 }
 .formWrap form .name {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 24px;
+}
+.formWrap form button {
+  margin-top: 16px;
+  margin-bottom: 14px;
 }
 .formWrap__linksContainer {
   font-weight: 400;

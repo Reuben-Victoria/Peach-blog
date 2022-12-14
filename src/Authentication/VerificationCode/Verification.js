@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '../../Common/Input/Input';
 import styles from './ResetPassword.module.scss';
+import Button from '../../Common/Button/Button';
 function Verification() {
   return (
     <div className={styles.formWrap}>
@@ -10,8 +11,9 @@ function Verification() {
         <div>
           <Input label={'Code'} type={'email'} id="email" placeholder="Enter Code" name={'email'} />
         </div>
+        <Button type={'submit'} theme={'secondary'} size={'lg'} text={'Verify Code'} />
       </form>
-      <p className={styles.formWrap__linksContainer}>Already have an account?</p>
+      <p className={styles.formWrap__linksContainer}>Resend code</p>
     </div>
   );
 }
