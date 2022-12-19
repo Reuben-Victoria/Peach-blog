@@ -13,8 +13,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 515px;
-  height: 100vh;
+  height: 80vh;
 }
 .formWrap h1 {
   font-style: normal;
@@ -30,10 +29,9 @@ a {
   font-size: 16px;
   line-height: 24px;
   color: #757575;
-  margin-bottom: 64px;
 }
 .formWrap form {
-  width: 100%;
+  width: 32%;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   row-gap: 24px;

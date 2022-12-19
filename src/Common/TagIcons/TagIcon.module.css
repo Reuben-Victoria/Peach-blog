@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper__icon {
+  width: 20px;
+  margin-right: 12px;
+}
+.wrapper__icon img {
+  width: 100%;
+}
+.wrapper__description {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #57497C;
+}/*# sourceMappingURL=TagIcon.module.css.map */

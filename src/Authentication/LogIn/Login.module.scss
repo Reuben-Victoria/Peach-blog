@@ -2,20 +2,20 @@
 @import '../../Styles/global';
 
 .formWrap {
-  @include formbody;
-  padding: (0px 515px);
-  height: 100vh;
+  @include flex-container;
+  height: 80vh;
+
   h1 {
-    @include authTitleText;
+    @include authBodyText($fontWeight: 700, $fontSize:24px, $lineHeight:32px, $color:$text--color--primary, $marginBottom:16px);
   }
 
   &__description {
     @include authBodyText;
-    margin-bottom: 64px;
+    // margin-bottom: px;
   }
 
   form {
-    width: 100%;
+    width: 32%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     row-gap: 24px;

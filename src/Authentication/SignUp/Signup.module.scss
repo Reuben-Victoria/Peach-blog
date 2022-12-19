@@ -1,20 +1,24 @@
 @import '../../Styles/mixins';
 
+.signUpForm {
+  margin-top: 0px;
+}
+
 .formWrap {
-  @include formbody;
-  padding: (40px 515px);
-  height: 100vh;
+  @include flex-container;
+  padding-top: 45px;
 
   h1 {
-    @include authTitleText;
+    @include authBodyText($fontWeight: 700, $fontSize:24px, $lineHeight:32px, $color:$text--color--primary, $marginBottom:16px);
   }
 
   &__description {
     @include authBodyText;
-    margin-bottom: 64px;
+    margin-bottom: 40px;
   }
 
   form {
+    width: 32%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     row-gap: 24px;

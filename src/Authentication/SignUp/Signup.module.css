@@ -1,10 +1,13 @@
+.signUpForm {
+  margin-top: 0px;
+}
+
 .formWrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 515px;
-  height: 100vh;
+  padding-top: 45px;
 }
 .formWrap h1 {
   font-style: normal;
@@ -20,9 +23,10 @@
   font-size: 16px;
   line-height: 24px;
   color: #757575;
-  margin-bottom: 64px;
+  margin-bottom: 40px;
 }
 .formWrap form {
+  width: 32%;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   row-gap: 24px;

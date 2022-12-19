@@ -1,7 +1,7 @@
 @import "../../Styles/mixins";
 
 .formWrap{
-    @include formbody;
+    @include flex-container;
     padding: (82px 515px);
     h1{
         @include authTitleText;

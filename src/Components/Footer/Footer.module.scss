@@ -1,0 +1,31 @@
+@import '../../Styles/mixins';
+
+.footerWrapper {
+  @include flex-container($direction: row, $alignment:center);
+  padding: 24px 86px;
+  background-color: #7557D3;
+  bottom: 0;
+  right: 0;
+
+   &__footerLogo {
+    width: 68.71px;
+    height: 24px;
+    margin-right: 33.67px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__footerText {
+    @include flex-container($direction: row, $alignment:center);
+    @include authBodyText($fontWeight: 400, $fontSize:14px, $lineHeight:19px, $color:white);
+    div {
+      width: 2px;
+      height: 15px;
+      background-color: #ffff;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+  }
+}

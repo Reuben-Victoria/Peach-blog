@@ -1,28 +1,21 @@
 @import './variables';
 
-@mixin authTitleText {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
-  color: $text--color--primary;
-  margin-bottom: 16px;
+@mixin authBodyText($fontStyle: normal, $fontWeight:400, $fontSize:16px, $lineHeight: 24px, $color:$text--color--secondary, $marginBottom:null) {
+  font-style: $fontStyle;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  color: $color;
+  margin-bottom: $marginBottom;
 }
 
-@mixin authBodyText {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: $text--color--secondary;
-}
-
-@mixin formbody {
+@mixin flex-container($direction: column, $spacing:center, $alignment: center ) {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: $direction;
+  justify-content: $spacing;
+  align-items: $alignment;
 }
+
 
 @mixin linksContainer {
   font-weight: 400;
