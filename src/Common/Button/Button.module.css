@@ -1,6 +1,8 @@
 .btn {
   border: 1px solid #7557D3;
   color: #7557D3;
+  display: flex;
+  justify-content: center;
 }
 .btn__primary {
   background-color: white;
@@ -33,4 +35,17 @@
 :disabled {
   background-color: #e6e6e6;
   pointer-events: none;
+}
+
+.img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+.img img {
+  width: 100%;
+}
+
+.hideImage {
+  display: none;
 }/*# sourceMappingURL=Button.module.css.map */

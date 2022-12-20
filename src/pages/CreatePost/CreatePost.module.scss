@@ -1,0 +1,10 @@
+@import '../../Styles/mixins';
+@import '../../Styles/variables';
+
+.createPostContainer {
+  @include flex-container;
+
+  &__icons{
+    @include flex-container($direction:row)
+  }
+}

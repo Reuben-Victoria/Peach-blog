@@ -3,6 +3,8 @@
 .btn {
   border: 1px solid $button--color--primary;
   color: $button--color--primary;
+  display: flex;
+  justify-content: center;
 
   &__primary {
     background-color: white;
@@ -26,7 +28,7 @@
     line-height: 22px;
   }
 
-  &__md{
+  &__md {
     padding: 12px 40px;
     border-radius: 50px;
     font-weight: 700;
@@ -34,10 +36,22 @@
     line-height: 22px;
     max-width: 140px;
   }
-
 }
 
-:disabled{
-    background-color: #e6e6e6;
-    pointer-events: none;
+:disabled {
+  background-color: #e6e6e6;
+  pointer-events: none;
+}
+.img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.hideImage {
+  display: none;
 }

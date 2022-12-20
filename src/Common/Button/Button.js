@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from './Button.module.scss';
 
-function Button({ text, type, theme, size, disabled, variant }) {
+function Button({ text, type, theme, size, disabled, variant, src, showImage }) {
   return (
     <button
       disabled={disabled}
@@ -15,6 +15,9 @@ function Button({ text, type, theme, size, disabled, variant }) {
         styles[`btn__${variant}`]
       )}>
       {text}
+      <div className={showImage ? styles.img : styles.hideImage}>
+        <img src={src} />
+      </div>
     </button>
   );
 }
@@ -26,6 +29,8 @@ Button.propTypes = {
   size: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.string,
+  src: PropTypes.string,
+  showImage: PropTypes.bool,
   disabled: PropTypes.string
 };
 export default Button;
