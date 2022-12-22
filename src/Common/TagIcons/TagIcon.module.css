@@ -1,20 +1,40 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
 }
-.wrapper__icon {
+.wrapper__lg {
   width: 20px;
   margin-right: 12px;
 }
-.wrapper__icon img {
+.wrapper__lg img {
   width: 100%;
 }
-.wrapper__description {
+.wrapper__sm {
+  width: 20px;
+  margin-right: 8px;
+}
+.wrapper__sm img {
+  width: 100%;
+}
+.wrapper__lgText {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
   color: #57497C;
+}
+.wrapper__mdText {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #57497C;
+}
+.wrapper__placeholderText {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #CBC4DE;
 }/*# sourceMappingURL=TagIcon.module.css.map */

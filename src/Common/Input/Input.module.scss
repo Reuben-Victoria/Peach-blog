@@ -1,4 +1,4 @@
-@import "../../Styles/variables";
+@import '../../Styles/variables';
 .formWrap {
   &__label {
     color: #111111;
@@ -9,23 +9,27 @@
     text-align: left;
   }
   &__input {
-    border: 1px solid #c0c0c0;
-    border-radius: 10px;
     position: relative;
-    padding: 18px 24px;
+    height: 50px;
     margin-top: 16px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     justify-content: space-between;
 
     input {
-      border: none;
-      outline: none;
-      width: 80%;
+      height: 100%;
+      width: 100%;
+      padding: 18px 24px;
+      padding-right: 14%;
+      border: 1px solid #c0c0c0;
+      border-radius: 10px;
 
       :focus {
-        border: none;
+        // border: none;
+        outline-color: #7557d3 !important;
       }
-      ::placeholder{
+      ::placeholder {
         color: $text--color--secondary;
         font-weight: 400;
         font-size: 14px;
@@ -39,5 +43,6 @@
   .icon {
     position: absolute;
     right: 24px;
+    bottom: 14px;
   }
 }

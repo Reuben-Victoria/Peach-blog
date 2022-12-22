@@ -1,0 +1,28 @@
+@import '../../Styles/mixins';
+
+.activityContainer {
+  @include flex-container($direction: row, $alignment: null);
+  width: 100%;
+  margin-bottom: 24.5px;
+
+  &__dateStamp {
+    @include authBodyText($fontWeight: 700, $fontSize: 14px, $lineHeight: 19px, $color: #57497c);
+    margin-right: 48px;
+  }
+
+  &__activity {
+    @include flex-container($alignment: null);
+    width: 80%;
+
+    &__description {
+      @include authBodyText($fontWeight: 700, $fontSize: 16px, $lineHeight: 22px, $color: #111111);
+      margin-top: 14.5px;
+      margin-bottom: 16px;
+    }
+
+    &__divider {
+      border: none;
+      border-top: 1px solid #e9e7ef;
+    }
+  }
+}

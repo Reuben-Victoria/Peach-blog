@@ -7,21 +7,24 @@
   text-align: left;
 }
 .formWrap__input {
-  border: 1px solid #c0c0c0;
-  border-radius: 10px;
   position: relative;
-  padding: 18px 24px;
+  height: 50px;
   margin-top: 16px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   justify-content: space-between;
 }
 .formWrap__input input {
-  border: none;
-  outline: none;
-  width: 80%;
+  height: 100%;
+  width: 100%;
+  padding: 18px 24px;
+  padding-right: 14%;
+  border: 1px solid #c0c0c0;
+  border-radius: 10px;
 }
 .formWrap__input input :focus {
-  border: none;
+  outline-color: #7557d3 !important;
 }
 .formWrap__input input ::placeholder {
   color: #757575;
@@ -35,4 +38,5 @@
 .formWrap .icon {
   position: absolute;
   right: 24px;
+  bottom: 14px;
 }/*# sourceMappingURL=Input.module.css.map */

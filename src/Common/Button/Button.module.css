@@ -3,6 +3,7 @@
   color: #7557D3;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .btn__primary {
   background-color: white;
@@ -24,12 +25,11 @@
   line-height: 22px;
 }
 .btn__md {
-  padding: 12px 40px;
+  padding: 10px 30px;
   border-radius: 50px;
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
-  max-width: 140px;
 }
 
 :disabled {

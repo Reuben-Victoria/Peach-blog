@@ -14,10 +14,10 @@ function Button({ text, type, theme, size, disabled, variant, src, showImage }) 
         styles[`btn__${size}`],
         styles[`btn__${variant}`]
       )}>
-      {text}
       <div className={showImage ? styles.img : styles.hideImage}>
         <img src={src} />
       </div>
+      {text}
     </button>
   );
 }

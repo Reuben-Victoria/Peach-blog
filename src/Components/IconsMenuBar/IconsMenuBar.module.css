@@ -1,0 +1,27 @@
+.IconsMenuBarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 25px;
+  background-color: #6e6e6d;
+}
+.IconsMenuBarContainer__icons {
+  width: 20px;
+  height: 20px;
+  margin-right: 16.5px;
+}
+.IconsMenuBarContainer__icons img {
+  width: 100%;
+}
+.IconsMenuBarContainer__italic {
+  margin-right: 16.5px;
+}
+.IconsMenuBarContainer__divider {
+  width: 2px;
+  height: 24px;
+  margin-right: 16.5px;
+}
+.IconsMenuBarContainer__divider img {
+  width: 100%;
+}/*# sourceMappingURL=IconsMenuBar.module.css.map */
