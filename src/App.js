@@ -11,6 +11,7 @@ import Footer from './Components/Footer/Footer';
 import IconsMenuBar from './Components/IconsMenuBar/IconsMenuBar';
 import RecentActivity from './Components/RecentActivity/RecentActivity';
 import NavBar from './Components/NavBar/NavBar';
+import Posts from './Components/Posts/Post';
 // import Input from './Common/Input/Input';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/footer" element={<Footer />} />
         <Route path="/activity" element={<RecentActivity />} />
         <Route path="/navbar" element={<NavBar />} />
+        <Route path="/posts" element={<Posts />} />
       </Routes>
     </div>
   );
