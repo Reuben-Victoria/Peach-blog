@@ -7,7 +7,7 @@ import ResetPassword from './Authentication/ResetPassword/ResetPassword';
 import Header from './Components/Header/Header';
 import Successful from './Authentication/Successful/Successful';
 import CreatePost from './Container/CreatePost/CreatePost';
-import Profile from './Container/Profile/Profile';
+import ProfilePage from './pages/ProfilePage';
 // import Input from './Common/Input/Input';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path="/success" element={<Successful />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/create-post" element={<CreatePost />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>
   );
