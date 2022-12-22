@@ -6,7 +6,7 @@ import styles from './Header.module.scss';
 function Header() {
   return (
     <header>
-      <Link>
+      <Link to="/home">
         <div className={styles.logo}>
           <img src={image} alt="Logo" />
         </div>

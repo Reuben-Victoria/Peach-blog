@@ -50,6 +50,11 @@
     font-size: 16px;
     line-height: 22px;
   }
+  &__smaller{
+    border: 1px solid #7557D3;
+    border-radius: 16px;
+    padding: 8px 8px;
+  }
 }
 
 :disabled {

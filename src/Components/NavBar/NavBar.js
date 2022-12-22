@@ -6,6 +6,7 @@ import editIcon from '../../assets/Edit3.svg';
 import searchIcon from '../../assets/Search.svg';
 import notificationIcon from '../../assets/Notification.svg';
 import TagIcon from '../../Common/TagIcons/TagIcon';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
@@ -18,20 +19,24 @@ function NavBar() {
         />
       </div>
       <div className={styles.navBar__userProfile}>
-        <div>
-          <img src={dummy} alt="profile-picture" />
-        </div>
+        <Link to="/profile">
+          <div>
+            <img src={dummy} alt="profile-picture" />
+          </div>
+        </Link>
         <div>
           <img src={notificationIcon} alt="notification" />
         </div>
-        <Button
-          src={editIcon}
-          showImage
-          alt={'editIcon'}
-          theme={'secondary'}
-          size={'md'}
-          text={'Write'}
-        />
+        <Link to="/create-post">
+          <Button
+            src={editIcon}
+            showImage
+            alt={'editIcon'}
+            theme={'secondary'}
+            size={'md'}
+            text={'Write'}
+          />
+        </Link>
       </div>
     </nav>
   );

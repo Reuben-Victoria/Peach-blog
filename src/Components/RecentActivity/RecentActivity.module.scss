@@ -8,7 +8,7 @@
   &__dateStamp {
     @include authBodyText($fontWeight: 700, $fontSize: 14px, $lineHeight: 19px, $color: #57497c);
     margin-right: 48px;
-    width: 4%;
+    width: 5%;
   }
 
   &__activity {

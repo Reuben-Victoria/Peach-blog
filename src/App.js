@@ -8,6 +8,7 @@ import Header from './Components/Header/Header';
 import Successful from './Authentication/Successful/Successful';
 import CreatePost from './Container/CreatePost/CreatePost';
 import ProfilePage from './pages/ProfilePage';
+import HomePage from './pages/HomePage';
 // import Input from './Common/Input/Input';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
     </div>
   );

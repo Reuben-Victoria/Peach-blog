@@ -1,10 +1,11 @@
 @import '../../Styles/mixins';
 
 article {
-  @include flex-container($alignment: center);
+  @include flex-container($alignment: null);
+  width: 100%;
 }
 .postsContainer {
-  @include flex-container($direction: row, $alignment: null);
+  @include flex-container($direction: row, $alignment: null, $spacing: null);
 
   &__coverImage {
     width: 193px;
@@ -56,14 +57,14 @@ article {
 
     &__post {
       @include authBodyText($fontWeight: 400, $fontSize: 16px, $lineHeight: 22px, $color: #111111);
-      width: 62%;
       text-align: justify;
+      width: 62%;
       margin-bottom: 19px;
     }
     &__data {
       @include flex-container($alignment: center, $direction: row, $spacing: space-between);
       margin-bottom: 35px;
-
+     
       &__userData {
         @include flex-container($alignment: center, $direction: row, $spacing: null);
         p {

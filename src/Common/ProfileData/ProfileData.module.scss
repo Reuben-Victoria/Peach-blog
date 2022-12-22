@@ -1,6 +1,6 @@
 @import '../../Styles/mixins';
 .userData{
-    @include flex-container($direction:row);
+    @include flex-container($direction:row, $spacing:null);
 &__profilePicture {
     width: 20px;
     height: 20px;
