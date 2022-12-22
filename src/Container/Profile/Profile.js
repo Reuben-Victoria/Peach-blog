@@ -1,15 +1,49 @@
 import React from 'react';
+import dummy from '../../assets/dummy.svg';
+import edit from '../../assets/Edit2.svg';
+import post from '../../assets/Document.svg';
+import comment from '../../assets/comment.svg';
+import repost from '../../assets/repost.svg';
+import like from '../../assets/like.svg';
+import Divider from '../../Common/Divider/Divider';
 import TagIcon from '../../Common/TagIcons/TagIcon';
+import styles from './Profile.module.scss';
+import RecentActivity from '../../Components/RecentActivity/RecentActivity';
+import Button from '../../Common/Button/Button';
 
 function Profile() {
   return (
-    <div>
-      <div>
-        <div></div>
-        <div></div>
+    <main className={styles.ProfileContainer}>
+      <div className={styles.ProfileContainer__userData}>
+        <div className={styles.ProfileContainer__userData__profilePicture}>
+          <img src={dummy} alt="Profile picture" />
+        </div>
+        <div className={styles.ProfileContainer__userData__data}>
+          <div className={styles.ProfileContainer__userData__data__userName}>
+            <h1>Vanessa Reuben</h1>
+            <TagIcon src={edit} text={'Edit'} size={'sm'} alt={'Edit'} />
+          </div>
+          <p className={styles.ProfileContainer__userData__data__description}>Writer/Developer</p>
+          <div className={styles.ProfileContainer__userData__data__icons}>
+            <TagIcon src={post} text={'50 posts created'} size={'sm'} alt={'Posts'} />
+            <Divider />
+            <TagIcon src={like} text={'posts liked'} size={'sm'} alt={'heart'} />
+            <Divider />
+            <TagIcon src={comment} text={'5 comments made'} size={'sm'} alt={'comments'} />
+            <Divider />
+            <TagIcon src={repost} text={'20 reposts made'} size={'sm'} alt={'reposts'} />
+          </div>
+        </div>
       </div>
-      <TagIcon />
-    </div>
+      <div className={styles.textArea}>
+        <textarea placeholder="Add Bio" />
+        <Button theme={'lightPink'} size={'sm'} text={'Save'} />
+      </div>
+      <div className={styles.recentActivityContainer}>
+        <h1>Recent Activity</h1>
+        <RecentActivity />
+      </div>
+    </main>
   );
 }
 

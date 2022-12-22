@@ -1,18 +1,19 @@
 @import '../../Styles/mixins';
 
 .activityContainer {
-  @include flex-container($direction: row, $alignment: null);
+  @include flex-container($direction: row, $alignment: null, $spacing: null);
   width: 100%;
   margin-bottom: 24.5px;
 
   &__dateStamp {
     @include authBodyText($fontWeight: 700, $fontSize: 14px, $lineHeight: 19px, $color: #57497c);
     margin-right: 48px;
+    width: 4%;
   }
 
   &__activity {
     @include flex-container($alignment: null);
-    width: 80%;
+    width: 100%;
 
     &__description {
       @include authBodyText($fontWeight: 700, $fontSize: 16px, $lineHeight: 22px, $color: #111111);

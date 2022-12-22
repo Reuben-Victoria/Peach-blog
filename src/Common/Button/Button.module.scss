@@ -19,6 +19,11 @@
     border: none;
   }
 
+  &__lightPink {
+    background-color: #ebe4ff;
+    color: #7557D3;
+  }
+
   &__lg {
     padding: 12px 80px;
     width: 100%;
@@ -31,6 +36,15 @@
 
   &__md {
     padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  &__sm{
+    padding: 13px 52px;
+    border: none;
     border-radius: 50px;
     font-weight: 700;
     font-size: 16px;
