@@ -19,7 +19,7 @@ article {
   &__postContent {
     @include flex-container($alignment: null);
     margin-left: 24px;
-    width: 65%;
+    width: 75%;
 
     &__postTitle {
       @include flex-container($alignment: null, $direction: row, $spacing: space-between);
@@ -58,13 +58,13 @@ article {
     &__post {
       @include authBodyText($fontWeight: 400, $fontSize: 16px, $lineHeight: 22px, $color: #111111);
       text-align: justify;
-      width: 62%;
+      width: 75%;
       margin-bottom: 19px;
     }
     &__data {
       @include flex-container($alignment: center, $direction: row, $spacing: space-between);
       margin-bottom: 35px;
-     
+
       &__userData {
         @include flex-container($alignment: center, $direction: row, $spacing: null);
         p {
@@ -105,5 +105,5 @@ article {
 
 .divider {
   border-top: 1px solid #e5e2ed;
-  width: 86%;
+  width: 99%;
 }

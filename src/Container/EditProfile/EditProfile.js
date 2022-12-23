@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react';
 
-function EditProfile(){
-    return(
-        <div>
-            
-        </div>
-    )
+function EditProfile() {
+  return <div></div>;
 }
+
+export default EditProfile;

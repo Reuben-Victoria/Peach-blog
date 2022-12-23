@@ -9,16 +9,20 @@
     p {
       margin-right: 16px;
       @include authBodyText($color: #111111, $lineHeight: 22px);
+
+      &:hover {
+        border-bottom: 1.5px solid #7557d3;
+      }
     }
   }
 
   &__contents {
     @include flex-container($direction: row, $alignment: null, $spacing: null);
-    height: 100vh;
 
     &__posts {
       margin-top: 32px;
       width: 100%;
+      margin-right: 24px;
     }
 
     &__divider {
@@ -54,6 +58,11 @@
         @include linksContainer($color: #7557d3);
         margin-top: 24px;
         margin-bottom: 32px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.7;
+        }
       }
 
       &__faq {
@@ -85,6 +94,12 @@
         }
         button {
           margin-top: 32px;
+
+          &:hover {
+            background-color: white;
+            border: 1px solid #7557d3;
+            color: #7557d3;
+          }
         }
       }
 
@@ -103,6 +118,11 @@
 
           button {
             margin-right: 16px;
+
+            &:hover {
+              color: white;
+              background-color: #7557d3;
+            }
           }
         }
       }
