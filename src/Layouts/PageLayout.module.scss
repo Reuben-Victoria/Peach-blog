@@ -1,9 +1,8 @@
 @import '../Styles/mixins';
 .main {
   &__page {
-    padding: 56px 120px;
+    padding: 56px 150px;
     padding-top: 236px;
-    @include flex-container;
-
+    // @include flex-container;
   }
 }

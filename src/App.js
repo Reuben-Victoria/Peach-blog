@@ -9,6 +9,7 @@ import Successful from './Authentication/Successful/Successful';
 import CreatePost from './Container/CreatePost/CreatePost';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
+import EditProfilePage from './pages/EditProfilePage';
 // import Input from './Common/Input/Input';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
     </div>
   );

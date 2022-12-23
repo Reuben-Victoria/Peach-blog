@@ -33,6 +33,14 @@
           width: 100%;
           margin-bottom: 16px;
         }
+
+        &__editIcon {
+          &:hover {
+            border-bottom: 2px solid #57497c;
+            border-bottom-left-radius:2px;
+            border-bottom-right-radius:2px;
+          }
+        }
       }
 
       &__description {
@@ -56,26 +64,11 @@
   }
 }
 .textArea {
-  height: 50vh;
+  height: 20vh;
   border: 1px solid #cbc4de;
   border-radius: 10px;
-  position: relative;
   margin-bottom: 24px;
   @include authBodyText($fontSize: 14px, $fontWeight: 400, $lineHeight: 19px, $color: #57497c);
-
-  textarea {
-    border: none;
-    width: 100%;
-    height: 100%;
-    padding: 32px;
-    border-radius: 10px;
-  }
-
-  button {
-    position: absolute;
-    right: 24px;
-    bottom: 24px;
-  }
 }
 .recentActivityContainer {
   border: 1px solid #cbc4de;

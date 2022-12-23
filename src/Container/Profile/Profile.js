@@ -9,7 +9,7 @@ import Divider from '../../Common/Divider/Divider';
 import TagIcon from '../../Common/TagIcons/TagIcon';
 import styles from './Profile.module.scss';
 import RecentActivity from '../../Components/RecentActivity/RecentActivity';
-import Button from '../../Common/Button/Button';
+import { Link } from 'react-router-dom';
 
 function Profile() {
   return (
@@ -21,7 +21,11 @@ function Profile() {
         <div className={styles.ProfileContainer__userData__data}>
           <div className={styles.ProfileContainer__userData__data__userName}>
             <h1>Vanessa Reuben</h1>
-            <TagIcon src={edit} text={'Edit'} size={'sm'} alt={'Edit'} />
+            <Link to="/edit-profile">
+              <div className={styles.ProfileContainer__userData__data__userName__editIcon}>
+                <TagIcon src={edit} text={'Edit'} size={'sm'} alt={'Edit'} />
+              </div>
+            </Link>
           </div>
           <p className={styles.ProfileContainer__userData__data__description}>Writer/Developer</p>
           <div className={styles.ProfileContainer__userData__data__icons}>
@@ -35,10 +39,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className={styles.textArea}>
-        <textarea placeholder="Add Bio" />
-        <Button theme={'lightPink'} size={'sm'} text={'Save'} />
-      </div>
+      <div className={styles.textArea}></div>
       <div className={styles.recentActivityContainer}>
         <h1>Recent Activity</h1>
         <RecentActivity />
