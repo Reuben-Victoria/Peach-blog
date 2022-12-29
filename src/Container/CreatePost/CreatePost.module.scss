@@ -31,18 +31,21 @@
       width: 70%;
       position: relative;
     }
-    &__buttonsContainer {
-      @include flex-container($direction: row, $spacing: space-between);
-      width: 70%;
-      &__buttonsLeft {
-        display: flex;
+  }
+}
+.buttonsContainer {
+  @include flex-container($direction: row, $spacing: space-between);
+  width: 70%;
+  &__buttonsLeft {
+    display: flex;
 
-        button {
-          margin-right: 30px;
-        }
-      }
+    button {
+      margin-right: 30px;
     }
   }
+}
+.buttonsDisplay{
+  display: none;
 }
 .menuBar {
   position: absolute;

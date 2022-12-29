@@ -3,34 +3,14 @@ import { Link } from 'react-router-dom';
 import Input from '../../Common/Input/Input';
 import styles from './Signup.module.scss';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
-import api from '../../api';
+import { userSignUp } from '../../Features/authentication/authActions';
+import { useDispatch } from 'react-redux';
+import { signUpSchema } from './signUpSchema';
 
 import Button from '../../Common/Button/Button';
-function Signup() {
-  const signUpSchema = Yup.object().shape({
-    firstname: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('First Name is required'),
-    lastname: Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Last Name is Required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string()
-      .required('Password is required')
-      .min(8, 'Password is too short')
-      .max(10, 'Password can only be 10 characters')
-      .matches(/[a-z]/, 'Password must contain at least one lower case')
-      .matches(/[A-Z\s]+/, 'Password must contain at least one upper case')
-      // .matches(/^[0-9\b]+$/, 'Password must contain at least one digit')
-      .matches(/[#?!@$%^&*-]/, 'Password must contain at least one special character'),
-    confirmPassword: Yup.string()
-      .required('Confirm Password is required')
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-  });
 
+function Signup() {
+  const dispatch = useDispatch();
   const initialValues = {
     firstname: '',
     lastname: '',
@@ -44,19 +24,19 @@ function Signup() {
         initialValues={initialValues}
         validationSchema={signUpSchema}
         onSubmit={(values, { resetForm }) => {
-          api.post('users/signup', {
-            first_name: values.firstname,
-            last_name: values.lastname,
-            email_address: values.email,
-            password: values.password
-          });
+          dispatch(
+            userSignUp({
+              first_name: values.firstname,
+              last_name: values.lastname,
+              email_address: values.email,
+              password: values.password
+            })
+          );
           console.log(values);
           resetForm({ values: '' });
         }}>
         {(formik) => {
-          const { errors, touched, isValid, dirty } = formik;
-          console.log(isValid);
-          console.log(dirty);
+          const { errors, touched } = formik;
           return (
             <div className={styles.formWrap}>
               <h1>Enter your Email to Sign up</h1>
@@ -131,13 +111,7 @@ function Signup() {
                     <p id="errors">{errors.confirmPassword}</p>
                   )}
                 </div>
-                <Button
-                  type={'submit'}
-                  theme={'secondary'}
-                  size={'lg'}
-                  text={'Sign Up'}
-                  disabled={!(dirty && isValid)}
-                />
+                <Button type={'submit'} theme={'secondary'} size={'lg'} text={'Sign Up'} />
               </form>
               <p className={styles.formWrap__linksContainer}>
                 Already have an account?

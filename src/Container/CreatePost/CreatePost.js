@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+// import ReactMarkdown from 'react-markdown';
+import Markdown from 'markdown-to-jsx';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import PropTypes from 'prop-types';
 import styles from './CreatePost.module.scss';
 import TagIcon from '../../Common/TagIcons/TagIcon';
@@ -45,18 +46,18 @@ function CreatePost() {
           onClick={() => setPreview(true)}
         />
       </div>
-      <div className={styles.createPostContainer__post}>
+      <form className={styles.createPostContainer__post}>
         {preview ? (
-          <ReactMarkdown className={styles.markdown}>{markdownInputs.title}</ReactMarkdown>
+          <Markdown className={styles.markdown}>{markdownInputs.title}</Markdown>
         ) : (
           <input name="title" value={markdownInputs.title} onChange={handleChange} />
         )}
         {preview ? (
-          <ReactMarkdown
-            component={{ code: Component, style: atomOneDark }}
+          <Markdown
+            options={{ overrides: { code: { component: Code } } }}
             className={styles.markdownPost}>
             {markdownInputs.post}
-          </ReactMarkdown>
+          </Markdown>
         ) : (
           <textarea
             className={styles.createPostContainer__post__textArea}
@@ -66,8 +67,8 @@ function CreatePost() {
           />
         )}
         <IconsMenuBar className={styles.menuBar} />
-        <div className={styles.createPostContainer__post__buttonsContainer}>
-          <div className={styles.createPostContainer__post__buttonsContainer__buttonsLeft}>
+        <div className={preview ? styles.buttonsDisplay : styles.buttonsContainer}>
+          <div className={styles.buttonsContainer__buttonsLeft}>
             <Button
               showImage
               src={cover}
@@ -85,19 +86,23 @@ function CreatePost() {
               size={'md'}
             />
           </div>
-          <Button theme={'secondary'} text={'Publish'} size={'md'} />
+          <Button theme={'secondary'} text={'Publish'} size={'md'} type={'submit'} />
         </div>
-      </div>
+      </form>
     </main>
   );
 }
 
-const Component = ({ value, language }) => {
-  return <SyntaxHighlighter language={language ?? null}>{value ?? ''}</SyntaxHighlighter>;
+const Code = ({ value, language }) => {
+  return (
+    <SyntaxHighlighter language={language} style={dracula}>
+      {value}
+    </SyntaxHighlighter>
+  );
 };
 
 export default CreatePost;
-Component.propTypes = {
+Code.propTypes = {
   value: PropTypes.any,
   language: PropTypes.string
 };

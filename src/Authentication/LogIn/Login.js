@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import Input from '../../Common/Input/Input';
 import styles from './Login.module.scss';
 import Button from '../../Common/Button/Button';
-import { userLogin } from '../../Redux/authentication/auth.action';
+import { userLogin } from '../../Features/authentication/authActions';
 
 function Login() {
   const dispatch = useDispatch();
