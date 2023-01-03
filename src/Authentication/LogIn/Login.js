@@ -1,33 +1,22 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import Input from '../../Common/Input/Input';
 import styles from './Login.module.scss';
 import Button from '../../Common/Button/Button';
+import { loginSchema } from './loginSchema';
 import { userLogin } from '../../Features/authentication/authActions';
 
 function Login() {
   const dispatch = useDispatch();
-  const { loading, error, userInfo } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.auth);
   useEffect(() => {
     if (userInfo) {
       navigate('/');
     }
   }, [navigate, userInfo]);
-  const loginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string()
-      .required('Password is required')
-      .min(8, 'Password must be more than 8 characters')
-      .max(10, 'Password can only be 10 characters')
-      .matches(/[a-z]/, 'Password must contain at least one lower case')
-      .matches(/[A-Z\s]+/, 'Password must contain at least one upper case')
-      .matches(/[#?!@$%^&*-]/, 'Password must contain at least one special character')
-  });
   const initialValues = {
     email: '',
     password: ''
@@ -37,11 +26,16 @@ function Login() {
       initialValues={initialValues}
       validationSchema={loginSchema}
       onSubmit={(values, { resetForm }) => {
-        dispatch(userLogin(values));
+        dispatch(
+          userLogin({
+            email_address: values.email,
+            password: values.password
+          })
+        );
         resetForm({ values: '' });
       }}>
       {(formik) => {
-        const { touched } = formik;
+        const { touched, errors } = formik;
         return (
           <div className={styles.formWrap}>
             <h1>Great to see you again</h1>
@@ -58,7 +52,7 @@ function Login() {
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
                 />
-                {touched.email && error.email && <p id="errors">{error.email}</p>}
+                {touched.email && errors.email && <p id="errors">{errors.email}</p>}
               </div>
               <div>
                 <Input
@@ -71,16 +65,10 @@ function Login() {
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
                 />
-                {touched.password && error.password && <p id="errors">{error.password}</p>}
+                {touched.password && errors.password && <p id="errors">{errors.password}</p>}
               </div>
               <Link to="">
-                <Button
-                  type={'submit'}
-                  theme={'secondary'}
-                  size={'lg'}
-                  text={'Log In'}
-                  disabled={loading}
-                />
+                <Button type={'submit'} theme={'secondary'} size={'lg'} text={'Log In'} />
               </Link>
             </form>
 

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../Common/Input/Input';
 import styles from './Signup.module.scss';
 import { Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { userSignUp } from '../../Features/authentication/authActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUpSchema } from './signUpSchema';
 
 import Button from '../../Common/Button/Button';
 
 function Signup() {
+  const { userInfo, success } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const initialValues = {
     firstname: '',
@@ -18,6 +20,13 @@ function Signup() {
     password: '',
     confirmPassword: ''
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) navigate('/login');
+    if (userInfo) navigate('/home');
+  }, [navigate, userInfo, success]);
   return (
     <section className={styles.signUpForm}>
       <Formik
@@ -28,7 +37,7 @@ function Signup() {
             userSignUp({
               first_name: values.firstname,
               last_name: values.lastname,
-              email_address: values.email,
+              email_address: values.email.toLowerCase(),
               password: values.password
             })
           );

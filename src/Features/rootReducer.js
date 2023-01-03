@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 import postsReducer from '../Features/posts/postsSlice';
-import userSlice from './authentication/authSlice';
-
+import authSlice from './authentication/authSlice';
 const appReducer = combineReducers({
   post: postsReducer,
-  user: userSlice
+  auth: authSlice
 });
 
 export const rootReducer = (state, action) => {

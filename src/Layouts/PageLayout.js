@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { Outlet } from 'react-router-dom';
 import NavBar from '../Components/NavBar/NavBar';
 import Footer from '../Components/Footer/Footer';
 import styles from './PageLayout.module.scss';

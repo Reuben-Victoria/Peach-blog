@@ -16,6 +16,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    // SignUp
     [userSignUp.pending]: (state) => {
       state.loading = true;
       state.error = null;
@@ -27,22 +28,16 @@ const authSlice = createSlice({
     [userSignUp.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
-    }
-  }
-});
+    },
 
-export const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {},
-  extraReducers: {
+    // LogIn
     [userLogin.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
     [userLogin.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.userInfo = payload;
+      state.userInfo = payload.userInfo;
       state.userToken = payload.userToken;
     },
     [userLogin.rejected]: (state, { payload }) => {

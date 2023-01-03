@@ -18,7 +18,7 @@ function App() {
       <Header />
       <Routes>
         {/* <Input /> */}
-        <Route exact path="/" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/success" element={<Successful />} />
         <Route path="/reset-password" element={<ResetPassword />} />
