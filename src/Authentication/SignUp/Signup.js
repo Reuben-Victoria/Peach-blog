@@ -11,7 +11,12 @@ import { signUpSchema } from './signUpSchema';
 import Button from '../../Common/Button/Button';
 
 function Signup() {
-  const { userInfo, success } = useSelector((state) => state.auth);
+  const { userInfo, loading } = useSelector((state) => state.auth);
+  console.log(userInfo, 'userInfo');
+
+  console.log(userInfo?.data, 'userInfo?????');
+  console.log(userInfo?.status, 'userInfo?????');
+
   const dispatch = useDispatch();
   const initialValues = {
     firstname: '',
@@ -24,9 +29,9 @@ function Signup() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (success) navigate('/login');
-    if (userInfo) navigate('/home');
-  }, [navigate, userInfo, success]);
+    if (userInfo?.status === 'success') navigate('/login');
+  }, [userInfo]);
+
   return (
     <section className={styles.signUpForm}>
       <Formik
@@ -120,12 +125,18 @@ function Signup() {
                     <p id="errors">{errors.confirmPassword}</p>
                   )}
                 </div>
-                <Button type={'submit'} theme={'secondary'} size={'lg'} text={'Sign Up'} />
+                <Button
+                  type={'submit'}
+                  theme={'secondary'}
+                  size={'lg'}
+                  text={'Sign Up'}
+                  loading={loading}
+                />
               </form>
               <p className={styles.formWrap__linksContainer}>
                 Already have an account?
                 <span className={styles.formWrap__linksContainer__links}>
-                  <Link to="login">Login</Link>
+                  <Link to="/login">Login</Link>
                 </span>
               </p>
             </div>

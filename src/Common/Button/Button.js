@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { ReactComponent as Loader } from '../../assets/loading.svg';
 import styles from './Button.module.scss';
 
-function Button({ text, type, theme, size, disabled, variant, src, showImage }) {
+function Button({ text, type, theme, size, disabled, loading, variant, src, showImage }) {
   return (
     <button
       disabled={disabled}
@@ -17,13 +18,14 @@ function Button({ text, type, theme, size, disabled, variant, src, showImage }) 
       <div className={showImage ? styles.img : styles.hideImage}>
         <img src={src} />
       </div>
-      {text}
+      {loading ? <Loader className={styles.spinner} /> : text}
     </button>
   );
 }
 
 Button.propTypes = {
   text: PropTypes.string,
+  loading: PropTypes.bool,
   theme: PropTypes.string,
   width: PropTypes.string,
   size: PropTypes.string,

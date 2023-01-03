@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import store from './Features/app/store';
 
 const container = document.getElementById('root');
@@ -13,7 +13,9 @@ const root = createRoot(container);
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <Routes>
+        <Route path="/*" element={<App />} />
+      </Routes>
     </BrowserRouter>
   </Provider>
 );
