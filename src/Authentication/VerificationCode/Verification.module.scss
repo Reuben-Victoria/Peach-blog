@@ -2,7 +2,8 @@
 
 .formWrap {
   @include flex-container;
-  padding: (82px 515px);
+  height: 70vh;
+  justify-content: center;
   h1 {
     @include authBodyText(
       $fontWeight: 700,
@@ -21,9 +22,10 @@
   }
 
   form {
-    width: 100%;
+    width: 32%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+    row-gap: 24px;
   }
 
   &__linksContainer {

@@ -13,11 +13,13 @@ function ResetPassword() {
   const navigate = useNavigate();
 
   const { userInfo, loading } = useSelector((state) => state.auth);
+
+  console.log(userInfo?.status);
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo?.status === 'success') {
       navigate('/verify-code');
     }
-  }, []);
+  }, [userInfo]);
   const resetSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required')
   });

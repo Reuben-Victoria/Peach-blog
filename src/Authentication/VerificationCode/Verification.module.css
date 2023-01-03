@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 82px 515px;
+  height: 70vh;
+  justify-content: center;
 }
 .formWrap h1 {
   font-style: normal;
@@ -24,9 +25,10 @@
   width: 50%;
 }
 .formWrap form {
-  width: 100%;
+  width: 32%;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
+  row-gap: 24px;
 }
 .formWrap__linksContainer {
   font-weight: 400;
