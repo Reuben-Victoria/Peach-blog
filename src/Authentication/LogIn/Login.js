@@ -13,7 +13,6 @@ function Login() {
   const navigate = useNavigate();
   // const authToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
   const { userInfo, loading } = useSelector((state) => state.auth);
-  console.log(userInfo?.data?.token, 'UserLogin');
   useEffect(() => {
     if (userInfo?.data?.token) {
       navigate('/');
@@ -25,7 +24,6 @@ function Login() {
       initialValues={{}}
       validationSchema={loginSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log('fghjfghjfk', values);
         dispatch(
           userLogin({
             email_address: values.email.replace(/^\s+|\s+$/gm, ''),

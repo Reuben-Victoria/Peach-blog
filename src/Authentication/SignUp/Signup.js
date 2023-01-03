@@ -12,10 +12,6 @@ import Button from '../../Common/Button/Button';
 
 function Signup() {
   const { userInfo, loading } = useSelector((state) => state.auth);
-  console.log(userInfo, 'userInfo');
-
-  console.log(userInfo?.data, 'userInfo?????');
-  console.log(userInfo?.status, 'userInfo?????');
 
   const dispatch = useDispatch();
   const initialValues = {
@@ -46,7 +42,6 @@ function Signup() {
               password: values.password
             })
           );
-          console.log(values);
           resetForm({ values: '' });
         }}>
         {(formik) => {
