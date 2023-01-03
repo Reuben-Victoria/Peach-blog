@@ -40,6 +40,22 @@ export const userLogin = createAsyncThunk(
   }
 );
 
+export const resetPassword = createAsyncThunk(
+  'auth/resetpassword',
+  async ({ email_address }, { rejectWithValue }) => {
+    try {
+      const { data } = await api.post('users/forgot_password', { email_address });
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
 // export const doLogIn = (data) => ({
 //   type: 'DO_LOGIN',
 //   data

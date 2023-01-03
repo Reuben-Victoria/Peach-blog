@@ -1,0 +1,67 @@
+.editProfileWrapper h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 40px;
+  color: #111111;
+  margin-bottom: 24px;
+}
+.editProfileWrapper__profileImage {
+  width: 187px;
+  height: 187px;
+  position: relative;
+  margin-bottom: 24px;
+  border-radius: 50%;
+}
+.editProfileWrapper__profileImage img {
+  width: 100%;
+}
+.editProfileWrapper__upload {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 329px;
+  left: 305px;
+}
+.editProfileWrapper__upload img {
+  width: 100%;
+}
+.editProfileWrapper__form div {
+  margin-bottom: 24px;
+}
+.editProfileWrapper__form div input {
+  background: #f4f3f8;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111111;
+}
+.editProfileWrapper__form div label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111111;
+}
+.editProfileWrapper__form div textarea {
+  display: inline-block;
+  background: #f4f3f8;
+  margin-top: 14px;
+  padding: 32px;
+  width: 100%;
+  height: 30vh;
+  border: 1px solid #cbc4de;
+  border-radius: 10px;
+  padding: 32px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #57497c;
+}
+.editProfileWrapper__form__buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}/*# sourceMappingURL=EditProfile.module.css.map */

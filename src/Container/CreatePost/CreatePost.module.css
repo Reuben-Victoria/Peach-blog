@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 40px;
+  padding-top: 124px;
   width: 100%;
 }
 .createPostContainer__icons {
@@ -28,33 +29,45 @@
   color: #757575;
   margin-bottom: 24px;
   margin-top: 30px;
-  width: 50%;
+  width: 70%;
 }
 .createPostContainer__post__textArea {
   border: 1px solid #cbc4de;
   border-radius: 10px;
   height: 49vh;
+  margin-bottom: 50px;
   padding: 35px 25px;
-  margin-bottom: 24px;
-  width: 50%;
+  width: 70%;
+  position: relative;
 }
-.createPostContainer__post__buttonsContainer {
+
+.buttonsContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 50%;
+  width: 70%;
 }
-.createPostContainer__post__buttonsContainer__buttonsLeft {
+.buttonsContainer__buttonsLeft {
   display: flex;
 }
-.createPostContainer__post__buttonsContainer__buttonsLeft button {
+.buttonsContainer__buttonsLeft button {
   margin-right: 30px;
 }
 
+.buttonsDisplay {
+  display: none;
+}
+
+.menuBar {
+  position: absolute;
+  bottom: 107px;
+}
+
 .markdown {
-  margin-top: 24px;
-  width: 50%;
+  margin-top: 45px;
+  margin-bottom: 10px;
+  width: 60%;
 }
 
 .markdownPost {
@@ -63,5 +76,5 @@
   padding: 28px 2px;
   margin-bottom: 24px;
   line-height: 30px;
-  width: 50%;
+  width: 60%;
 }/*# sourceMappingURL=CreatePost.module.css.map */

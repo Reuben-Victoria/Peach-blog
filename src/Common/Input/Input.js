@@ -37,7 +37,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   id: PropTypes.string,
-  type: PropTypes.type,
+  type: PropTypes.string,
   showPassword: PropTypes.bool,
   name: PropTypes.string
 };

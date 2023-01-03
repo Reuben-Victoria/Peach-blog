@@ -1,0 +1,89 @@
+.ProfileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ProfileContainer__userData {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 64px;
+}
+.ProfileContainer__userData__profilePicture {
+  width: 187px;
+  height: 187px;
+  margin-right: 29px;
+}
+.ProfileContainer__userData__profilePicture img {
+  width: 100%;
+}
+.ProfileContainer__userData__data {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ProfileContainer__userData__data__userName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ProfileContainer__userData__data__userName h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 41px;
+  color: #111111;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.ProfileContainer__userData__data__userName__editIcon:hover {
+  border-bottom: 2px solid #57497c;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.ProfileContainer__userData__data__description {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  color: #757575;
+  margin-bottom: 57px;
+}
+.ProfileContainer__userData__data__icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ProfileContainer__userData__data__icons p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #57497c;
+}
+
+.textArea {
+  height: 20vh;
+  border: 1px solid #cbc4de;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #57497c;
+}
+
+.recentActivityContainer {
+  border: 1px solid #cbc4de;
+  border-radius: 10px;
+  padding: 32px 32px;
+}
+.recentActivityContainer h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  color: #111111;
+  margin-bottom: 24px;
+}/*# sourceMappingURL=Profile.module.css.map */

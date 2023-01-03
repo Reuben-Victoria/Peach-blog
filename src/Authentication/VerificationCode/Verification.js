@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../Common/Input/Input';
-import styles from './ResetPassword.module.scss';
+import styles from './Verification.module.scss';
 import Button from '../../Common/Button/Button';
 function Verification() {
   return (

@@ -4,6 +4,7 @@ import './App.css';
 import Signup from './Authentication/SignUp/Signup';
 import Login from './Authentication/LogIn/Login';
 import ResetPassword from './Authentication/ResetPassword/ResetPassword';
+import Verification from './Authentication/VerificationCode/Verification';
 import Header from './Components/Header/Header';
 import Successful from './Authentication/Successful/Successful';
 import CreatePost from './Container/CreatePost/CreatePost';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/success" element={<Successful />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/verify-code" element={<Verification />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/" element={<HomePage />} />

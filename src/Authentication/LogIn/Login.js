@@ -11,7 +11,7 @@ import { userLogin } from '../../Features/authentication/authActions';
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const authToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
+
   const { userInfo, loading } = useSelector((state) => state.auth);
   useEffect(() => {
     if (userInfo?.data?.token) {
@@ -21,7 +21,7 @@ function Login() {
 
   return (
     <Formik
-      initialValues={{}}
+      initialValues={{ email: '', password: '' }}
       validationSchema={loginSchema}
       onSubmit={(values, { resetForm }) => {
         dispatch(

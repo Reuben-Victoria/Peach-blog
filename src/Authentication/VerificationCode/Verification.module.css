@@ -19,6 +19,9 @@
   font-size: 16px;
   line-height: 24px;
   color: #757575;
+  margin-bottom: 64px;
+  text-align: center;
+  width: 50%;
 }
 .formWrap form {
   width: 100%;

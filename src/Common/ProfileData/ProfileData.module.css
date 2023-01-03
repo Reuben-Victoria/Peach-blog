@@ -1,0 +1,20 @@
+.userData {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.userData__profilePicture {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+.userData__profilePicture img {
+  width: 100%;
+}
+.userData__userName {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #57497c;
+}/*# sourceMappingURL=ProfileData.module.css.map */
