@@ -72,6 +72,22 @@ export const verifyCode = createAsyncThunk(
   }
 );
 
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ token, password }, { rejectWithValue }) => {
+    try {
+      const { data } = await api.patch('users/reset_password', { token, password });
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
 // export const doLogIn = (data) => ({
 //   type: 'DO_LOGIN',
 //   data

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { resetSchema } from './resetSchema';
 import Input from '../../Common/Input/Input';
 import styles from './ResetPassword.module.scss';
 import Button from '../../Common/Button/Button';
-// import { userLogin } from '../../Features/authentication/authActions';
+import { resetPassword } from '../../Features/authentication/authActions';
 
 function ResetPassword() {
   //   const navigate = useNavigate();
@@ -59,24 +59,29 @@ function ResetPassword() {
   //     }
   //   };
 
-  //   const { userInfo, loading } = useSelector((state) => state.auth);
-  //   useEffect(() => {
-  //     if (userInfo?.data?.token) {
-  //       navigate('/');
-  //     }
-  //   }, [userInfo]);
+  const { userInfo, loading } = useSelector((state) => state.auth);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (userInfo?.data?.status === 'success') {
+      localStorage.removeItem('userToken');
+    }
+  }, [userInfo]);
+  const token = localStorage.getItem('userToken');
+  console.log(userInfo, 'userInfo');
+
+  console.log(token, 'token');
   return (
     <Formik
       initialValues={{ password: '', confirmPassword: '' }}
       validationSchema={resetSchema}
       onSubmit={(values, { resetForm }) => {
-        // dispatch(
-        //   userLogin({
-        //     email_address: values.email.replace(/^\s+|\s+$/gm, ''),
-        //     password: values.password.replace(/^\s+|\s+$/gm, '')
-        //   })
-        // );
+        dispatch(
+          resetPassword({
+            token: token,
+            password: values.password.replace(/^\s+|\s+$/gm, '')
+          })
+        );
 
         resetForm({ values: '' });
       }}>
@@ -115,7 +120,13 @@ function ResetPassword() {
                   <p id="errors">{errors.confirmPassword}</p>
                 )}
               </div>
-              <Button type={'submit'} theme="secondary" size={'lg'} text={'Proceed'} />
+              <Button
+                type={'submit'}
+                theme="secondary"
+                size={'lg'}
+                text={'Proceed'}
+                loading={loading}
+              />
             </form>
 
             <p className={styles.formWrap__linksContainer}>
