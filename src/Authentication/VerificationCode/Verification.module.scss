@@ -30,5 +30,6 @@
 
   &__linksContainer {
     @include linksContainer;
+    margin-top: 12px;
   }
 }
