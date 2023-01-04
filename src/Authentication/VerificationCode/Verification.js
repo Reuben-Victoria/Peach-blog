@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../Common/Input/Input';
 import styles from './Verification.module.scss';
 import Button from '../../Common/Button/Button';
 import { verifyPassword } from '../../Features/authentication/authActions';
 function Verification() {
   const dispatch = useDispatch();
-  // const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo, loading } = useSelector((state) => state.auth);
   const [code, setCode] = useState('');
   function handleChange(event) {
     setCode(event.target.value);
@@ -34,7 +34,13 @@ function Verification() {
             value={code}
           />
         </div>
-        <Button theme={'secondary'} size={'lg'} text={'Verify Code'} onClick={handleSubmit} />
+        <Button
+          theme={'secondary'}
+          size={'lg'}
+          text={'Verify Code'}
+          onClick={handleSubmit}
+          loading={loading}
+        />
       </form>
       <p className={styles.formWrap__linksContainer}>
         <Link to="/reset-password">Resend code</Link>
