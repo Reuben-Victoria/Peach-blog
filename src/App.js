@@ -12,6 +12,8 @@ import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
 import ResetPassword from './Authentication/ResetPassword/ResetPassword';
 import EditProfilePage from './pages/EditProfilePage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import RequireAuth from './Components/RequireAuth';
 // import Input from './Common/Input/Input';
 
@@ -32,6 +34,7 @@ function App() {
         <Route exact path="/" element={<HomePage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

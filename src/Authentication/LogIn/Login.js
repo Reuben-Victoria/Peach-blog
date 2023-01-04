@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import Input from '../../Common/Input/Input';
 import styles from './Login.module.scss';
 import Button from '../../Common/Button/Button';
@@ -43,36 +42,8 @@ function Login() {
   const notification = () => {
     if (userInfo?.data?.token) {
       success();
-      {
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />;
-      }
     } else {
       failure();
-      {
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />;
-      }
     }
   };
 
