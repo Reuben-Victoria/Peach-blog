@@ -56,11 +56,11 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
-export const verifyPassword = createAsyncThunk(
-  'auth/verifyPassword',
-  async ({ code }, { rejectWithValue }) => {
+export const verifyCode = createAsyncThunk(
+  'auth/verifyCode',
+  async ({ code, email_address }, { rejectWithValue }) => {
     try {
-      const { data } = await api.patch('users/verify_code', { code });
+      const { data } = await api.patch('users/verify_code', { code, email_address });
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {

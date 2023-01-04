@@ -4,25 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import Input from '../../Common/Input/Input';
-import styles from '../ResetPassword/ResetPassword.module.scss';
+import styles from './ForgotPassword.module.scss';
 import Button from '../../Common/Button/Button';
 import { resetPassword } from '../../Features/authentication/authActions';
 
-function ResetPassword() {
+function ForgotPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { userInfo, loading } = useSelector((state) => state.auth);
 
-  console.log(userInfo?.status);
+  console.log(userInfo);
+
   useEffect(() => {
     if (userInfo?.status === 'success') {
-      navigate('/verify-code');
+      navigate(`/verify-code`);
     }
   }, [userInfo]);
+
   const resetSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required')
   });
+
   return (
     <Formik
       initialValues={{ email: '' }}
@@ -34,6 +37,7 @@ function ResetPassword() {
           })
         );
         resetForm({ values: '' });
+        localStorage.setItem('email', values.email);
       }}>
       {(formik) => {
         const { touched, errors } = formik;
@@ -72,4 +76,4 @@ function ResetPassword() {
   );
 }
 
-export default ResetPassword;
+export default ForgotPassword;

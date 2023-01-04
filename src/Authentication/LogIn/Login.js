@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Input from '../../Common/Input/Input';
 import styles from './Login.module.scss';
 import Button from '../../Common/Button/Button';
@@ -12,10 +14,73 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const success = () => {
+    toast.success('Login Successful!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light'
+    });
+  };
+
+  const failure = () => {
+    toast.error('Login Failed!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light'
+    });
+  };
+
+  const notification = () => {
+    if (userInfo?.data?.token) {
+      success();
+      {
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />;
+      }
+    } else {
+      failure();
+      {
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />;
+      }
+    }
+  };
+
   const { userInfo, loading } = useSelector((state) => state.auth);
   useEffect(() => {
     if (userInfo?.data?.token) {
       navigate('/');
+      notification();
     }
   }, [userInfo]);
 
@@ -27,7 +92,7 @@ function Login() {
         dispatch(
           userLogin({
             email_address: values.email.replace(/^\s+|\s+$/gm, ''),
-            password: values.password
+            password: values.password.replace(/^\s+|\s+$/gm, '')
           })
         );
 

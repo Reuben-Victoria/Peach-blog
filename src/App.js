@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Signup from './Authentication/SignUp/Signup';
 import Login from './Authentication/LogIn/Login';
-import ResetPassword from './Authentication/ResetPassword/ResetPassword';
+import ForgotPassword from './Authentication/ForgotPassword/ForgotPassword';
 import Verification from './Authentication/VerificationCode/Verification';
 import Header from './Components/Header/Header';
 import Successful from './Authentication/Successful/Successful';
@@ -23,11 +23,11 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/success" element={<Successful />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-code" element={<Verification />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
     </div>

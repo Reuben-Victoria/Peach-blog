@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { userSignUp, userLogin, resetPassword, verifyPassword } from './authActions';
+import { userSignUp, userLogin, resetPassword, verifyCode } from './authActions';
 
 const userToken = localStorage.getItem('userToken');
 const initialState = {
@@ -60,15 +60,15 @@ const authSlice = createSlice({
     },
 
     // VerifyPassword
-    [verifyPassword.pending]: (state) => {
+    [verifyCode.pending]: (state) => {
       state.loading = true;
       state.error = null;
     },
-    [verifyPassword.fulfilled]: (state, { payload }) => {
+    [verifyCode.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.userInfo = payload;
     },
-    [verifyPassword.rejected]: (state, { payload }) => {
+    [verifyCode.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     }
