@@ -1,0 +1,86 @@
+.publications {
+  width: 40%;
+  margin-top: 24px;
+}
+.publications h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  color: #111111;
+  margin-bottom: 26.5px;
+}
+.publications h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111111;
+  margin-top: 10.5px;
+  margin-bottom: 22.5px;
+}
+.publications__list {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #7557d3;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  cursor: pointer;
+}
+.publications__list:hover {
+  opacity: 0.7;
+}
+.publications__faq {
+  background: #f4f2fb;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px 16px;
+  width: 80%;
+  margin-bottom: 24px;
+}
+.publications__faq h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111111;
+  margin-bottom: 24px;
+}
+.publications__faq p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #757575;
+  margin-bottom: 8px;
+}
+.publications__faq button {
+  margin-top: 32px;
+}
+.publications__faq button:hover {
+  background-color: white;
+  border: 1px solid #7557d3;
+  color: #7557d3;
+}
+.publications__recommended h2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111111;
+}
+.publications__recommended__buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 18px;
+}
+.publications__recommended__buttons button {
+  margin-right: 16px;
+}
+.publications__recommended__buttons button:hover {
+  color: white;
+  background-color: #7557d3;
+}/*# sourceMappingURL=Tags.module.css.map */

@@ -1,25 +1,34 @@
-@import "../../Styles/mixins";
+@import '../../Styles/mixins';
 
-.formWrap{
-    @include flex-container;
-    padding: (82px 515px);
-    h1{
-        @include authTitleText;
-    }
+.formWrap {
+  @include flex-container;
+  height: 70vh;
+  justify-content: center;
+  h1 {
+    @include authBodyText(
+      $fontWeight: 700,
+      $fontSize: 24px,
+      $lineHeight: 32px,
+      $color: $text--color--primary,
+      $marginBottom: 16px
+    );
+  }
 
-    &__description{
-        @include authBodyText;
-    }
+  &__description {
+    @include authBodyText;
+    margin-bottom: 64px;
+    text-align: center;
+    width: 50%;
+  }
 
-    form{
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
+  form {
+    width: 32%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 24px;
+  }
 
-        
-    }
-
-    &__linksContainer{
-        @include linksContainer;
-    }
+  &__linksContainer {
+    @include linksContainer;
+  }
 }

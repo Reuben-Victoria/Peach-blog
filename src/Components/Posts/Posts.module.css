@@ -1,0 +1,109 @@
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.postsContainer {
+  display: flex;
+  flex-direction: row;
+}
+.postsContainer__coverImage {
+  width: 193px;
+  height: 144px;
+  border-radius: 10px;
+}
+.postsContainer__coverImage img {
+  width: 100%;
+}
+.postsContainer__postContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 24px;
+  width: 75%;
+}
+.postsContainer__postContent__postTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.postsContainer__postContent__postTitle h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  color: #111111;
+  margin-bottom: 8px;
+}
+.postsContainer__postContent__postTitle p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #57497c;
+}
+.postsContainer__postContent__postSubTitle {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #57497c;
+  margin-bottom: 24px;
+}
+.postsContainer__postContent__post {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111111;
+  text-align: justify;
+  width: 75%;
+  margin-bottom: 19px;
+}
+.postsContainer__postContent__data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+.postsContainer__postContent__data__userData {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.postsContainer__postContent__data__userData p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #57497c;
+}
+.postsContainer__postContent__data__options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.postsContainer__postContent__data__options__save {
+  width: 16px;
+  height: 19.5px;
+  margin-right: 19px;
+}
+.postsContainer__postContent__data__options__save img {
+  width: 100%;
+}
+.postsContainer__postContent__data__options__more {
+  width: 2.5px;
+  height: 15px;
+}
+.postsContainer__postContent__data__options__more img {
+  width: 100%;
+}
+
+.divider {
+  border-top: 1px solid #e5e2ed;
+  width: 99%;
+}/*# sourceMappingURL=Posts.module.css.map */

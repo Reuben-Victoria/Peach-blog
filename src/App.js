@@ -4,12 +4,14 @@ import './App.css';
 import Signup from './Authentication/SignUp/Signup';
 import Login from './Authentication/LogIn/Login';
 import ResetPassword from './Authentication/ResetPassword/ResetPassword';
+import Verification from './Authentication/VerificationCode/Verification';
 import Header from './Components/Header/Header';
 import Successful from './Authentication/Successful/Successful';
 import CreatePost from './Container/CreatePost/CreatePost';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
 import EditProfilePage from './pages/EditProfilePage';
+// import RequireAuth from './Components/RequireAuth';
 // import Input from './Common/Input/Input';
 
 function App() {
@@ -22,9 +24,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/success" element={<Successful />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/verify-code" element={<Verification />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
     </div>

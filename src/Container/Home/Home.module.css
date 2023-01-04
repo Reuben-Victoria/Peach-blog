@@ -1,0 +1,33 @@
+.homeWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.homeWrapper__favorites {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #e5e2ed;
+}
+.homeWrapper__favorites p {
+  margin-right: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111111;
+}
+.homeWrapper__favorites p:hover {
+  border-bottom: 1.5px solid #7557d3;
+}
+.homeWrapper__contents {
+  display: flex;
+  flex-direction: row;
+}
+.homeWrapper__contents__posts {
+  margin-top: 32px;
+  width: 100%;
+  margin-right: 24px;
+}
+.homeWrapper__contents__divider {
+  border-left: 1px solid #e5e2ed;
+  margin-right: 28px;
+}/*# sourceMappingURL=Home.module.css.map */

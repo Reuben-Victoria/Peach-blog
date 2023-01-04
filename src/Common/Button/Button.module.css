@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .btn__primary {
   background-color: white;
@@ -14,6 +15,10 @@
   background-color: #7557D3;
   color: white;
   border: none;
+}
+.btn__lightPink {
+  background-color: #ebe4ff;
+  color: #7557d3;
 }
 .btn__lg {
   padding: 12px 80px;
@@ -30,6 +35,19 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+}
+.btn__sm {
+  padding: 13px 52px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+}
+.btn__smaller {
+  border: 1px solid #7557d3;
+  border-radius: 16px;
+  padding: 8px 8px;
 }
 
 :disabled {
@@ -48,4 +66,20 @@
 
 .hideImage {
   display: none;
+}
+
+.spinner {
+  animation-name: spin;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=Button.module.css.map */

@@ -11,27 +11,26 @@ import { userLogin } from '../../Features/authentication/authActions';
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userInfo } = useSelector((state) => state.auth);
+
+  const { userInfo, loading } = useSelector((state) => state.auth);
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo?.data?.token) {
       navigate('/');
     }
-  }, [navigate, userInfo]);
-  const initialValues = {
-    email: '',
-    password: ''
-  };
+  }, [userInfo]);
+
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{ email: '', password: '' }}
       validationSchema={loginSchema}
       onSubmit={(values, { resetForm }) => {
         dispatch(
           userLogin({
-            email_address: values.email,
+            email_address: values.email.replace(/^\s+|\s+$/gm, ''),
             password: values.password
           })
         );
+
         resetForm({ values: '' });
       }}>
       {(formik) => {
@@ -67,15 +66,19 @@ function Login() {
                 />
                 {touched.password && errors.password && <p id="errors">{errors.password}</p>}
               </div>
-              <Link to="">
-                <Button type={'submit'} theme={'secondary'} size={'lg'} text={'Log In'} />
-              </Link>
+              <Button
+                type={'submit'}
+                theme="secondary"
+                size={'lg'}
+                text={'Log In'}
+                loading={loading}
+              />
             </form>
 
             <p className={styles.formWrap__linksContainer}>
               Dont have an account?
               <span className={styles.formWrap__linksContainer__links}>
-                <Link to="/">SignUp</Link> | <Link to="/reset-password">Reset Password</Link>
+                <Link to="/signup">SignUp</Link> | <Link to="/reset-password">Reset Password</Link>
               </span>
             </p>
           </div>
