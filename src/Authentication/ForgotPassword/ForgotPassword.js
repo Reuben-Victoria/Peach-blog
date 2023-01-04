@@ -6,7 +6,7 @@ import { Formik } from 'formik';
 import Input from '../../Common/Input/Input';
 import styles from './ForgotPassword.module.scss';
 import Button from '../../Common/Button/Button';
-import { resetPassword } from '../../Features/authentication/authActions';
+import { forgotPassword } from '../../Features/authentication/authActions';
 
 function ForgotPassword() {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function ForgotPassword() {
       validationSchema={resetSchema}
       onSubmit={(values, { resetForm }) => {
         dispatch(
-          resetPassword({
+          forgotPassword({
             email_address: values.email.replace(/^\s+|\s+$/gm, '')
           })
         );

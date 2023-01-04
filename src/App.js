@@ -10,6 +10,7 @@ import Successful from './Authentication/Successful/Successful';
 import CreatePost from './Container/CreatePost/CreatePost';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
+import ResetPassword from './Authentication/ResetPassword/ResetPassword';
 import EditProfilePage from './pages/EditProfilePage';
 // import RequireAuth from './Components/RequireAuth';
 // import Input from './Common/Input/Input';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/success" element={<Successful />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset_password" element={<ResetPassword />} />
         <Route path="/verify-code" element={<Verification />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/profile" element={<ProfilePage />} />

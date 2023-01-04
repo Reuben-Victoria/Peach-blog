@@ -40,8 +40,8 @@ export const userLogin = createAsyncThunk(
   }
 );
 
-export const resetPassword = createAsyncThunk(
-  'auth/resetpassword',
+export const forgotPassword = createAsyncThunk(
+  'auth/forgotpassword',
   async ({ email_address }, { rejectWithValue }) => {
     try {
       const { data } = await api.post('users/forgot_password', { email_address });
