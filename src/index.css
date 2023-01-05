@@ -16,7 +16,8 @@ code {
 #errors {
   color: rgb(220, 56, 56);
   font-size: 14px;
-  margin-top: 8px;
+  margin-top: 1px;
+  position: absolute;
 }
 
 input:focus {
