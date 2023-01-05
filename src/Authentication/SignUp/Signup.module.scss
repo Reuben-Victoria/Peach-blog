@@ -9,7 +9,13 @@
   padding-top: 135px;
 
   h1 {
-    @include authBodyText($fontWeight: 700, $fontSize:24px, $lineHeight:32px, $color:$text--color--primary, $marginBottom:16px);
+    @include authBodyText(
+      $fontWeight: 700,
+      $fontSize: 24px,
+      $lineHeight: 32px,
+      $color: $text--color--primary,
+      $marginBottom: 16px
+    );
   }
 
   &__description {
@@ -18,7 +24,7 @@
   }
 
   form {
-    width: 32%;
+    width: 29%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     row-gap: 24px;
