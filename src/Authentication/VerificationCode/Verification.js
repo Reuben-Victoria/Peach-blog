@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../Common/Input/Input';
 import styles from './Verification.module.scss';
 import Button from '../../Common/Button/Button';
-import { success, failure } from '../Toast/Toast';
+import { successToast, failureToast } from '../Toast/Toast';
 import { verifyCode } from '../../Features/authentication/authActions';
 function Verification() {
   const dispatch = useDispatch();
@@ -17,10 +17,10 @@ function Verification() {
     setCode(event.target.value);
   }
   const notification = () => {
-    if (userInfo?.data?.token) {
-      success('Code Verified!');
+    if (userInfo?.data?.status === 'success') {
+      successToast(`${userInfo?.data?.message}`);
     } else {
-      failure('Verification Failed!');
+      failureToast(`${userInfo?.data?.message}`);
     }
   };
   useEffect(() => {

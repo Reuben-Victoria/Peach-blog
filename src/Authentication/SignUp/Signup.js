@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../Common/Input/Input';
 import styles from './Signup.module.scss';
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { userSignUp } from '../../Features/authentication/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpSchema } from './signUpSchema';
-import { success, failure } from '../Toast/Toast';
+import { successToast, failureToast } from '../Toast/Toast';
 
 import Button from '../../Common/Button/Button';
 
@@ -17,10 +17,11 @@ function Signup() {
   const dispatch = useDispatch();
 
   const notification = () => {
-    if (userInfo?.status === 'success') {
-      success('Signup Successful!');
+    if (userInfo?.data?.status === 'success') {
+      successToast(`${userInfo?.data?.message}`);
+      navigate('/login');
     } else {
-      failure('Signup Failed!');
+      failureToast(`${userInfo?.data?.message}`);
     }
   };
   const initialValues = {
@@ -31,9 +32,9 @@ function Signup() {
     confirmPassword: ''
   };
 
-  useEffect(() => {
-    if (userInfo?.status === 'success') navigate('/login');
-  }, [userInfo]);
+  // useEffect(() => {
+  //   if (userInfo?.status === 'success') navigate('/login');
+  // }, [userInfo]);
 
   return (
     <section className={styles.signUpForm}>

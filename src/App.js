@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/" element={<HomePage />} />
         <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
     </div>
   );
 }

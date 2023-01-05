@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -6,7 +6,7 @@ import { Formik } from 'formik';
 import Input from '../../Common/Input/Input';
 import styles from './ForgotPassword.module.scss';
 import Button from '../../Common/Button/Button';
-import { success, failure } from '../Toast/Toast';
+import { successToast, failureToast } from '../Toast/Toast';
 import { forgotPassword } from '../../Features/authentication/authActions';
 
 function ForgotPassword() {
@@ -16,18 +16,19 @@ function ForgotPassword() {
   const { userInfo, loading } = useSelector((state) => state.auth);
 
   const notification = () => {
-    if (userInfo?.status === 'success') {
-      success('Rest code has been sent to your mail');
+    if (userInfo?.data?.status === 'success') {
+      successToast(`${userInfo?.data?.message}`);
+      navigate(`/verify-code`);
     } else {
-      failure('Reset Failed');
+      failureToast(`${userInfo?.data?.message}`);
     }
   };
 
-  useEffect(() => {
-    if (userInfo?.status === 'success') {
-      navigate(`/verify-code`);
-    }
-  }, [userInfo]);
+  // useEffect(() => {
+  //   if (userInfo?.status === 'success') {
+  //     navigate(`/verify-code`);
+  //   }
+  // }, [userInfo]);
 
   const resetSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required')

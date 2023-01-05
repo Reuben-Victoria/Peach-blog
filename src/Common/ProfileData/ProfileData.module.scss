@@ -1,22 +1,19 @@
 @import '../../Styles/mixins';
-.userData{
-    @include flex-container($direction:row, $spacing:null);
-&__profilePicture {
+.userData {
+  @include flex-container($direction: row, $spacing: null);
+  &__profilePicture {
     width: 20px;
     height: 20px;
+    border-radius: 50%;
     margin-right: 8px;
 
     img {
       width: 100%;
+      border-radius: 50%;
     }
   }
 
-  &__userName{
-    @include authBodyText(
-        $fontWeight: 500,
-        $fontSize: 14px,
-        $lineHeight: 19px,
-        $color: #57497c
-      );
+  &__userName {
+    @include authBodyText($fontWeight: 500, $fontSize: 14px, $lineHeight: 19px, $color: #57497c);
   }
 }

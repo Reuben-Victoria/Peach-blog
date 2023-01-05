@@ -1,7 +1,7 @@
 import React from 'react';
-
 import Posts from '../../Components/Posts/Post';
 import Tags from '../../Components/Tags/Tags';
+// import { blogData } from '../../mock/post';
 
 import styles from './Home.module.scss';
 

@@ -16,9 +16,9 @@ function TagIcon({ src, alt, text, onClick, variant, size }) {
 
 export default TagIcon;
 TagIcon.propTypes = {
-  src: PropTypes.string,
+  src: PropTypes.any,
   alt: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.any,
   onClick: PropTypes.func,
   variant: PropTypes.string,
   size: PropTypes.string

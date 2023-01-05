@@ -15,7 +15,7 @@ function ProfileData({ src, alt, name }) {
 export default ProfileData;
 
 ProfileData.propTypes = {
-  src: PropTypes.string,
+  src: PropTypes.any,
   alt: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.any
 };

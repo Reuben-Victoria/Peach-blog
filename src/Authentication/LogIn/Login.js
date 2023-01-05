@@ -6,27 +6,39 @@ import Input from '../../Common/Input/Input';
 import styles from './Login.module.scss';
 import Button from '../../Common/Button/Button';
 import { loginSchema } from './loginSchema';
-import { success, failure } from '../Toast/Toast';
+import { successToast, failureToast } from '../Toast/Toast';
 import { userLogin } from '../../Features/authentication/authActions';
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userInfo, loading } = useSelector((state) => state.auth);
+  const { userInfo, loading, success } = useSelector((state) => state.auth);
+
+  console.log(userInfo, 'hhhh');
+  console.log(loading, 'loading');
+
+  console.log(userInfo?.message, 'message');
+
+  console.log(success, 'success');
 
   const notification = () => {
-    if (userInfo?.data?.token) {
-      success('Login Successful!');
-    } else {
-      failure('Login failed');
+    if (success) {
+      if (loading === false) {
+        successToast(`${userInfo?.message}`);
+      } else {
+        failureToast(`${userInfo?.message}`);
+      }
     }
   };
 
   useEffect(() => {
-    if (userInfo?.data?.token) {
-      navigate('/');
-    }
-  }, [userInfo]);
+    const timer = setTimeout(() => {
+      if (success) {
+        navigate('/');
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [navigate, success]);
 
   return (
     <Formik
