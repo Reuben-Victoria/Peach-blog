@@ -14,6 +14,7 @@ import ResetPassword from './Authentication/ResetPassword/ResetPassword';
 import EditProfilePage from './pages/EditProfilePage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PreventRoutes from './utils/PreventRoutes';
 // import RequireAuth from './Components/RequireAuth';
 // import Input from './Common/Input/Input';
 
@@ -23,16 +24,18 @@ function App() {
       <Header />
       <Routes>
         {/* <Input /> */}
+        <Route element={<PreventRoutes />}>
+          <Route path="/success" element={<Successful />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset_password" element={<ResetPassword />} />
+          <Route path="/verify-code" element={<Verification />} />
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="/edit-profile" element={<EditProfilePage />} />
+        </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/success" element={<Successful />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset_password" element={<ResetPassword />} />
-        <Route path="/verify-code" element={<Verification />} />
-        <Route path="/create-post" element={<CreatePost />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route exact path="/" element={<HomePage />} />
-        <Route path="/edit-profile" element={<EditProfilePage />} />
       </Routes>
       <ToastContainer autoClose={3000} />
     </div>
