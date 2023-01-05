@@ -6,7 +6,8 @@
 
 .formWrap {
   @include flex-container;
-  padding-top: 135px;
+  height: 100%;
+  padding-top: 150px;
 
   h1 {
     @include authBodyText(
@@ -19,8 +20,7 @@
   }
 
   &__description {
-    @include authBodyText;
-    margin-bottom: 40px;
+    @include authBodyText($marginBottom: 40px);
   }
 
   form {

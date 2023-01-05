@@ -63,7 +63,7 @@ function Verification() {
         />
       </form>
       <p className={styles.formWrap__linksContainer}>
-        <Link to="/reset_password">Resend code</Link>
+        <Link to="/forgot-password">Resend code</Link>
       </p>
     </div>
   );

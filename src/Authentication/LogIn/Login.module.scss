@@ -3,15 +3,15 @@
 
 .formWrap {
   @include flex-container;
-  height: 80vh;
+  height: 100vh;
 
   h1 {
     @include authBodyText($fontWeight: 700, $fontSize:24px, $lineHeight:32px, $color:$text--color--primary, $marginBottom:16px);
   }
 
   &__description {
-    @include authBodyText;
-    // margin-bottom: px;
+    @include authBodyText( $marginBottom: 40px);
+   
   }
 
   form {

@@ -26,9 +26,7 @@ function App() {
         {/* <Input /> */}
         <Route element={<PreventRoutes />}>
           <Route path="/success" element={<Successful />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset_password" element={<ResetPassword />} />
-          <Route path="/verify-code" element={<Verification />} />
+
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route exact path="/" element={<HomePage />} />
@@ -36,6 +34,9 @@ function App() {
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset_password" element={<ResetPassword />} />
+        <Route path="/verify-code" element={<Verification />} />
       </Routes>
       <ToastContainer autoClose={3000} />
     </div>

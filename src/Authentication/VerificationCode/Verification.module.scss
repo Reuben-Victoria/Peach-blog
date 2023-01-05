@@ -2,7 +2,7 @@
 
 .formWrap {
   @include flex-container;
-  height: 70vh;
+  height: 100vh;
   justify-content: center;
   h1 {
     @include authBodyText(
@@ -15,8 +15,7 @@
   }
 
   &__description {
-    @include authBodyText;
-    margin-bottom: 64px;
+    @include authBodyText($marginBottom: 40px);
     text-align: center;
     width: 50%;
   }
