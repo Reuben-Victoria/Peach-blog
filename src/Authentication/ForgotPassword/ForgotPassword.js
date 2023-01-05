@@ -6,6 +6,7 @@ import { Formik } from 'formik';
 import Input from '../../Common/Input/Input';
 import styles from './ForgotPassword.module.scss';
 import Button from '../../Common/Button/Button';
+import { success, failure } from '../Toast/Toast';
 import { forgotPassword } from '../../Features/authentication/authActions';
 
 function ForgotPassword() {
@@ -14,7 +15,13 @@ function ForgotPassword() {
 
   const { userInfo, loading } = useSelector((state) => state.auth);
 
-  console.log(userInfo);
+  const notification = () => {
+    if (userInfo?.status === 'success') {
+      success('Rest code has been sent to your mail');
+    } else {
+      failure('Reset Failed');
+    }
+  };
 
   useEffect(() => {
     if (userInfo?.status === 'success') {
@@ -38,6 +45,7 @@ function ForgotPassword() {
         );
         resetForm({ values: '' });
         localStorage.setItem('email', values.email);
+        notification();
       }}>
       {(formik) => {
         const { touched, errors } = formik;

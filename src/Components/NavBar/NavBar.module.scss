@@ -8,24 +8,6 @@
   padding: 24px 120px;
   top: 79px;
   z-index: 100;
-  &__input {
-    width: 70%;
-    height: 48px;
-
-    input {
-      border: none;
-      width: 100%;
-      height: 100%;
-      background: #f3f1f9;
-      border-radius: 50px;
-      padding: 17px 35px;
-
-      &:focus {
-        border: #7557d3;
-        outline-color: #7557d3;
-      }
-    }
-  }
 
   &__userProfile {
     @include flex-container($direction: row, $spacing: space-evenly);

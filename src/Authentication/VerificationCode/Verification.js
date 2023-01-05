@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../Common/Input/Input';
 import styles from './Verification.module.scss';
 import Button from '../../Common/Button/Button';
+import { success, failure } from '../Toast/Toast';
 import { verifyCode } from '../../Features/authentication/authActions';
 function Verification() {
   const dispatch = useDispatch();
@@ -15,6 +16,13 @@ function Verification() {
   function handleChange(event) {
     setCode(event.target.value);
   }
+  const notification = () => {
+    if (userInfo?.data?.token) {
+      success('Code Verified!');
+    } else {
+      failure('Verification Failed!');
+    }
+  };
   useEffect(() => {
     if (userInfo?.status === 'success') {
       localStorage.removeItem('email');
@@ -23,6 +31,8 @@ function Verification() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(verifyCode({ code: code.replace(/^\s+|\s+$/gm, ''), email_address: emailToken }));
+
+    notification();
   };
   console.log(code);
   console.log(userInfo, 'userInfo');
@@ -51,7 +61,7 @@ function Verification() {
         />
       </form>
       <p className={styles.formWrap__linksContainer}>
-        <Link to="/reset-password">Resend code</Link>
+        <Link to="/reset_password">Resend code</Link>
       </p>
     </div>
   );

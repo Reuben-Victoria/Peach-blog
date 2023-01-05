@@ -7,13 +7,22 @@ import { useNavigate } from 'react-router-dom';
 import { userSignUp } from '../../Features/authentication/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpSchema } from './signUpSchema';
+import { success, failure } from '../Toast/Toast';
 
 import Button from '../../Common/Button/Button';
 
 function Signup() {
   const { userInfo, loading } = useSelector((state) => state.auth);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const notification = () => {
+    if (userInfo?.status === 'success') {
+      success('Signup Successful!');
+    } else {
+      failure('Signup Failed!');
+    }
+  };
   const initialValues = {
     firstname: '',
     lastname: '',
@@ -21,8 +30,6 @@ function Signup() {
     password: '',
     confirmPassword: ''
   };
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (userInfo?.status === 'success') navigate('/login');
@@ -43,6 +50,7 @@ function Signup() {
             })
           );
           resetForm({ values: '' });
+          notification();
         }}>
         {(formik) => {
           const { errors, touched } = formik;

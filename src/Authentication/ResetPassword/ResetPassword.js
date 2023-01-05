@@ -10,55 +10,6 @@ import { resetPassword } from '../../Features/authentication/authActions';
 
 function ResetPassword() {
   //   const navigate = useNavigate();
-  //   const failure = () => {
-  //     toast.error('Login Failed!', {
-  //       position: 'top-right',
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: 'light'
-  //     });
-  //   };
-
-  //   const notification = () => {
-  //     if (userInfo?.data?.token) {
-  //       success();
-  //       {
-  //         <ToastContainer
-  //           position="top-right"
-  //           autoClose={5000}
-  //           hideProgressBar={false}
-  //           newestOnTop={false}
-  //           closeOnClick
-  //           rtl={false}
-  //           pauseOnFocusLoss
-  //           draggable
-  //           pauseOnHover
-  //           theme="light"
-  //         />;
-  //       }
-  //     } else {
-  //       failure();
-  //       {
-  //         <ToastContainer
-  //           position="top-right"
-  //           autoClose={5000}
-  //           hideProgressBar={false}
-  //           newestOnTop={false}
-  //           closeOnClick
-  //           rtl={false}
-  //           pauseOnFocusLoss
-  //           draggable
-  //           pauseOnHover
-  //           theme="light"
-  //         />;
-  //       }
-  //     }
-  //   };
-
   const { userInfo, loading } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
