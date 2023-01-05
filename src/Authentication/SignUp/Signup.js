@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../Common/Input/Input';
 import styles from './Signup.module.scss';
@@ -12,16 +12,17 @@ import { successToast, failureToast } from '../Toast/Toast';
 import Button from '../../Common/Button/Button';
 
 function Signup() {
-  const { userInfo, loading } = useSelector((state) => state.auth);
+  const { userInfo, success, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const notification = () => {
-    if (userInfo?.data?.status === 'success') {
-      successToast(`${userInfo?.data?.message}`);
-      navigate('/login');
-    } else {
-      failureToast(`${userInfo?.data?.message}`);
+    if (success) {
+      if (loading === false) {
+        successToast(`${userInfo?.message}`);
+      } else {
+        failureToast(`${userInfo?.message}`);
+      }
     }
   };
   const initialValues = {
@@ -32,9 +33,14 @@ function Signup() {
     confirmPassword: ''
   };
 
-  // useEffect(() => {
-  //   if (userInfo?.status === 'success') navigate('/login');
-  // }, [userInfo]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (success) {
+        navigate('/');
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [navigate, success]);
 
   return (
     <section className={styles.signUpForm}>

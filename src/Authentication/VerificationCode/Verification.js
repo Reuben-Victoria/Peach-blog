@@ -9,7 +9,7 @@ import { verifyCode } from '../../Features/authentication/authActions';
 function Verification() {
   const dispatch = useDispatch();
   // const { email } = useParams();
-  const { userInfo, loading } = useSelector((state) => state.auth);
+  const { userInfo, loading, success } = useSelector((state) => state.auth);
   const emailToken = localStorage.getItem('email');
   console.log(emailToken);
   const [code, setCode] = useState('');
@@ -17,10 +17,12 @@ function Verification() {
     setCode(event.target.value);
   }
   const notification = () => {
-    if (userInfo?.data?.status === 'success') {
-      successToast(`${userInfo?.data?.message}`);
-    } else {
-      failureToast(`${userInfo?.data?.message}`);
+    if (success) {
+      if (loading === false) {
+        successToast(`${userInfo?.message}`);
+      } else {
+        failureToast(`${userInfo?.message}`);
+      }
     }
   };
   useEffect(() => {

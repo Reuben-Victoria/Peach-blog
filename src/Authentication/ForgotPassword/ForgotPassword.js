@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -13,22 +13,26 @@ function ForgotPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { userInfo, loading } = useSelector((state) => state.auth);
+  const { userInfo, loading, success } = useSelector((state) => state.auth);
 
   const notification = () => {
-    if (userInfo?.data?.status === 'success') {
-      successToast(`${userInfo?.data?.message}`);
-      navigate(`/verify-code`);
-    } else {
-      failureToast(`${userInfo?.data?.message}`);
+    if (success) {
+      if (loading === false) {
+        successToast(`${userInfo?.message}`);
+      } else {
+        failureToast(`${userInfo?.message}`);
+      }
     }
   };
 
-  // useEffect(() => {
-  //   if (userInfo?.status === 'success') {
-  //     navigate(`/verify-code`);
-  //   }
-  // }, [userInfo]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (success) {
+        navigate('/');
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [navigate, success]);
 
   const resetSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required')
