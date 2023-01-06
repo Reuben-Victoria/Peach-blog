@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 //  import Instance from '../../api';
 
 import api from '../../api';
+import { failureToast, successToast } from '../../Authentication/Toast/Toast';
 
 export const userSignUp = createAsyncThunk(
   'auth/signup',
@@ -23,24 +24,17 @@ export const userSignUp = createAsyncThunk(
     }
   }
 );
-export const userLogin = createAsyncThunk(
-  'auth/login',
-  async ({ email_address, password }, { rejectWithValue }) => {
-    try {
-      const { data } = await api.post('users/login', { email_address, password });
-      localStorage.setItem('userToken', data?.data?.token);
-      return data;
-    } catch (error) {
-      console.log(error, 'error');
-
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
-    }
+export const userLogin = createAsyncThunk('auth/login', async ({ email_address, password }) => {
+  try {
+    const { data } = await api.post('users/login', { email_address, password });
+    localStorage.setItem('userToken', data?.data?.token);
+    successToast(`${data.message}`);
+    return data;
+  } catch (error) {
+    console.log(error.response, 'error');
+    failureToast(error.response?.data?.message);
   }
-);
+});
 
 export const forgotPassword = createAsyncThunk(
   'auth/forgotpassword',

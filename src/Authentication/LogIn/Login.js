@@ -6,53 +6,46 @@ import Input from '../../Common/Input/Input';
 import styles from './Login.module.scss';
 import Button from '../../Common/Button/Button';
 import { loginSchema } from './loginSchema';
-import { successToast, failureToast } from '../Toast/Toast';
+// import { successToast, failureToast } from '../Toast/Toast';
 import { userLogin } from '../../Features/authentication/authActions';
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userInfo, loading, success } = useSelector((state) => state.auth);
-
+  const state = useSelector((state) => state);
+  console.log(state);
   console.log(userInfo, 'hhhh');
   console.log(loading, 'loading');
 
-  console.log(userInfo?.message, 'message');
+  function wait(time) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, time);
+    });
+  }
 
   console.log(success, 'success');
 
-  const notification = () => {
-    if (success) {
-      if (loading === false) {
-        successToast(`${userInfo?.message}`);
-      } else {
-        failureToast(`${userInfo?.message}`);
-      }
-    }
-  };
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (success) {
-        navigate('/');
-      }
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [navigate, success]);
+    if (success) {
+      wait(4000);
+      navigate('/');
+    }
+    // console.log(timer);
+  }, [success]);
 
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
       validationSchema={loginSchema}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={(values) => {
         dispatch(
           userLogin({
             email_address: values.email.replace(/^\s+|\s+$/gm, ''),
             password: values.password.replace(/^\s+|\s+$/gm, '')
           })
         );
-        notification();
-        resetForm({ values: '' });
+        console.log(userInfo?.message, 'message');
       }}>
       {(formik) => {
         const { touched, errors } = formik;
