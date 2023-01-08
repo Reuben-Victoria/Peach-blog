@@ -18,21 +18,17 @@ function Login() {
   console.log(userInfo, 'hhhh');
   console.log(loading, 'loading');
 
-  function wait(time) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, time);
-    });
-  }
-
   console.log(success, 'success');
 
   useEffect(() => {
-    if (success) {
-      wait(4000);
-      navigate('/');
-    }
+    const timer = setTimeout(() => {
+      if (success) {
+        navigate('/');
+      }
+    }, 3000);
+    return clearTimeout(timer);
     // console.log(timer);
-  }, [success]);
+  }, []);
 
   return (
     <Formik

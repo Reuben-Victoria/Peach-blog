@@ -6,24 +6,13 @@ import { Formik } from 'formik';
 import Input from '../../Common/Input/Input';
 import styles from './ForgotPassword.module.scss';
 import Button from '../../Common/Button/Button';
-import { successToast, failureToast } from '../Toast/Toast';
 import { forgotPassword } from '../../Features/authentication/authActions';
 
 function ForgotPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { userInfo, loading, success } = useSelector((state) => state.auth);
-
-  const notification = () => {
-    if (success) {
-      if (loading === false) {
-        successToast(`${userInfo?.message}`);
-      } else {
-        failureToast(`${userInfo?.message}`);
-      }
-    }
-  };
+  const { loading, success } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -32,7 +21,7 @@ function ForgotPassword() {
       }
     }, 3000);
     return () => clearTimeout(timer);
-  }, [navigate, success]);
+  }, []);
 
   const resetSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required')
@@ -50,7 +39,6 @@ function ForgotPassword() {
         );
         resetForm({ values: '' });
         localStorage.setItem('email', values.email);
-        notification();
       }}>
       {(formik) => {
         const { touched, errors } = formik;

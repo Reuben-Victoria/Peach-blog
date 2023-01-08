@@ -12,16 +12,17 @@ function ResetPassword() {
   //   const navigate = useNavigate();
   const { userInfo, loading } = useSelector((state) => state.auth);
 
+  const token = localStorage.getItem('userToken');
+  console.log(userInfo, 'userInfo');
+  console.log(token, 'token');
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (userInfo?.data?.status === 'success') {
       localStorage.removeItem('userToken');
     }
   }, [userInfo]);
-  const token = localStorage.getItem('userToken');
-  console.log(userInfo, 'userInfo');
 
-  console.log(token, 'token');
   return (
     <Formik
       initialValues={{ password: '', confirmPassword: '' }}

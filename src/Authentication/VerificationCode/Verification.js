@@ -4,27 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../Common/Input/Input';
 import styles from './Verification.module.scss';
 import Button from '../../Common/Button/Button';
-import { successToast, failureToast } from '../Toast/Toast';
 import { verifyCode } from '../../Features/authentication/authActions';
 function Verification() {
   const dispatch = useDispatch();
   // const { email } = useParams();
-  const { userInfo, loading, success } = useSelector((state) => state.auth);
+  const { userInfo, loading } = useSelector((state) => state.auth);
   const emailToken = localStorage.getItem('email');
   console.log(emailToken);
   const [code, setCode] = useState('');
   function handleChange(event) {
     setCode(event.target.value);
   }
-  const notification = () => {
-    if (success) {
-      if (loading === false) {
-        successToast(`${userInfo?.message}`);
-      } else {
-        failureToast(`${userInfo?.message}`);
-      }
-    }
-  };
   useEffect(() => {
     if (userInfo?.status === 'success') {
       localStorage.removeItem('email');
@@ -33,8 +23,6 @@ function Verification() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(verifyCode({ code: code.replace(/^\s+|\s+$/gm, ''), email_address: emailToken }));
-
-    notification();
   };
   console.log(code);
   console.log(userInfo, 'userInfo');

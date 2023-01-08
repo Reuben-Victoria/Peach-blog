@@ -7,24 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { userSignUp } from '../../Features/authentication/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpSchema } from './signUpSchema';
-import { successToast, failureToast } from '../Toast/Toast';
 
 import Button from '../../Common/Button/Button';
 
 function Signup() {
-  const { userInfo, success, loading } = useSelector((state) => state.auth);
+  const { success, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const notification = () => {
-    if (success) {
-      if (loading === false) {
-        successToast(`${userInfo?.message}`);
-      } else {
-        failureToast(`${userInfo?.message}`);
-      }
-    }
-  };
   const initialValues = {
     firstname: '',
     lastname: '',
@@ -40,7 +30,7 @@ function Signup() {
       }
     }, 3000);
     return () => clearTimeout(timer);
-  }, [navigate, success]);
+  }, []);
 
   return (
     <section className={styles.signUpForm}>
@@ -57,7 +47,6 @@ function Signup() {
             })
           );
           resetForm({ values: '' });
-          notification();
         }}>
         {(formik) => {
           const { errors, touched } = formik;
