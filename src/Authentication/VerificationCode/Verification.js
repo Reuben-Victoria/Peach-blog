@@ -16,10 +16,13 @@ function Verification() {
     setCode(event.target.value);
   }
   useEffect(() => {
-    if (userInfo?.status === 'success') {
-      localStorage.removeItem('email');
-    }
-  }, [userInfo]);
+    const timer = setTimeout(() => {
+      if (userInfo?.status === 'success') {
+        localStorage.removeItem('email');
+      }
+    }, 3000);
+    return clearTimeout(timer);
+  }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(verifyCode({ code: code.replace(/^\s+|\s+$/gm, ''), email_address: emailToken }));

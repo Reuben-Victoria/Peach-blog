@@ -1,22 +1,28 @@
-@import "../../Styles/mixins";
+@import '../../Styles/mixins';
 
-.formWrap{
-    @include flex-container;
- 
-    h1{
-        @include authBodyText($fontWeight: 700, $fontSize:24px, $lineHeight:32px, $color:$text--color--primary, $marginBottom:16px);
+.formWrap {
+  @include flex-container;
+
+  h1 {
+    @include authBodyText(
+      $fontWeight: 700,
+      $fontSize: 24px,
+      $lineHeight: 32px,
+      $color: $text--color--primary,
+      $marginBottom: 16px
+    );
+  }
+
+  &__description {
+    @include authBodyText;
+  }
+
+  &__logo {
+    width: 94px;
+    height: 94px;
+
+    img {
+      width: 100%;
     }
-
-    &__description{
-        @include authBodyText;
-    }
-
-    &__logo{
-        width: 94px;
-        height: 94px;
-
-        img{
-            width: 100%;
-        }
-    }
+  }
 }
