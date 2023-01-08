@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
+import Successful from '../Successful/Successful';
 import { resetSchema } from './resetSchema';
 import Input from '../../Common/Input/Input';
 import styles from './ResetPassword.module.scss';
@@ -9,8 +10,12 @@ import Button from '../../Common/Button/Button';
 import { resetPassword } from '../../Features/authentication/authActions';
 
 function ResetPassword() {
-  //   const navigate = useNavigate();
+  const [toggle, setToggle] = useState(false);
   const { userInfo, loading } = useSelector((state) => state.auth);
+
+  function toggleModal() {
+    setToggle(!toggle);
+  }
 
   const token = localStorage.getItem('userToken');
   console.log(userInfo, 'userInfo');
@@ -20,22 +25,21 @@ function ResetPassword() {
   useEffect(() => {
     if (userInfo?.data?.status === 'success') {
       localStorage.removeItem('userToken');
+      toggleModal();
     }
-  }, [userInfo]);
+  }, [userInfo, toggle]);
 
   return (
     <Formik
       initialValues={{ password: '', confirmPassword: '' }}
       validationSchema={resetSchema}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={(values) => {
         dispatch(
           resetPassword({
             token: token,
             password: values.password.replace(/^\s+|\s+$/gm, '')
           })
         );
-
-        resetForm({ values: '' });
       }}>
       {(formik) => {
         const { touched, errors } = formik;
@@ -87,6 +91,7 @@ function ResetPassword() {
                 <Link to="/signup">SignUp</Link>
               </span>
             </p>
+            {toggle && <Successful toggle={toggle} setToggle={setToggle} />}
           </div>
         );
       }}
