@@ -7,7 +7,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 135px;
+  height: 100%;
+  padding-top: 150px;
 }
 .formWrap h1 {
   font-style: normal;
@@ -26,7 +27,7 @@
   margin-bottom: 40px;
 }
 .formWrap form {
-  width: 32%;
+  width: 29%;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   row-gap: 24px;

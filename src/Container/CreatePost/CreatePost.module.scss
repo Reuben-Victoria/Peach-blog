@@ -21,16 +21,10 @@
       margin-top: 30px;
       width: 70%;
     }
-
-    &__textArea {
-      border: 1px solid #cbc4de;
-      border-radius: 10px;
-      height: 49vh;
-      margin-bottom: 50px;
-      padding: 35px 25px;
-      width: 70%;
-      position: relative;
-    }
+  }
+  &__body {
+    @include flex-container;
+    width: 100%;
   }
 }
 .buttonsContainer {
@@ -44,7 +38,7 @@
     }
   }
 }
-.buttonsDisplay{
+.buttonsDisplay {
   display: none;
 }
 .menuBar {

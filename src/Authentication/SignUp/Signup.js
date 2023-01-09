@@ -25,7 +25,7 @@ function Signup() {
 
   useEffect(() => {
     if (success) {
-      navigate('/');
+      navigate('/login');
     }
   }, [success]);
 

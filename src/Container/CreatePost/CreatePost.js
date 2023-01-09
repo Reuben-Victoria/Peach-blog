@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 // import ReactMarkdown from 'react-markdown';
-import Markdown from 'markdown-to-jsx';
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import PropTypes from 'prop-types';
+// import Markdown from 'markdown-to-jsx';
+// import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+// import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+// import PropTypes from 'prop-types';
 import styles from './CreatePost.module.scss';
 import TagIcon from '../../Common/TagIcons/TagIcon';
 import EditIcon from '../../assets/Edit.svg';
@@ -12,20 +12,20 @@ import Button from '../../Common/Button/Button';
 import Divider from '../../Common/Divider/Divider';
 import Tvector from '../../assets/TVector.svg';
 import cover from '../../assets/cover.svg';
-import IconsMenuBar from '../../Components/IconsMenuBar/IconsMenuBar';
+import EditorBar from '../../Components/Editor/EditorBar';
 
 function CreatePost() {
-  const [markdownInputs, setMarkdownValues] = useState({
-    title: 'Add post title...',
-    post: 'Write your post...'
-  });
+  // const [markdownInputs, setMarkdownValues] = useState({
+  //   title: 'Add post title...',
+  //   post: 'Write your post...'
+  // });
 
   const [preview, setPreview] = useState(false);
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setMarkdownValues({ ...markdownInputs, [name]: value });
-  }
+  // function handleChange(event) {
+  //   const { name, value } = event.target;
+  //   setMarkdownValues({ ...markdownInputs, [name]: value });
+  // }
 
   return (
     <main className={styles.createPostContainer}>
@@ -46,7 +46,7 @@ function CreatePost() {
           onClick={() => setPreview(true)}
         />
       </div>
-      <form className={styles.createPostContainer__post}>
+      {/* <form className={styles.createPostContainer__post}>
         {preview ? (
           <Markdown className={styles.markdown}>{markdownInputs.title}</Markdown>
         ) : (
@@ -66,7 +66,10 @@ function CreatePost() {
             onChange={handleChange}
           />
         )}
-        <IconsMenuBar className={styles.menuBar} />
+     
+      </form> */}
+      <div className={styles.createPostContainer__body}>
+        <EditorBar />
         <div className={preview ? styles.buttonsDisplay : styles.buttonsContainer}>
           <div className={styles.buttonsContainer__buttonsLeft}>
             <Button
@@ -88,21 +91,22 @@ function CreatePost() {
           </div>
           <Button theme={'secondary'} text={'Publish'} size={'md'} type={'submit'} />
         </div>
-      </form>
+      </div>
+      ;
     </main>
   );
 }
 
-const Code = ({ value, language }) => {
-  return (
-    <SyntaxHighlighter language={language} style={dracula}>
-      {value}
-    </SyntaxHighlighter>
-  );
-};
+// const Code = ({ value, language }) => {
+//   return (
+//     <SyntaxHighlighter language={language} style={dracula}>
+//       {value}
+//     </SyntaxHighlighter>
+//   );
+// };
 
 export default CreatePost;
-Code.propTypes = {
-  value: PropTypes.any,
-  language: PropTypes.string
-};
+// Code.propTypes = {
+//   value: PropTypes.any,
+//   language: PropTypes.string
+// };
