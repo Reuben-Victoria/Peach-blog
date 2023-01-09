@@ -21,14 +21,11 @@ function Login() {
   console.log(success, 'success');
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (success) {
-        navigate('/');
-      }
-    }, 3000);
-    return clearTimeout(timer);
+    if (success) {
+      navigate('/');
+    }
     // console.log(timer);
-  }, []);
+  }, [success]);
 
   return (
     <Formik

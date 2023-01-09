@@ -53,6 +53,7 @@ const authSlice = createSlice({
       }),
       builder.addCase(forgotPassword.fulfilled, (state, { payload }) => {
         state.loading = false;
+        state.success = true;
         state.userInfo = payload;
       }),
       builder.addCase(forgotPassword.rejected, (state, { payload }) => {
@@ -66,6 +67,7 @@ const authSlice = createSlice({
       }),
       builder.addCase(verifyCode.fulfilled, (state, { payload }) => {
         state.loading = false;
+        state.success = true;
         state.userInfo = payload;
       }),
       builder.addCase(verifyCode.rejected, (state, { payload }) => {
@@ -79,6 +81,7 @@ const authSlice = createSlice({
       }),
       builder.addCase(resetPassword.fulfilled, (state, { payload }) => {
         state.loading = false;
+        state.success = true;
         state.userInfo = payload;
       }),
       builder.addCase(resetPassword.rejected, (state, { payload }) => {

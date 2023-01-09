@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -11,17 +11,15 @@ import { forgotPassword } from '../../Features/authentication/authActions';
 function ForgotPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
 
   const { loading, success } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (success) {
-        navigate('/');
-      }
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (success && loading === false) {
+      navigate(`/verify-code/${email}`);
+    }
+  }, [success]);
 
   const resetSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required')
@@ -38,7 +36,7 @@ function ForgotPassword() {
           })
         );
         resetForm({ values: '' });
-        localStorage.setItem('email', values.email);
+        setEmail(values.email);
       }}>
       {(formik) => {
         const { touched, errors } = formik;

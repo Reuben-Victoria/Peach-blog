@@ -6,7 +6,6 @@ import Login from './Authentication/LogIn/Login';
 import ForgotPassword from './Authentication/ForgotPassword/ForgotPassword';
 import Verification from './Authentication/VerificationCode/Verification';
 import Header from './Components/Header/Header';
-import Successful from './Authentication/Successful/Successful';
 // import Success from './Components/Success/Success';
 import CreatePost from './Container/CreatePost/CreatePost';
 import ProfilePage from './pages/ProfilePage';
@@ -26,10 +25,6 @@ function App() {
       <Routes>
         {/* <Input /> */}
         <Route element={<PreventRoutes />}>
-          <Route path="/success" element={<Successful />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset_password" element={<ResetPassword />} />
-          <Route path="/verify-code" element={<Verification />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route exact path="/" element={<HomePage />} />
@@ -37,6 +32,9 @@ function App() {
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset_password/:token" element={<ResetPassword />} />
+        <Route path="/verify-code/:email" element={<Verification />} />
       </Routes>
       <ToastContainer />
     </div>

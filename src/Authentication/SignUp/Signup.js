@@ -24,13 +24,10 @@ function Signup() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (success) {
-        navigate('/');
-      }
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (success) {
+      navigate('/');
+    }
+  }, [success]);
 
   return (
     <section className={styles.signUpForm}>

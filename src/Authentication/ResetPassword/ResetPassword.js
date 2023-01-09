@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import Successful from '../Successful/Successful';
@@ -11,23 +11,21 @@ import { resetPassword } from '../../Features/authentication/authActions';
 
 function ResetPassword() {
   const [toggle, setToggle] = useState(false);
+  const { token } = useParams();
+  const tokenID = token.split('token=')[1];
   const { userInfo, loading } = useSelector((state) => state.auth);
 
+  console.log(token.split('token=')[1]);
   function toggleModal() {
     setToggle(!toggle);
   }
 
-  const token = localStorage.getItem('userToken');
-  console.log(userInfo, 'userInfo');
-  console.log(token, 'token');
-
   const dispatch = useDispatch();
   useEffect(() => {
-    if (userInfo?.data?.status === 'success') {
-      localStorage.removeItem('userToken');
+    if (userInfo?.status === 'success' && loading === false) {
       toggleModal();
     }
-  }, [userInfo, toggle]);
+  }, [userInfo?.status]);
 
   return (
     <Formik
@@ -36,7 +34,7 @@ function ResetPassword() {
       onSubmit={(values) => {
         dispatch(
           resetPassword({
-            token: token,
+            token: tokenID,
             password: values.password.replace(/^\s+|\s+$/gm, '')
           })
         );

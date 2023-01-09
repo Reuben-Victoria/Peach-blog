@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../Common/Input/Input';
 import styles from './Verification.module.scss';
@@ -7,25 +7,20 @@ import Button from '../../Common/Button/Button';
 import { verifyCode } from '../../Features/authentication/authActions';
 function Verification() {
   const dispatch = useDispatch();
-  // const { email } = useParams();
+  const { email } = useParams();
   const { userInfo, loading } = useSelector((state) => state.auth);
-  const emailToken = localStorage.getItem('email');
-  console.log(emailToken);
   const [code, setCode] = useState('');
   function handleChange(event) {
     setCode(event.target.value);
   }
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (userInfo?.status === 'success') {
-        localStorage.removeItem('email');
-      }
-    }, 3000);
-    return clearTimeout(timer);
-  }, []);
+    if (userInfo?.status === 'success') {
+      localStorage.removeItem('email');
+    }
+  }, [userInfo]);
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(verifyCode({ code: code.replace(/^\s+|\s+$/gm, ''), email_address: emailToken }));
+    dispatch(verifyCode({ code: code.replace(/^\s+|\s+$/gm, ''), email_address: email }));
   };
   console.log(code);
   console.log(userInfo, 'userInfo');
