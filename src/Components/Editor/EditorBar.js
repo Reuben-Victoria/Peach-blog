@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './Editor.scss';
 // import { convertToRaw } from 'draft-js';
-// import bold from '../../assets/bold.svg';
-// import italic from '../../assets/Italic.svg';
+import boldImage from '../../assets/bold.svg';
+import italicImage from '../../assets/Italic.svg';
 import { Editor } from 'react-draft-wysiwyg';
+import underlineIcon from '../../assets/underline.svg';
+// import textMore from '../../assets/textMore.svg';
+import strikeThrough from '../../assets/strikethrough.svg';
+import alignLeft from '../../assets/alignLeft.svg';
+import alignCenter from '../../assets/alignCenter.svg';
+import codeIcon from '../../assets/code.svg';
+import orderedList from '../../assets/orderedList.svg';
+import unorderedList from '../../assets/unorderedList.svg';
+import indent from '../../assets/indent.svg';
+import outdent from '../../assets/outdent.svg';
+import justify from '../../assets/justify.svg';
+import smile from '../../assets/smile.svg';
+import paragraphMore from '../../assets/paragraphMore.svg';
 // import { EditorState } from 'draft-js';
 // import draftToMarkdown from 'draftjs-to-markdown';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 function EditorBar() {
   const [editorState, setEditorState] = useState();
@@ -20,31 +32,43 @@ function EditorBar() {
     <div>
       <Editor
         editorState={editorState}
-        toolbarClassName="IconsMenuBarContainer"
-        wrapperClassName="editorWrapper"
+        toolbarClassName="toolbar"
+        wrapperClassName
         editorClassName="textArea"
         placeholder="Enter some text"
         // toolbarOnFocus
         onEditorStateChange={onEditorStateChange}
         toolbar={{
-          options: ['inline', 'blockType', 'fontSize', 'fontFamily'],
+          options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'emoji'],
           inline: {
             options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace'],
-            bold: { className: 'icons' },
-            italic: { className: 'italic' },
-            underline: { className: 'icons' },
-            strikethrough: { className: 'icons' },
-            code: { className: 'bordered-option-classname' }
+            bold: { icon: boldImage, className: 'icons' },
+            italic: { icon: italicImage, className: 'italic' },
+            underline: { icon: underlineIcon, className: 'icons' },
+            strikethrough: { icon: strikeThrough, className: 'icons' },
+            code: { img: { codeIcon }, className: 'icons' }
           },
           blockType: {
-            className: 'icons'
+            icon: paragraphMore
+            // className:
           },
           fontSize: {
-            className: 'icons'
+            // className: 'icons'
           },
-          fontFamily: {
-            className: 'icons'
-          }
+
+          list: {
+            unordered: { icon: unorderedList, className: 'icons' },
+            ordered: { icon: orderedList, className: 'icons' },
+            indent: { icon: outdent, className: 'icons' },
+            outdent: { icon: indent, className: 'icons' }
+          },
+          textAlign: {
+            left: { icon: alignLeft, className: 'icons' },
+            center: { icon: alignCenter, className: 'icons' },
+            justify: { icon: justify, className: 'icons' }
+          },
+          emoji: { icon: smile, className: 'icons', popupClassName: 'demo-popup-custom' },
+          history: { inDropdown: true }
         }}
       />
       {/* <div {...(editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent())))} /> */}

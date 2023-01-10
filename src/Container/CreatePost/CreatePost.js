@@ -69,6 +69,9 @@ function CreatePost() {
      
       </form> */}
       <div className={styles.createPostContainer__body}>
+        <div>
+          <input type="file" name="file" />
+        </div>
         <EditorBar />
         <div className={preview ? styles.buttonsDisplay : styles.buttonsContainer}>
           <div className={styles.buttonsContainer__buttonsLeft}>
