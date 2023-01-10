@@ -25,6 +25,13 @@
   &__body {
     @include flex-container;
     width: 100%;
+
+    &__image {
+      width: 846px;
+      img {
+        width: 100%;
+      }
+    }
   }
 }
 .buttonsContainer {

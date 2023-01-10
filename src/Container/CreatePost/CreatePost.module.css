@@ -38,6 +38,12 @@
   align-items: center;
   width: 100%;
 }
+.createPostContainer__body__image {
+  width: 846px;
+}
+.createPostContainer__body__image img {
+  width: 100%;
+}
 
 .buttonsContainer {
   display: flex;

@@ -19,8 +19,22 @@ function CreatePost() {
   //   title: 'Add post title...',
   //   post: 'Write your post...'
   // });
+  const [editorState, setEditorState] = useState();
+  const [image, setImage] = useState();
+  function handleImage(e) {
+    console.log(e.target.files);
+    setImage(e.target.files[0]);
+  }
 
+  function handleApi() {
+    const formData = new FormData();
+    formData.append(image, 'image');
+  }
   const [preview, setPreview] = useState(false);
+
+  const onEditorStateChange = (value) => {
+    setEditorState(value);
+  };
 
   // function handleChange(event) {
   //   const { name, value } = event.target;
@@ -68,11 +82,11 @@ function CreatePost() {
         )}
      
       </form> */}
-      <div className={styles.createPostContainer__body}>
-        <div>
-          <input type="file" name="file" />
+      <form className={styles.createPostContainer__body} onSubmit={() => {}}>
+        <div className={styles.createPostContainer__body__image}>
+          <input type="file" name="file" onChange={handleImage} />
         </div>
-        <EditorBar />
+        <EditorBar editorState={editorState} onEditorStateChange={onEditorStateChange} />
         <div className={preview ? styles.buttonsDisplay : styles.buttonsContainer}>
           <div className={styles.buttonsContainer__buttonsLeft}>
             <Button
@@ -82,6 +96,7 @@ function CreatePost() {
               theme={'primary'}
               text={'Add Cover'}
               size={'md'}
+              onClick={handleApi}
             />
             <Button
               showImage
@@ -94,7 +109,7 @@ function CreatePost() {
           </div>
           <Button theme={'secondary'} text={'Publish'} size={'md'} type={'submit'} />
         </div>
-      </div>
+      </form>
       ;
     </main>
   );

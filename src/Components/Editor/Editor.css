@@ -1,15 +1,15 @@
 .rdw-editor-toolbar {
   display: flex;
-  padding: 20px 20px;
+  padding: 10px 10px;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   flex-wrap: wrap;
   background-color: #6e6e6d;
   position: absolute;
-  bottom: 178px;
+  bottom: 155px;
   z-index: 100;
-  left: 32%;
+  left: 28.4%;
   box-sizing: border-box;
 }
 
@@ -55,15 +55,14 @@
 .rdw-dropdown-optionwrapper {
   list-style: none;
   background-color: white;
-  z-index: 10000;
 }
 
 .rdw-dropdown-wrapper {
   cursor: pointer;
   border: 1px solid #f1f1f1;
+  margin-left: 9.5px;
   border-radius: 2px;
   color: white;
-  margin: 0 3px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -100,11 +99,6 @@
   color: #757575;
 }
 
-.rdw-editor-main {
-  height: 100%;
-  box-sizing: border-box;
-}
-
 .rdw-editor-main blockquote {
   border-left: 5px solid #f1f1f1;
   padding-left: 5px;
@@ -120,9 +114,9 @@
 
 .rdw-dropdown-wrapper {
   cursor: pointer;
-  height: 30px;
+  height: 27px;
+  padding: 0 2px;
   border-radius: 2px;
-  margin: 0 3px;
   overflow: scroll;
   text-transform: capitalize;
 }
@@ -141,10 +135,8 @@
   display: flex;
   flex-wrap: wrap;
   width: 30px;
-  height: 30px;
+  height: 27px;
   justify-content: center;
-  padding: 4px 4px;
-  z-index: 100;
 }
 
 .rdw-fontsize-option {
@@ -183,6 +175,7 @@
   align-items: center;
   margin-bottom: 6px;
   flex-wrap: wrap;
+  width: 30px;
 }
 
 .rdw-fontfamily-dropdown {
@@ -200,21 +193,6 @@
 .rdw-fontfamily-optionwrapper {
   width: 30px;
   padding: 4px 4px;
-}
-
-.public-DraftStyleDefault-block {
-  border: 1px solid #cbc4de;
-  border-radius: 10px;
-  height: 49vh;
-  box-sizing: content-box;
-  display: flex;
-  margin-bottom: 50px;
-  padding: 35px 25px;
-  position: relative;
-}
-.public-DraftStyleDefault-block span {
-  overflow-wrap: break-word;
-  width: 100%;
 }
 
 .rdw-inline-wrapper {
@@ -280,8 +258,12 @@
   flex-wrap: wrap;
 }
 
-.public-DraftStyleDefault-block::placeholder {
-  padding: 35px 25px;
+.public-DraftEditorPlaceholder-inner {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(166, 164, 164);
 }
 
 .icons {
@@ -292,17 +274,24 @@
   width: 100%;
 }
 
-.italic {
-  width: 30px;
-  margin-right: 16.5px;
+.code {
+  background-color: grey;
 }
 
-.textArea {
+.italic {
+  width: 30px;
+  height: 30px;
+}
+
+.DraftEditor-root {
   border-radius: 10px;
-  height: 49vh;
+  height: 55vh;
   margin-bottom: 50px;
-  padding: 35px 25px;
-  width: 60vw;
+  padding: 15px 25px 0 25px;
+  width: 846px;
+  border: 1px solid #cbc4de;
+  overflow-y: scroll;
+  position: relative;
 }
 
 .divider {

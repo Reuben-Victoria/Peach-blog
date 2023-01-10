@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Editor.scss';
 // import { convertToRaw } from 'draft-js';
+import PropTypes from 'prop-types';
 import boldImage from '../../assets/bold.svg';
 import italicImage from '../../assets/Italic.svg';
 import { Editor } from 'react-draft-wysiwyg';
@@ -20,11 +21,7 @@ import paragraphMore from '../../assets/paragraphMore.svg';
 // import { EditorState } from 'draft-js';
 // import draftToMarkdown from 'draftjs-to-markdown';
 
-function EditorBar() {
-  const [editorState, setEditorState] = useState();
-  const onEditorStateChange = (value) => {
-    setEditorState(value);
-  };
+function EditorBar({ editorState, onEditorStateChange }) {
   useEffect(() => {
     console.log(editorState);
   }, [editorState]);
@@ -36,7 +33,7 @@ function EditorBar() {
         wrapperClassName
         editorClassName="textArea"
         placeholder="Enter some text"
-        // toolbarOnFocus
+        toolbarOnFocus
         onEditorStateChange={onEditorStateChange}
         toolbar={{
           options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'emoji'],
@@ -46,7 +43,7 @@ function EditorBar() {
             italic: { icon: italicImage, className: 'italic' },
             underline: { icon: underlineIcon, className: 'icons' },
             strikethrough: { icon: strikeThrough, className: 'icons' },
-            code: { img: { codeIcon }, className: 'icons' }
+            code: { img: { codeIcon }, className: 'code' }
           },
           blockType: {
             icon: paragraphMore
@@ -76,3 +73,8 @@ function EditorBar() {
   );
 }
 export default EditorBar;
+
+EditorBar.propTypes = {
+  editorState: PropTypes.any,
+  onEditorStateChange: PropTypes.any
+};
