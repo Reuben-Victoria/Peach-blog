@@ -4,11 +4,12 @@ import classnames from 'classnames';
 import { ReactComponent as Loader } from '../../assets/loading.svg';
 import styles from './Button.module.scss';
 
-function Button({ text, type, theme, size, disabled, loading, variant, src, showImage }) {
+function Button({ text, type, onClick, theme, size, disabled, loading, variant, src, showImage }) {
   return (
     <button
       disabled={disabled}
       type={type}
+      onClick={onClick}
       className={classnames(
         styles.btn,
         styles[`btn__${theme}`],
@@ -32,6 +33,7 @@ Button.propTypes = {
   type: PropTypes.string,
   variant: PropTypes.string,
   src: PropTypes.string,
+  onClick: PropTypes.func,
   showImage: PropTypes.bool,
   disabled: PropTypes.string
 };

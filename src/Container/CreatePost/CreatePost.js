@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 // import ReactMarkdown from 'react-markdown';
 // import Markdown from 'markdown-to-jsx';
 // import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -20,15 +20,26 @@ function CreatePost() {
   //   post: 'Write your post...'
   // });
   const [editorState, setEditorState] = useState();
-  const [image, setImage] = useState();
-  function handleImage(e) {
-    console.log(e.target.files);
-    setImage(e.target.files[0]);
+  const [image, setImage] = useState({ preview: '', raw: '' });
+  const fileInput = useRef(null);
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   fileInput.current.onClick;
+  // const formData = new FormData();
+  // formData.append(image, 'image');
+  // };
+
+  function handleClick(event) {
+    event.preventDefault();
+    fileInput.current?.click();
+    console.log('hhhh');
   }
 
-  function handleApi() {
-    const formData = new FormData();
-    formData.append(image, 'image');
+  function handleImage(event) {
+    if (event.target.files.length) {
+      setImage({ preview: URL.createObjectURL(event.target.files[0]), raw: event.target.files[0] });
+    }
+    console.log(event.target.files[0]);
   }
   const [preview, setPreview] = useState(false);
 
@@ -83,20 +94,28 @@ function CreatePost() {
      
       </form> */}
       <form className={styles.createPostContainer__body} onSubmit={() => {}}>
+        <input
+          ref={fileInput}
+          type="file"
+          accept="image/*"
+          name="file"
+          onChange={handleImage}
+          style={{ display: 'none' }}
+        />
         <div className={styles.createPostContainer__body__image}>
-          <input type="file" name="file" onChange={handleImage} />
+          {image && <img src={image.preview} alt="image" />}
         </div>
         <EditorBar editorState={editorState} onEditorStateChange={onEditorStateChange} />
         <div className={preview ? styles.buttonsDisplay : styles.buttonsContainer}>
           <div className={styles.buttonsContainer__buttonsLeft}>
             <Button
+              onClick={handleClick}
               showImage
               src={cover}
               alt={'Cover'}
               theme={'primary'}
               text={'Add Cover'}
               size={'md'}
-              onClick={handleApi}
             />
             <Button
               showImage
