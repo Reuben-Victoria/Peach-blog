@@ -1,32 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { postAdded } from './postActions';
 
-const initialState = [
-  {
-    title: 'Grey home',
-    subtitle: 'Yaay',
-    post: 'Greay',
-    stamp: 'Dec 12',
-    id: ''
-  },
-  {
-    title: 'Grey home',
-    subtitle: 'Yaay',
-    post: 'Greay',
-    stamp: 'Dec 12',
-    id: ''
-  }
-];
+const initialState = {
+  posts: [],
+  loading: false,
+  error: null,
+  success: false
+};
 
 const postsSlice = createSlice({
-  name: 'posts',
+  name: 'post',
   initialState,
   reducers: {
-    postAdded(state, action) {
-      state.push(action.payload);
-    }
+    // postAdded(state, action) {
+    //   state.posts.push(action.payload);
+    // },
+    // prepare(cover, title, subtitle, post){
+    //   return(
+    //     payload : {
+    //       cover,
+    //       title,
+    //       subtitle,
+    //       post
+    //     }
+    //   )
+    // }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(postAdded.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.posts.push(payload);
+    });
   }
 });
-
-export const { postAdded } = postsSlice.actions;
 
 export default postsSlice.reducer;

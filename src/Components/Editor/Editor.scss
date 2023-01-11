@@ -2,14 +2,14 @@
 
 .rdw-editor-toolbar {
   display: flex;
-  padding: 10px 10px;
+  padding: 8px 8px;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   flex-wrap: wrap;
   background-color: #6e6e6d;
   position: absolute;
-  bottom: 155px;
+  bottom: -270px;
   z-index: 100;
   left: 28.4%;
   box-sizing: border-box;
@@ -187,33 +187,41 @@
 .rdw-block-wrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
   flex-wrap: wrap;
+  margin-bottom: 6px;
 }
 
 .rdw-right-aligned-block {
   text-align: right;
+  overflow-wrap: break-word !important;
+  overflow-x: hidden;
 }
 .rdw-left-aligned-block {
   text-align: left !important;
+  overflow-wrap: break-word !important;
 }
 .rdw-center-aligned-block {
   text-align: center !important;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
 }
 .rdw-justify-aligned-block {
   text-align: justify !important;
+  overflow-wrap: break-word !important;
+  overflow-x: hidden;
 }
 .rdw-right-aligned-block > div {
-  display: inline-block;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
 }
 .rdw-left-aligned-block > div {
-  display: inline-block;
+  overflow-wrap: break-word !important;
 }
 .rdw-center-aligned-block > div {
-  display: inline-block;
+  overflow-wrap: break-word !important;
 }
 .rdw-justify-aligned-block > div {
-  display: inline-block;
+  overflow-wrap: break-word !important;
 }
 
 .rdw-list-wrapper {
@@ -222,7 +230,12 @@
   margin-bottom: 3px;
   flex-wrap: wrap;
 }
+// .public-DraftStyleDefault-orderedListItem {
+//   ::marker{
+//     text-indent: 25px;
+//   }
 
+// }
 // .public-DraftStyleDefault-block::placeholder {
 //   padding: 35px 25px;
 // }

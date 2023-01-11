@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 // import ReactMarkdown from 'react-markdown';
 // import Markdown from 'markdown-to-jsx';
 // import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -13,25 +14,29 @@ import Divider from '../../Common/Divider/Divider';
 import Tvector from '../../assets/TVector.svg';
 import cover from '../../assets/cover.svg';
 import EditorBar from '../../Components/Editor/EditorBar';
+import { postAdded } from '../../Features/posts/postActions';
 
 function CreatePost() {
   // const [markdownInputs, setMarkdownValues] = useState({
   //   title: 'Add post title...',
   //   post: 'Write your post...'
   // });
+
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.post);
   const [editorState, setEditorState] = useState();
   const [image, setImage] = useState({ preview: '', raw: '' });
   const fileInput = useRef(null);
   // const handleClick = (e) => {
   //   e.preventDefault();
   //   fileInput.current.onClick;
-  // const formData = new FormData();
-  // formData.append(image, 'image');
   // };
 
   function handleClick(event) {
     event.preventDefault();
     fileInput.current?.click();
+    const formData = new FormData();
+    formData.append(image, 'image');
     console.log('hhhh');
   }
 
@@ -93,7 +98,21 @@ function CreatePost() {
         )}
      
       </form> */}
-      <form className={styles.createPostContainer__body} onSubmit={() => {}}>
+      <form
+        className={styles.createPostContainer__body}
+        onSubmit={(values, e) => {
+          e.preventDefault();
+          dispatch(
+            postAdded({
+              cover: values.image.raw,
+              title: '',
+              subtitle: '',
+              post: values.editorState
+            })
+          );
+          console.log(values.image.raw, 'post image');
+          console.log('Tell me why');
+        }}>
         <input
           ref={fileInput}
           type="file"
@@ -126,7 +145,13 @@ function CreatePost() {
               size={'md'}
             />
           </div>
-          <Button theme={'secondary'} text={'Publish'} size={'md'} type={'submit'} />
+          <Button
+            theme={'secondary'}
+            text={'Publish'}
+            size={'md'}
+            type={'submit'}
+            loading={loading}
+          />
         </div>
       </form>
       ;
