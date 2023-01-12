@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { convertToRaw, convertFromRaw, EditorState } from 'draft-js';
 // import ReactMarkdown from 'react-markdown';
 // import Markdown from 'markdown-to-jsx';
 // import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -17,63 +18,87 @@ import EditorBar from '../../Components/Editor/EditorBar';
 import { postAdded } from '../../Features/posts/postActions';
 
 function CreatePost() {
-  // const [markdownInputs, setMarkdownValues] = useState({
-  //   title: 'Add post title...',
-  //   post: 'Write your post...'
-  // });
-
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.post);
-  const [editorState, setEditorState] = useState();
-  const [image, setImage] = useState({ preview: '', raw: '' });
-  const fileInput = useRef(null);
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   fileInput.current.onClick;
-  // };
+  const [editorState, setEditorState] = useState(() => {
+    if (localStorage.getItem('editor-state')) {
+      return EditorState.createWithContent(
+        convertFromRaw(JSON.parse(localStorage.getItem('editor-state')))
+      );
+    }
+    return EditorState.createEmpty();
+  });
+  const [image, setImage] = useState(() => {
+    const initialData = { preview: '', raw: '' };
 
+    return initialData;
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem('image-preview')) {
+      const newData = JSON.parse(localStorage.getItem('image-preview'));
+      console.log(URL, newData, 'URL >>>');
+      // setPreview(newData);
+    }
+  }, []);
+  const fileInput = useRef(null);
   function handleClick(event) {
     event.preventDefault();
     fileInput.current?.click();
+    console.log('hhhh');
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
     const formData = new FormData();
     formData.append(image, 'image');
-    console.log('hhhh');
+    dispatch(
+      postAdded({
+        cover: formData.append(image.raw),
+        title: 'fdgkdhskfjhdsj',
+        subtitle: '',
+        post: editorState
+      })
+    );
+    console.log(image.raw, 'post image');
+    console.log('Tell me why');
   }
 
   function handleImage(event) {
     if (event.target.files.length) {
       setImage({ preview: URL.createObjectURL(event.target.files[0]), raw: event.target.files[0] });
+      localStorage.setItem(
+        'image-preview',
+        JSON.stringify({
+          preview: URL.createObjectURL(event.target.files[0]),
+          raw: event.target.files[0]
+        })
+      );
     }
     console.log(event.target.files[0]);
   }
-  const [preview, setPreview] = useState(false);
 
   const onEditorStateChange = (value) => {
     setEditorState(value);
+    localStorage.setItem(
+      'editor-state',
+      JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+    );
   };
 
-  // function handleChange(event) {
-  //   const { name, value } = event.target;
-  //   setMarkdownValues({ ...markdownInputs, [name]: value });
-  // }
+  console.log('store', editorState);
 
   return (
     <main className={styles.createPostContainer}>
       <div className={styles.createPostContainer__icons}>
-        <TagIcon
-          src={EditIcon}
-          text={'Write'}
-          size={'lg'}
-          variant={'lgText'}
-          onClick={() => setPreview(false)}
-        />
+        <TagIcon src={EditIcon} text={'Write'} size={'lg'} variant={'lgText'} onClick={() => {}} />
         <Divider />
         <TagIcon
           src={ShowIcon}
           text={'Preview'}
           size={'lg'}
           variant={'lgText'}
-          onClick={() => setPreview(true)}
+          onClick={() => {}}
         />
       </div>
       {/* <form className={styles.createPostContainer__post}>
@@ -98,21 +123,7 @@ function CreatePost() {
         )}
      
       </form> */}
-      <form
-        className={styles.createPostContainer__body}
-        onSubmit={(values, e) => {
-          e.preventDefault();
-          dispatch(
-            postAdded({
-              cover: values.image.raw,
-              title: '',
-              subtitle: '',
-              post: values.editorState
-            })
-          );
-          console.log(values.image.raw, 'post image');
-          console.log('Tell me why');
-        }}>
+      <form className={styles.createPostContainer__body} onSubmit={handleSubmit}>
         <input
           ref={fileInput}
           type="file"
@@ -121,11 +132,17 @@ function CreatePost() {
           onChange={handleImage}
           style={{ display: 'none' }}
         />
-        <div className={styles.createPostContainer__body__image}>
-          {image && <img src={image.preview} alt="image" />}
-        </div>
-        <EditorBar editorState={editorState} onEditorStateChange={onEditorStateChange} />
-        <div className={preview ? styles.buttonsDisplay : styles.buttonsContainer}>
+        {image.preview && (
+          <div className={styles.createPostContainer__body__image}>
+            <img src={image.preview} alt="image" />
+          </div>
+        )}
+        <EditorBar
+          editorState={editorState}
+          onEditorStateChange={onEditorStateChange}
+          // toolbarOnFocus
+        />
+        <div className={styles.buttonsContainer}>
           <div className={styles.buttonsContainer__buttonsLeft}>
             <Button
               onClick={handleClick}

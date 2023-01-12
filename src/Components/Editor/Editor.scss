@@ -270,11 +270,21 @@
   border-radius: 10px;
   height: 55vh;
   margin-bottom: 50px;
-  padding: 15px 25px 0 25px;
   width: 59vw;
-  border: 1px solid #cbc4de;
+  padding: 15px 25px 0 25px;
   overflow-y: scroll;
   position: relative;
+  border: 1px solid #cbc4de;
+
+  :focus {
+    outline-color: #7557d3 !important;
+    border: #7557d3;
+  }
+}
+
+.DraftEditor-editorContainer {
+  width: 100%;
+  height: 100%;
 }
 
 .divider {

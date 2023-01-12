@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Editor.scss';
-// import { convertToRaw } from 'draft-js';
 import PropTypes from 'prop-types';
 import boldImage from '../../assets/bold.svg';
 import italicImage from '../../assets/Italic.svg';
@@ -21,10 +20,11 @@ import paragraphMore from '../../assets/paragraphMore.svg';
 // import { EditorState } from 'draft-js';
 // import draftToMarkdown from 'draftjs-to-markdown';
 
-function EditorBar({ editorState, onEditorStateChange }) {
-  useEffect(() => {
-    console.log(editorState);
-  }, [editorState]);
+function EditorBar({ editorState, onEditorStateChange, ...rest }) {
+  // useEffect(() => {
+  //   console.log(editorState);
+  // }, [editorState]);
+
   return (
     <div>
       <Editor
@@ -33,8 +33,8 @@ function EditorBar({ editorState, onEditorStateChange }) {
         wrapperClassName
         editorClassName="textArea"
         placeholder="Enter some text"
-        toolbarOnFocus
         onEditorStateChange={onEditorStateChange}
+        // toolbarOnFocus
         toolbar={{
           options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'emoji'],
           inline: {
@@ -67,6 +67,7 @@ function EditorBar({ editorState, onEditorStateChange }) {
           emoji: { icon: smile, className: 'icons', popupClassName: 'demo-popup-custom' },
           history: { inDropdown: true }
         }}
+        {...rest}
       />
       {/* <div {...(editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent())))} /> */}
     </div>
