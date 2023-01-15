@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api';
 
+// let formData = new FormData();
 export const postAdded = createAsyncThunk(
   'post/postAdded',
   async ({ cover, title, subtitle, post }, { rejectWithValue }) => {

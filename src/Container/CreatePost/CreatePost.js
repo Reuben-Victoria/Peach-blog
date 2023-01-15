@@ -1,11 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { convertToRaw, convertFromRaw, EditorState } from 'draft-js';
-// import ReactMarkdown from 'react-markdown';
-// import Markdown from 'markdown-to-jsx';
-// import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-// import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
-// import PropTypes from 'prop-types';
 import styles from './CreatePost.module.scss';
 import TagIcon from '../../Common/TagIcons/TagIcon';
 import EditIcon from '../../assets/Edit.svg';
@@ -28,11 +23,9 @@ function CreatePost() {
     }
     return EditorState.createEmpty();
   });
-  const [image, setImage] = useState(() => {
-    const initialData = { preview: '', raw: '' };
+  const [title, setTitle] = useState('');
 
-    return initialData;
-  });
+  const [image, setImage] = useState({ preview: '', raw: '' });
 
   useEffect(() => {
     if (localStorage.getItem('image-preview')) {
@@ -42,27 +35,18 @@ function CreatePost() {
     }
   }, []);
   const fileInput = useRef(null);
+  const form = useRef();
   function handleClick(event) {
     event.preventDefault();
     fileInput.current?.click();
     console.log('hhhh');
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append(image, 'image');
-    dispatch(
-      postAdded({
-        cover: formData.append(image.raw),
-        title: 'fdgkdhskfjhdsj',
-        subtitle: '',
-        post: editorState
-      })
-    );
-    console.log(image.raw, 'post image');
-    console.log('Tell me why');
-  }
+  const handleOnChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  // const [imageBaseUrl, setImageBaseUrl] = useState('');
 
   function handleImage(event) {
     if (event.target.files.length) {
@@ -75,7 +59,50 @@ function CreatePost() {
         })
       );
     }
-    console.log(event.target.files[0]);
+    // console.log(event.target.files[0]);
+    // setImageBaseUrl(event.target.files[0]);
+
+    console.log(image.raw, 'File >>>');
+  }
+
+  // const getBase64 = (image) => {
+  //   return new Promise((resolve) => {
+  //     // Make new FileReader
+  //     let reader = new FileReader();
+
+  //     // Convert the file to base64 text
+  //     reader.readAsDataURL(image.raw);
+
+  //     // on reader load somthing...
+  //     reader.onload = () => {
+  //       let baseURL = reader.result;
+  //       setImageBaseUrl(baseURL);
+  //       resolve(baseURL);
+  //     };
+  //   });
+  // };
+  // getBase64(image);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    let formData = new FormData();
+    formData.append('cover', image.raw);
+    formData.append('title', 'vgdsvfhjvdhjghjgsd'),
+      formData.append('subtitle', 'vgdsvfhjvdhjghjgsd'),
+      formData.append('post', localStorage.getItem('editor-state')),
+      // console.log('imageBaseUrl', imageBaseUrl);
+
+      console.log(formData, 'formData');
+
+    dispatch(
+      postAdded({
+        cover: image.raw,
+        title: title,
+        subtitle: 'fdfghdghj',
+        post: localStorage.getItem('editor-state')
+      })
+    );
+    console.log(image.raw, 'post image');
   }
 
   const onEditorStateChange = (value) => {
@@ -87,6 +114,7 @@ function CreatePost() {
   };
 
   console.log('store', editorState);
+  console.log(title, 'title');
 
   return (
     <main className={styles.createPostContainer}>
@@ -101,29 +129,15 @@ function CreatePost() {
           onClick={() => {}}
         />
       </div>
-      {/* <form className={styles.createPostContainer__post}>
-        {preview ? (
-          <Markdown className={styles.markdown}>{markdownInputs.title}</Markdown>
-        ) : (
-          <input name="title" value={markdownInputs.title} onChange={handleChange} />
-        )}
-        {preview ? (
-          <Markdown
-            options={{ overrides: { code: { component: Code } } }}
-            className={styles.markdownPost}>
-            {markdownInputs.post}
-          </Markdown>
-        ) : (
-          <textarea
-            className={styles.createPostContainer__post__textArea}
-            name="post"
-            value={markdownInputs.post}
-            onChange={handleChange}
+      <form ref={form} className={styles.createPostContainer__body} onSubmit={handleSubmit}>
+        <div className={styles.createPostContainer__body__header}>
+          <input
+            placeholder="Add Post Title... "
+            name="title"
+            onChange={handleOnChange}
+            value={title}
           />
-        )}
-     
-      </form> */}
-      <form className={styles.createPostContainer__body} onSubmit={handleSubmit}>
+        </div>
         <input
           ref={fileInput}
           type="file"
@@ -140,7 +154,7 @@ function CreatePost() {
         <EditorBar
           editorState={editorState}
           onEditorStateChange={onEditorStateChange}
-          // toolbarOnFocus
+          toolbarOnFocus
         />
         <div className={styles.buttonsContainer}>
           <div className={styles.buttonsContainer__buttonsLeft}>

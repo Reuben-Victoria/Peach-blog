@@ -7,7 +7,7 @@ import ForgotPassword from './Authentication/ForgotPassword/ForgotPassword';
 import Verification from './Authentication/VerificationCode/Verification';
 import Header from './Components/Header/Header';
 // import Success from './Components/Success/Success';
-import CreatePost from './Container/CreatePost/CreatePost';
+import CreatePostPage from './pages/CreatePostPage';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
 import ResetPassword from './Authentication/ResetPassword/ResetPassword';
@@ -25,7 +25,7 @@ function App() {
       <Routes>
         {/* <Input /> */}
         <Route element={<PreventRoutes />}>
-          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/create-post" element={<CreatePostPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route exact path="/" element={<HomePage />} />
           <Route path="/edit-profile" element={<EditProfilePage />} />

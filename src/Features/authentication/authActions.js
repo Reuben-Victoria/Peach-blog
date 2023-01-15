@@ -17,7 +17,6 @@ export const userSignUp = createAsyncThunk(
       successToast(`${data.message}`);
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
       failureToast(error.response?.data?.message);
       return rejectWithValue(error.response.data);
     }

@@ -9,8 +9,7 @@
   flex-wrap: wrap;
   background-color: #6e6e6d;
   position: absolute;
-  bottom: -270px;
-  z-index: 100;
+  z-index: 10;
   left: 28.4%;
   box-sizing: border-box;
 }
@@ -268,7 +267,7 @@
 // }
 .DraftEditor-root {
   border-radius: 10px;
-  height: 55vh;
+  height: 65vh;
   margin-bottom: 50px;
   width: 59vw;
   padding: 15px 25px 0 25px;
