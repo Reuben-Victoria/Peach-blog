@@ -86,8 +86,8 @@ function CreatePost() {
   function handleSubmit(event) {
     event.preventDefault();
     let formData = new FormData();
-    formData.append('cover', image.raw);
-    formData.append('title', 'vgdsvfhjvdhjghjgsd'),
+    formData.append('cover', image.raw),
+      formData.append('title', 'vgdsvfhjvdhjghjgsd'),
       formData.append('subtitle', 'vgdsvfhjvdhjghjgsd'),
       formData.append('post', localStorage.getItem('editor-state')),
       // console.log('imageBaseUrl', imageBaseUrl);

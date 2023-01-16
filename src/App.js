@@ -28,7 +28,7 @@ function App() {
           <Route path="/create-post" element={<CreatePostPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route exact path="/" element={<HomePage />} />
-          <Route path="/edit-profile" element={<EditProfilePage />} />
+          <Route path="/edit-profile/:id" element={<EditProfilePage />} />
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

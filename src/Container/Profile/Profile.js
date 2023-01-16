@@ -12,6 +12,7 @@ import RecentActivity from '../../Components/RecentActivity/RecentActivity';
 import { Link } from 'react-router-dom';
 
 function Profile() {
+  // const { userId } = useParams();
   return (
     <main className={styles.ProfileContainer}>
       <div className={styles.ProfileContainer__userData}>
@@ -21,7 +22,7 @@ function Profile() {
         <div className={styles.ProfileContainer__userData__data}>
           <div className={styles.ProfileContainer__userData__data__userName}>
             <h1>Vanessa Reuben</h1>
-            <Link to="/edit-profile">
+            <Link to="/edit-profile/`${userId}`">
               <div className={styles.ProfileContainer__userData__data__userName__editIcon}>
                 <TagIcon src={edit} text={'Edit'} size={'sm'} alt={'Edit'} />
               </div>

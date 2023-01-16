@@ -5,31 +5,45 @@
     margin-bottom: 24px;
   }
 
-  &__profileImage{
-    width: 187px;
-    height: 187px;
+  &__profileImage {
     position: relative;
     margin-bottom: 24px;
     border-radius: 50%;
 
-    img{
-        width: 100%;
+    img {
+      width: 187px;
+      height: 187px;
+      border-radius: 50%;
+      object-fit: cover;
     }
   }
 
-  &__upload{
+  &__upload {
     width: 32px;
     height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
     position: absolute;
     top: 329px;
-    left: 305px;
+    left: 21%;
 
-    img{
-        width: 100%;
+    &:hover {
+      opacity: 0.9;
+    }
+
+    img {
+      width: 100%;
     }
   }
 
   &__form {
+    &__name {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(1, 95px);
+      column-gap: 40px;
+    }
     div {
       margin-bottom: 24px;
 
@@ -50,6 +64,7 @@
           $lineHeight: 22px,
           $color: #111111
         );
+        margin-top: 14px;
       }
       textarea {
         display: inline-block;
@@ -68,11 +83,11 @@
           $color: #57497c
         );
       }
-      }
-      &__buttons {
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
+    }
+    &__buttons {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
     }
   }
 }

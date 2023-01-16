@@ -2,11 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api';
 import { failureToast, successToast } from '../../Authentication/Toast/Toast';
 
-export const updateUser = createAsyncThunk(
+export const UPDATEUSER = createAsyncThunk(
   'user/update',
   async ({ upload_photo, first_name, last_name, tagline, bio }, { rejectWithValue }) => {
     try {
-      const { data } = await api.patch('users/update_user/user-645e7b227a3111ed818b4b7e8f4b67ed', {
+      const { data } = await api.patch('users/update_user', {
         upload_photo,
         first_name,
         last_name,
@@ -22,3 +22,11 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+// export const GETPROFILE = createAsyncThunk('user/getProfile', async ({data}, {rejectWithValue}) =>{
+//   try{
+//     const {userData} = await api.get("blogs/profile/user-53b91e4e7bb211eda296a7645d2b13e4", {
+
+//     })
+//   }
+// })
