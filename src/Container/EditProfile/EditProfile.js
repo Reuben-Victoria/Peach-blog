@@ -18,13 +18,18 @@ function EditProfile() {
     tagLine: '',
     bio: ''
   });
+
+  const { userInfo } = useSelector((state) => state.auth);
   const { loading, success } = useSelector((state) => state.users);
+
+  const authData = JSON.parse(userInfo);
   const fileInput = useRef(null);
+
+  console.log(authData.user.id, 'AUTH DATA');
 
   const handleClick = (event) => {
     event.preventDefault();
     fileInput.current?.click();
-    console.log('hhhh');
   };
 
   const handleOnChange = (event) => {
@@ -44,14 +49,16 @@ function EditProfile() {
     formData.append('last_name', details.lastName);
     formData.append('tagline', details.tagLine);
     formData.append('bio', details.bio);
+    formData.append('id', authData.user.id);
     dispatch(
       UPDATEUSER({
         ...formData,
-        upload_photo: image,
+        upload_photo: image.raw,
         first_name: details.firstName,
         last_name: details.lastName,
-        tagLine: details.tagLine,
-        bio: details.bio
+        tagline: details.tagLine,
+        bio: details.bio,
+        id: authData.user.id
       })
     );
     console.log(details, 'details');

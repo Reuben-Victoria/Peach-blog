@@ -1,14 +1,13 @@
 .rdw-editor-toolbar {
   display: flex;
-  padding: 10px 10px;
+  padding: 8px 8px;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   flex-wrap: wrap;
   background-color: #6e6e6d;
   position: absolute;
-  bottom: 155px;
-  z-index: 100;
+  z-index: 10;
   left: 28.4%;
   box-sizing: border-box;
 }
@@ -215,40 +214,48 @@
 .rdw-block-wrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
   flex-wrap: wrap;
+  margin-bottom: 6px;
 }
 
 .rdw-right-aligned-block {
   text-align: right;
+  overflow-wrap: break-word !important;
+  overflow-x: hidden;
 }
 
 .rdw-left-aligned-block {
   text-align: left !important;
+  overflow-wrap: break-word !important;
 }
 
 .rdw-center-aligned-block {
   text-align: center !important;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
 }
 
 .rdw-justify-aligned-block {
   text-align: justify !important;
+  overflow-wrap: break-word !important;
+  overflow-x: hidden;
 }
 
 .rdw-right-aligned-block > div {
-  display: inline-block;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
 }
 
 .rdw-left-aligned-block > div {
-  display: inline-block;
+  overflow-wrap: break-word !important;
 }
 
 .rdw-center-aligned-block > div {
-  display: inline-block;
+  overflow-wrap: break-word !important;
 }
 
 .rdw-justify-aligned-block > div {
-  display: inline-block;
+  overflow-wrap: break-word !important;
 }
 
 .rdw-list-wrapper {
@@ -285,13 +292,22 @@
 
 .DraftEditor-root {
   border-radius: 10px;
-  height: 55vh;
+  height: 65vh;
   margin-bottom: 50px;
+  width: 59vw;
   padding: 15px 25px 0 25px;
-  width: 846px;
-  border: 1px solid #cbc4de;
   overflow-y: scroll;
   position: relative;
+  border: 1px solid #cbc4de;
+}
+.DraftEditor-root :focus {
+  outline-color: #7557d3 !important;
+  border: #7557d3;
+}
+
+.DraftEditor-editorContainer {
+  width: 100%;
+  height: 100%;
 }
 
 .divider {

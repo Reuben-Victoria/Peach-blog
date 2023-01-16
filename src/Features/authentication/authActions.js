@@ -28,7 +28,9 @@ export const userLogin = createAsyncThunk(
     try {
       const { data } = await api.post('users/login', { email_address, password });
       localStorage.setItem('userToken', data?.data?.token);
+      localStorage.setItem('userInfo', JSON.stringify(data?.data));
       successToast(`${data.message}`);
+      console.log(data?.data, 'data');
       return data;
     } catch (error) {
       console.log(error.response, 'error');

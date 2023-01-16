@@ -2,13 +2,11 @@
 .userData {
   @include flex-container($direction: row, $spacing: null);
   &__profilePicture {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
     margin-right: 8px;
 
     img {
-      width: 100%;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
     }
   }

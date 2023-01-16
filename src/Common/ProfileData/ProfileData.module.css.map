@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["ProfileData.module.scss","../../Styles/_mixins.scss"],"names":[],"mappings":"AACA;ECWE;EACA,gBDXoC;ECapC,aAJqE;;ADRrE;EACE;EACA;EACA;EACA;;AAEA;EACE;EACA;;AAIJ;ECZA,YAD8B;EAE9B,aDYqC;ECXrC,WDWqD;ECVrD,aDUwE;ECTxE,ODSsF","file":"ProfileData.module.css"}
+{"version":3,"sourceRoot":"","sources":["ProfileData.module.scss","../../Styles/_mixins.scss"],"names":[],"mappings":"AACA;ECWE;EACA,gBDXoC;ECapC,aAJqE;;ADRrE;EACE;;AAEA;EACE;EACA;EACA;;AAIJ;ECVA,YAD8B;EAE9B,aDUqC;ECTrC,WDSqD;ECRrD,aDQwE;ECPxE,ODOsF","file":"ProfileData.module.css"}

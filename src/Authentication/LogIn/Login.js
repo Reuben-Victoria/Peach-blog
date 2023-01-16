@@ -15,7 +15,7 @@ function Login() {
   const { userInfo, loading, success } = useSelector((state) => state.auth);
   const state = useSelector((state) => state);
   console.log(state);
-  console.log(userInfo, 'hhhh');
+  console.log(userInfo, 'userInfo>>>>>');
   console.log(loading, 'loading');
 
   console.log(success, 'success');

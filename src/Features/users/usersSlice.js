@@ -3,7 +3,7 @@ import { UPDATEUSER } from './usersActions';
 
 const initialState = {
   loading: false,
-  userInfo: null,
+  userData: null,
   error: null,
   success: false
 };
@@ -19,7 +19,7 @@ const usersSlice = createSlice({
     }),
       builder.addCase(UPDATEUSER.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userInfo = payload;
+        state.userData = payload;
         state.success = true;
       }),
       builder.addCase(UPDATEUSER.rejected, (state, { payload }) => {

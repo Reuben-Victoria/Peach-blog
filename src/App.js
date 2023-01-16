@@ -5,6 +5,7 @@ import Signup from './Authentication/SignUp/Signup';
 import Login from './Authentication/LogIn/Login';
 import ForgotPassword from './Authentication/ForgotPassword/ForgotPassword';
 import Verification from './Authentication/VerificationCode/Verification';
+import ViewPost from './Container/ViewPost/ViewPost';
 import Header from './Components/Header/Header';
 // import Success from './Components/Success/Success';
 import CreatePostPage from './pages/CreatePostPage';
@@ -28,8 +29,9 @@ function App() {
           <Route path="/create-post" element={<CreatePostPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route exact path="/" element={<HomePage />} />
-          <Route path="/edit-profile/:id" element={<EditProfilePage />} />
+          <Route path="/edit-profile" element={<EditProfilePage />} />
         </Route>
+        <Route path="/more" element={<ViewPost />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

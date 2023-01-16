@@ -1,0 +1,48 @@
+@import '../../Styles/mixins';
+.homeWrapper {
+  @include flex-container($alignment: null, $spacing: null);
+  margin-top: 500px;
+
+  &__favorites {
+    @include flex-container($direction: row, $alignment: null, $spacing: null);
+    border-bottom: 1px solid #e5e2ed;
+  }
+  &__articleData {
+    @include flex-container($direction: row, $spacing: space-between, $alignment: null);
+    width: 252px;
+    height: 56px;
+    margin-bottom: 28px;
+    &__articleInfo {
+      p {
+        @include authBodyText(
+          $fontWeight: 500,
+          $fontSize: 16px,
+          $lineHeight: 24px,
+          $color: #111111
+        );
+      }
+      &__data {
+        @include flex-container($direction: row, $spacing: null);
+      }
+    }
+  }
+
+  &__contents {
+    @include flex-container($direction: row, $alignment: null, $spacing: null);
+
+    &__posts {
+      margin-top: 32px;
+      width: 100%;
+      margin-right: 24px;
+
+      &__tagIcon {
+        @include flex-container($alignment: null, $direction: row);
+      }
+    }
+
+    &__divider {
+      border-left: 1px solid #e5e2ed;
+      margin-right: 28px;
+    }
+  }
+}

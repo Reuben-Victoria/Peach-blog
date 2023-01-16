@@ -1,0 +1,19 @@
+@import '../../Styles/mixins';
+.moreFromAuthor {
+  margin-top: 100px;
+  padding: 24px 24px;
+  width: 845px;
+  height: 394px;
+
+  background: #f4f3f8;
+  border-radius: 10px;
+
+  &__header {
+    @include authBodyText($fontWeight: 700, $fontSize: 30px, $color: #111111, $lineHeight: 41px);
+    margin-bottom: 16px;
+  }
+  &__description {
+    @include authBodyText($fontWeight: 400, $fontSize: 20px, $color: #111111, $lineHeight: 27px);
+    margin-bottom: 24px;
+  }
+}

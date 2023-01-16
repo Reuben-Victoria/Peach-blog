@@ -1,12 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../api';
+// import { useParams } from 'react-router-dom';
 import { failureToast, successToast } from '../../Authentication/Toast/Toast';
 
 export const UPDATEUSER = createAsyncThunk(
   'user/update',
-  async ({ upload_photo, first_name, last_name, tagline, bio }, { rejectWithValue }) => {
+  async ({ upload_photo, first_name, last_name, tagline, id, bio }, { rejectWithValue }) => {
     try {
-      const { data } = await api.patch('users/update_user', {
+      const { data } = await api.patch(`users/update_user/${id}`, {
         upload_photo,
         first_name,
         last_name,
@@ -14,6 +15,7 @@ export const UPDATEUSER = createAsyncThunk(
         bio
       });
       successToast(`${data.message}`);
+      console.log(data, 'data');
       return data;
     } catch (error) {
       console.log(error.response, 'error');

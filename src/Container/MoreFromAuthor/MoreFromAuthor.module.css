@@ -1,0 +1,24 @@
+.moreFromAuthor {
+  margin-top: 100px;
+  padding: 24px 24px;
+  width: 845px;
+  height: 394px;
+  background: #f4f3f8;
+  border-radius: 10px;
+}
+.moreFromAuthor__header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 41px;
+  color: #111111;
+  margin-bottom: 16px;
+}
+.moreFromAuthor__description {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  color: #111111;
+  margin-bottom: 24px;
+}/*# sourceMappingURL=MoreFromAuthor.module.css.map */

@@ -7,24 +7,37 @@
   margin-bottom: 24px;
 }
 .editProfileWrapper__profileImage {
-  width: 187px;
-  height: 187px;
   position: relative;
   margin-bottom: 24px;
   border-radius: 50%;
 }
 .editProfileWrapper__profileImage img {
-  width: 100%;
+  width: 187px;
+  height: 187px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .editProfileWrapper__upload {
   width: 32px;
   height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
   position: absolute;
   top: 329px;
-  left: 305px;
+  left: 21%;
+}
+.editProfileWrapper__upload:hover {
+  opacity: 0.9;
 }
 .editProfileWrapper__upload img {
   width: 100%;
+}
+.editProfileWrapper__form__name {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 95px);
+  column-gap: 40px;
 }
 .editProfileWrapper__form div {
   margin-bottom: 24px;
@@ -43,6 +56,7 @@
   font-size: 16px;
   line-height: 22px;
   color: #111111;
+  margin-top: 14px;
 }
 .editProfileWrapper__form div textarea {
   display: inline-block;
