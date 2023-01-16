@@ -27,7 +27,7 @@ function App() {
         {/* <Input /> */}
         <Route element={<PreventRoutes />}>
           <Route path="/create-post" element={<CreatePostPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
           <Route exact path="/" element={<HomePage />} />
           <Route path="/edit-profile" element={<EditProfilePage />} />
         </Route>

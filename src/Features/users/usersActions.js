@@ -3,6 +3,20 @@ import api from '../../api';
 // import { useParams } from 'react-router-dom';
 import { failureToast, successToast } from '../../Authentication/Toast/Toast';
 
+export const GETPROFILE = createAsyncThunk(
+  'user/getProfile',
+  async ({ data }, { rejectWithValue }) => {
+    try {
+      const { id } = data;
+      const { profileData } = await api.get(`blogs/profile/${id}`, { data });
+      return profileData;
+    } catch (error) {
+      console.log(error.response, 'error');
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const UPDATEUSER = createAsyncThunk(
   'user/update',
   async ({ upload_photo, first_name, last_name, tagline, id, bio }, { rejectWithValue }) => {
@@ -18,7 +32,7 @@ export const UPDATEUSER = createAsyncThunk(
       console.log(data, 'data');
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
+      // console.log(error.response, 'error');
       failureToast(`${error.response?.data?.message}`);
       return rejectWithValue(error.response.data);
     }

@@ -25,7 +25,7 @@ function EditProfile() {
   const authData = JSON.parse(userInfo);
   const fileInput = useRef(null);
 
-  console.log(authData.user.id, 'AUTH DATA');
+  // console.log(authData.user.id, 'AUTH DATA');
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -44,12 +44,6 @@ function EditProfile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('upload_photo', image);
-    formData.append('first_name', details.firstName);
-    formData.append('last_name', details.lastName);
-    formData.append('tagline', details.tagLine);
-    formData.append('bio', details.bio);
-    formData.append('id', authData.user.id);
     dispatch(
       UPDATEUSER({
         ...formData,
@@ -61,16 +55,16 @@ function EditProfile() {
         id: authData.user.id
       })
     );
-    console.log(details, 'details');
-    // console.log(formData, 'formData');
-    for (var keys of formData.entries()) {
-      console.log(keys[0] + ',' + keys[1]);
-    }
+    // console.log(details, 'details');
+    // // console.log(formData, 'formData');
+    // for (var keys of formData.entries()) {
+    //   console.log(keys[0] + ',' + keys[1]);
+    // }
   };
 
   useEffect(() => {
     if (success) {
-      navigate('/profile');
+      navigate(`/profile/${authData.user.id}`);
     }
   }, [success]);
   return (

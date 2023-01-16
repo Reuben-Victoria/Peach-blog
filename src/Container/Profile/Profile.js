@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import dummy from '../../assets/dummy.svg';
 import edit from '../../assets/Edit2.svg';
 import post from '../../assets/Document.svg';
@@ -8,11 +9,21 @@ import like from '../../assets/like.svg';
 import Divider from '../../Common/Divider/Divider';
 import TagIcon from '../../Common/TagIcons/TagIcon';
 import styles from './Profile.module.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { GETPROFILE } from '../../Features/users/usersActions';
 import RecentActivity from '../../Components/RecentActivity/RecentActivity';
 import { Link } from 'react-router-dom';
 
 function Profile() {
-  // const { userId } = useParams();
+  const { userData } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const user = useParams();
+  // const profileInfo = JSON.parse(userData);
+  useEffect(() => {
+    console.log(user.id, 'profileInfo>>>>>>>');
+    console.log(userData, 'DataInfo>>>>>>>');
+    dispatch(GETPROFILE(user.id));
+  }, []);
   return (
     <main className={styles.ProfileContainer}>
       <div className={styles.ProfileContainer__userData}>
