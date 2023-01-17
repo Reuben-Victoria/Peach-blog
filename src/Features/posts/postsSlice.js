@@ -27,10 +27,19 @@ const postsSlice = createSlice({
     // }
   },
   extraReducers: (builder) => {
-    builder.addCase(postAdded.fulfilled, (state, { payload }) => {
-      state.loading = false;
-      state.posts.push(payload);
-    });
+    builder.addCase(postAdded.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    }),
+      builder.addCase(postAdded.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.posts.push(payload);
+        state.success = true;
+      }),
+      builder.addCase(postAdded.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      });
   }
 });
 

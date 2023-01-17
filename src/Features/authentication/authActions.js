@@ -1,14 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-//  import Instance from '../../api';
-
-import api from '../../api';
+import instance from '../../api';
 import { failureToast, successToast } from '../../Authentication/Toast/Toast';
 
 export const userSignUp = createAsyncThunk(
   'auth/signup',
   async ({ first_name, last_name, email_address, password }, { rejectWithValue }) => {
     try {
-      const { data } = await api.post('users/signup', {
+      const { data } = await instance.post('users/signup', {
         first_name,
         last_name,
         email_address,
@@ -26,8 +24,9 @@ export const userLogin = createAsyncThunk(
   'auth/login',
   async ({ email_address, password }, { rejectWithValue }) => {
     try {
-      const { data } = await api.post('users/login', { email_address, password });
+      const { data } = await instance.post('users/login', { email_address, password });
       localStorage.setItem('userToken', data?.data?.token);
+      instance.defaults.headers.common['Authorization'] = `Bearer ${data?.data?.token}`;
       localStorage.setItem('userInfo', JSON.stringify(data?.data));
       successToast(`${data.message}`);
       console.log(data?.data, 'data');
@@ -44,7 +43,7 @@ export const forgotPassword = createAsyncThunk(
   'auth/forgotpassword',
   async ({ email_address }, { rejectWithValue }) => {
     try {
-      const { data } = await api.post('users/forgot_password', { email_address });
+      const { data } = await instance.post('users/forgot_password', { email_address });
       successToast(`${data.message}`);
       return data;
     } catch (error) {
@@ -59,7 +58,7 @@ export const verifyCode = createAsyncThunk(
   'auth/verifyCode',
   async ({ code, email_address }, { rejectWithValue }) => {
     try {
-      const { data } = await api.patch('users/verify_code', { code, email_address });
+      const { data } = await instance.patch('users/verify_code', { code, email_address });
       successToast(`${data.message}`);
       return data;
     } catch (error) {
@@ -74,7 +73,7 @@ export const resetPassword = createAsyncThunk(
   'auth/resetPassword',
   async ({ token, password }, { rejectWithValue }) => {
     try {
-      const { data } = await api.patch('users/reset_password', { token, password });
+      const { data } = await instance.patch('users/reset_password', { token, password });
       return data;
     } catch (error) {
       failureToast(error.response?.data?.message);

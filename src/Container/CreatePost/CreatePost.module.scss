@@ -43,7 +43,7 @@
       margin-bottom: 40px;
       input {
         width: 100%;
-        padding: 10px 25px;
+        padding: 10px 10px;
         border: none;
         @include authBodyText(
           $fontWeight: 700,
@@ -51,6 +51,23 @@
           $color: #111111,
           $lineHeight: 41px
         );
+      }
+    }
+    &__subtitle {
+      width: 59vw;
+      height: 56px;
+      margin-bottom: 20px;
+      input {
+        width: 100%;
+        padding: 10px 10px;
+        border: none;
+        @include authBodyText(
+          $fontWeight: 400,
+          $fontSize: 24px,
+          $color: #111111,
+          $lineHeight: 41px
+        );
+        font-style: italic;
       }
     }
   }

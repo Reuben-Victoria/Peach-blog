@@ -8,6 +8,7 @@
   background-color: #6e6e6d;
   position: absolute;
   z-index: 10;
+  top: 108%;
   left: 28.4%;
   box-sizing: border-box;
 }

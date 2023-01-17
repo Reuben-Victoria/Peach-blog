@@ -34,7 +34,7 @@ function EditorBar({ editorState, onEditorStateChange, ...rest }) {
         editorClassName="textArea"
         placeholder="Enter some text"
         onEditorStateChange={onEditorStateChange}
-        // toolbarOnFocus
+        toolbarOnFocus
         toolbar={{
           options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'emoji'],
           inline: {

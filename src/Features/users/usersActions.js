@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../../api';
+import instance from '../../api';
 // import { useParams } from 'react-router-dom';
 import { failureToast, successToast } from '../../Authentication/Toast/Toast';
 
@@ -8,7 +8,7 @@ export const GETPROFILE = createAsyncThunk(
   async ({ data }, { rejectWithValue }) => {
     try {
       const { id } = data;
-      const { profileData } = await api.get(`blogs/profile/${id}`, { data });
+      const { profileData } = await instance.get(`blogs/profile/${id}`);
       return profileData;
     } catch (error) {
       console.log(error.response, 'error');
@@ -21,7 +21,7 @@ export const UPDATEUSER = createAsyncThunk(
   'user/update',
   async ({ upload_photo, first_name, last_name, tagline, id, bio }, { rejectWithValue }) => {
     try {
-      const { data } = await api.patch(`users/update_user/${id}`, {
+      const { data } = await instance.patch(`users/update_user/${id}`, {
         upload_photo,
         first_name,
         last_name,

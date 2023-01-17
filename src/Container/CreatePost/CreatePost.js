@@ -23,7 +23,12 @@ function CreatePost() {
     }
     return EditorState.createEmpty();
   });
-  const [title, setTitle] = useState('');
+  const [inputValues, setInputValues] = useState({
+    title: '',
+    subtitle: ''
+  });
+
+  const [toggle, setToggle] = useState(false);
 
   const [image, setImage] = useState({ preview: '', raw: '' });
 
@@ -42,8 +47,14 @@ function CreatePost() {
     console.log('hhhh');
   }
 
+  const toggleSubtitle = (event) => {
+    event.preventDefault();
+    setToggle(!toggle);
+  };
+
   const handleOnChange = (event) => {
-    setTitle(event.target.value);
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
   };
 
   // const [imageBaseUrl, setImageBaseUrl] = useState('');
@@ -86,19 +97,20 @@ function CreatePost() {
   function handleSubmit(event) {
     event.preventDefault();
     let formData = new FormData();
-    formData.append('cover', image.raw),
-      formData.append('title', 'vgdsvfhjvdhjghjgsd'),
-      formData.append('subtitle', 'vgdsvfhjvdhjghjgsd'),
-      formData.append('post', localStorage.getItem('editor-state')),
-      // console.log('imageBaseUrl', imageBaseUrl);
+    // formData.append('cover', image.raw),
+    //   formData.append('title', 'vgdsvfhjvdhjghjgsd'),
+    //   formData.append('subtitle', 'vgdsvfhjvdhjghjgsd'),
+    //   formData.append('post', localStorage.getItem('editor-state')),
+    // console.log('imageBaseUrl', imageBaseUrl);
 
-      console.log(formData, 'formData');
+    console.log(formData, 'formData');
 
     dispatch(
       postAdded({
+        ...formData,
         cover: image.raw,
-        title: title,
-        subtitle: 'fdfghdghj',
+        title: inputValues.title,
+        subtitle: inputValues.subtitle,
         post: localStorage.getItem('editor-state')
       })
     );
@@ -114,7 +126,7 @@ function CreatePost() {
   };
 
   console.log('store', editorState);
-  console.log(title, 'title');
+  console.log(inputValues.title, 'title');
 
   return (
     <main className={styles.createPostContainer}>
@@ -135,7 +147,7 @@ function CreatePost() {
             placeholder="Add Post Title... "
             name="title"
             onChange={handleOnChange}
-            value={title}
+            value={inputValues.title}
           />
         </div>
         <input
@@ -151,11 +163,17 @@ function CreatePost() {
             <img src={image.preview} alt="image" />
           </div>
         )}
-        <EditorBar
-          editorState={editorState}
-          onEditorStateChange={onEditorStateChange}
-          toolbarOnFocus
-        />
+        {toggle && (
+          <div className={styles.createPostContainer__body__subtitle}>
+            <input
+              placeholder="Add Subtitle... "
+              name="subtitle"
+              onChange={handleOnChange}
+              value={inputValues.subtitle}
+            />
+          </div>
+        )}
+        <EditorBar editorState={editorState} onEditorStateChange={onEditorStateChange} />
         <div className={styles.buttonsContainer}>
           <div className={styles.buttonsContainer__buttonsLeft}>
             <Button
@@ -172,6 +190,7 @@ function CreatePost() {
               src={Tvector}
               alt={'T'}
               theme={'primary'}
+              onClick={toggleSubtitle}
               text={'Add Subtitle'}
               size={'md'}
             />
@@ -185,7 +204,6 @@ function CreatePost() {
           />
         </div>
       </form>
-      ;
     </main>
   );
 }
