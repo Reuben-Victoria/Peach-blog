@@ -25,14 +25,12 @@ export const userLogin = createAsyncThunk(
   async ({ email_address, password }, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('users/login', { email_address, password });
+      localStorage.setItem('userInfo', JSON.stringify(data?.data));
       localStorage.setItem('userToken', data?.data?.token);
       instance.defaults.headers.common['Authorization'] = `Bearer ${data?.data?.token}`;
-      localStorage.setItem('userInfo', JSON.stringify(data?.data));
       successToast(`${data.message}`);
-      console.log(data?.data, 'data');
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
       failureToast(error.response?.data?.message);
       return rejectWithValue(error.response.data);
     }
@@ -47,7 +45,6 @@ export const forgotPassword = createAsyncThunk(
       successToast(`${data.message}`);
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
       failureToast(error.response?.data?.message);
       return rejectWithValue(error.response.data);
     }
@@ -62,7 +59,6 @@ export const verifyCode = createAsyncThunk(
       successToast(`${data.message}`);
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
       failureToast(error.response?.data?.message);
       return rejectWithValue(error.response.data);
     }

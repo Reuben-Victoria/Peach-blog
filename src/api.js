@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://76cb-196-1-187-142.eu.ngrok.io/api/v1/',
+  // eslint-disable-next-line no-undef
+  baseURL: `${process.env.REACT_APP_BASE_URL}/v1`,
   headers: {
     'content-type': 'multipart/form-data',
     accept: 'application/json'

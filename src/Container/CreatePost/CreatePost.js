@@ -34,8 +34,7 @@ function CreatePost() {
 
   useEffect(() => {
     if (localStorage.getItem('image-preview')) {
-      const newData = JSON.parse(localStorage.getItem('image-preview'));
-      console.log(URL, newData, 'URL >>>');
+      // const newData = JSON.parse(localStorage.getItem('image-preview'));
       // setPreview(newData);
     }
   }, []);
@@ -44,7 +43,6 @@ function CreatePost() {
   function handleClick(event) {
     event.preventDefault();
     fileInput.current?.click();
-    console.log('hhhh');
   }
 
   const toggleSubtitle = (event) => {
@@ -72,8 +70,6 @@ function CreatePost() {
     }
     // console.log(event.target.files[0]);
     // setImageBaseUrl(event.target.files[0]);
-
-    console.log(image.raw, 'File >>>');
   }
 
   // const getBase64 = (image) => {
@@ -103,8 +99,6 @@ function CreatePost() {
     //   formData.append('post', localStorage.getItem('editor-state')),
     // console.log('imageBaseUrl', imageBaseUrl);
 
-    console.log(formData, 'formData');
-
     dispatch(
       postAdded({
         ...formData,
@@ -114,7 +108,6 @@ function CreatePost() {
         post: localStorage.getItem('editor-state')
       })
     );
-    console.log(image.raw, 'post image');
   }
 
   const onEditorStateChange = (value) => {
@@ -124,9 +117,6 @@ function CreatePost() {
       JSON.stringify(convertToRaw(editorState.getCurrentContent()))
     );
   };
-
-  console.log('store', editorState);
-  console.log(inputValues.title, 'title');
 
   return (
     <main className={styles.createPostContainer}>

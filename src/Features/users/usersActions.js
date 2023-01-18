@@ -9,9 +9,8 @@ export const GETPROFILE = createAsyncThunk(
     try {
       const { id } = data;
       const { profileData } = await instance.get(`blogs/profile/${id}`);
-      return profileData;
+      return profileData.data.json();
     } catch (error) {
-      console.log(error.response, 'error');
       return rejectWithValue(error.response.data);
     }
   }
@@ -29,7 +28,6 @@ export const UPDATEUSER = createAsyncThunk(
         bio
       });
       successToast(`${data.message}`);
-      console.log(data, 'data');
       return data;
     } catch (error) {
       // console.log(error.response, 'error');

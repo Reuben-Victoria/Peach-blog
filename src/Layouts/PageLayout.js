@@ -6,9 +6,11 @@ import Footer from '../Components/Footer/Footer';
 import styles from './PageLayout.module.scss';
 
 function PageLayout({ children }) {
+  const authData = JSON.parse(localStorage.getItem('userInfo'));
+  console.log(authData.user.id);
   return (
     <div className={styles.main}>
-      <NavBar />
+      <NavBar userId={authData.user.id} />
       <div className={styles.main__page}>{children}</div>
       <Footer />
     </div>

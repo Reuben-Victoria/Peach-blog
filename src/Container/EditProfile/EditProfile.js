@@ -21,8 +21,7 @@ function EditProfile() {
 
   const { userInfo } = useSelector((state) => state.auth);
   const { loading, success } = useSelector((state) => state.users);
-
-  const authData = JSON.parse(userInfo);
+  const authData = userInfo.user.id;
   const fileInput = useRef(null);
 
   // console.log(authData.user.id, 'AUTH DATA');
@@ -52,7 +51,7 @@ function EditProfile() {
         last_name: details.lastName,
         tagline: details.tagLine,
         bio: details.bio,
-        id: authData.user.id
+        id: authData
       })
     );
     // console.log(details, 'details');
@@ -64,7 +63,7 @@ function EditProfile() {
 
   useEffect(() => {
     if (success) {
-      navigate(`/profile/${authData.user.id}`);
+      navigate(`/profile/${authData}`);
     }
   }, [success]);
   return (

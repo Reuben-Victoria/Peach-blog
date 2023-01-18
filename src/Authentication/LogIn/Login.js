@@ -12,13 +12,7 @@ import { userLogin } from '../../Features/authentication/authActions';
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userInfo, loading, success } = useSelector((state) => state.auth);
-  const state = useSelector((state) => state);
-  console.log(state);
-  console.log(userInfo, 'userInfo>>>>>');
-  console.log(loading, 'loading');
-
-  console.log(success, 'success');
+  const { loading, success } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (success) {
@@ -38,7 +32,6 @@ function Login() {
             password: values.password.replace(/^\s+|\s+$/gm, '')
           })
         );
-        console.log(userInfo?.message, 'message');
       }}>
       {(formik) => {
         const { touched, errors } = formik;

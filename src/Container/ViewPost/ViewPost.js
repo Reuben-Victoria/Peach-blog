@@ -9,6 +9,8 @@ import dummy from '../../assets/dummy.svg';
 import comment from '../../assets/comment.svg';
 import like from '../../assets/like.svg';
 import repost from '../../assets/repost.svg';
+import save from '../../assets/save.svg';
+import more from '../../assets/more.svg';
 function ViewPost() {
   return (
     <div className={styles.homeWrapper}>
@@ -33,10 +35,22 @@ function ViewPost() {
             <img />
           </div>
           <p>hdfhfgdgfgddysgygsuhx</p>
-          <div className={styles.homeWrapper__contents__posts__tagIcon}>
-            <TagIcon text={'25 likes'} variant={'mdText'} src={like} />
-            <TagIcon text={'5 comments'} variant={'mdText'} src={comment} />
-            <TagIcon text={'20 reposts'} variant={'mdText'} src={repost} />
+          <div className={styles.homeWrapper__contents__posts__tagIconContainer}>
+            <div className={styles.homeWrapper__contents__posts__tagIconContainer__tagIcon}>
+              <TagIcon text={'25 likes'} variant={'lgText'} size={'lg'} src={like} />
+              <Divider />
+              <TagIcon text={'5 comments'} variant={'lgText'} size={'lg'} src={comment} />
+              <Divider />
+              <TagIcon text={'20 reposts'} variant={'lgText'} size={'lg'} src={repost} />
+            </div>
+            <div className={styles.homeWrapper__contents__posts__tagIconContainer__options}>
+              <div className={styles.homeWrapper__contents__posts__tagIconContainer__options__save}>
+                <img src={save} alt="save for later" />
+              </div>
+              <div className={styles.homeWrapper__contents__posts__tagIconContainer__options__more}>
+                <img src={more} alt="more" />
+              </div>
+            </div>
           </div>
           <MoreFromAuthor />
         </div>

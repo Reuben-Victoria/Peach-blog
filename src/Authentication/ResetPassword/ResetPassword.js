@@ -15,7 +15,6 @@ function ResetPassword() {
   const tokenID = token.split('token=')[1];
   const { userInfo, loading } = useSelector((state) => state.auth);
 
-  console.log(token.split('token=')[1]);
   function toggleModal() {
     setToggle(!toggle);
   }

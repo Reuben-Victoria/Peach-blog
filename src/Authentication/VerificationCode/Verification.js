@@ -22,8 +22,6 @@ function Verification() {
     event.preventDefault();
     dispatch(verifyCode({ code: code.replace(/^\s+|\s+$/gm, ''), email_address: email }));
   };
-  console.log(code);
-  console.log(userInfo, 'userInfo');
   return (
     <div className={styles.formWrap}>
       <h1>Enter 4- digit code</h1>

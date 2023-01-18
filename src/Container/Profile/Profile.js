@@ -20,9 +20,9 @@ function Profile() {
   const user = useParams();
   // const profileInfo = JSON.parse(userData);
   useEffect(() => {
+    dispatch(GETPROFILE());
     console.log(user.id, 'profileInfo>>>>>>>');
     console.log(userData, 'DataInfo>>>>>>>');
-    dispatch(GETPROFILE(user.id));
   }, []);
   return (
     <main className={styles.ProfileContainer}>

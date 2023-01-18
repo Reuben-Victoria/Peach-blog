@@ -22,3 +22,14 @@ export const postAdded = createAsyncThunk(
     }
   }
 );
+
+export const getLatestPost = createAsyncThunk('post/latestPost', async ({ rejectWithValue }) => {
+  try {
+    const { data } = await instance.get('blogs/latest_posts');
+    console.log(data, 'Data>>>>>>>>>>>>>>>>');
+    return data;
+  } catch (error) {
+    console.log(error.response, 'error');
+    return rejectWithValue(error.response.data);
+  }
+});
