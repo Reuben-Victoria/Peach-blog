@@ -1,20 +1,27 @@
 import React, { useEffect } from 'react';
 import Posts from '../../Components/Posts/Post';
 import Tags from '../../Components/Tags/Tags';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import instance from '../../api';
 // import { blogData } from '../../mock/post';
-import { getLatestPost } from '../../Features/posts/postActions';
+// import { getLatestPost } from '../../Features/posts/postActions';
 
 import styles from './Home.module.scss';
 
 function Home() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { posts, loading } = useSelector((state) => state.post);
 
   useEffect(() => {
-    dispatch(getLatestPost());
-    console.log(posts, 'posts');
+    // dispatch(getLatestPost());
+    async () => {
+      const response = await instance.get('/blogs/latest_posts');
+      console.log('fhghfhg', response);
+      return response;
+    };
   }, []);
+
+  console.log(posts, 'posts');
 
   return (
     <div className={styles.homeWrapper}>

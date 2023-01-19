@@ -19,15 +19,15 @@ function DeleteModal({ toggle, setToggle, text, onClick }) {
         <div className={styles.modalContent__buttons}>
           <Button
             text={'Yes'}
-            size={'lg'}
-            theme={'secondary'}
+            size={'md'}
+            theme={'lightPink'}
             loading={loading}
             onClick={onClick}
           />
           <Button
             text={'No'}
-            size={'lg'}
-            theme={'secondary'}
+            size={'md'}
+            theme={'lightPink'}
             onClick={() => {
               setToggle(!toggle);
             }}

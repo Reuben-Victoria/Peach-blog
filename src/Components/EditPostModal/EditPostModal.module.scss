@@ -1,5 +1,6 @@
 @import '../../Styles/mixins';
 .modalWrapper {
+  @include flex-container($spacing: null, $alignment: center);
   width: 202px;
   height: 197px;
   background: #ffffff;
@@ -8,7 +9,7 @@
   padding: 24px;
   z-index: 10;
   position: absolute;
-  bottom: -230px;
+  bottom: 92px;
   right: 31%;
   position: absolute;
   -moz-box-shadow: 0 0 3px #ccc;
@@ -17,8 +18,13 @@
 
   div {
     @include authBodyText($fontSize: 14px, $fontWeight: 400, $color: #111111, $lineHeight: 19px);
+    @include flex-container($spacing: null, $alignment: null);
+    height: 35px;
+    padding: 8px;
+    width: 100%;
     :hover {
       height: 35px;
+      padding: 8px;
       background: #f4f2fb;
       border-radius: 4px;
     }

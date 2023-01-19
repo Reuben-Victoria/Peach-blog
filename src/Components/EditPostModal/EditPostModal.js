@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import styles from './EditPostModal.module.scss';
 import PropTypes from 'prop-types';
 
-function EditPostModal({ toggle }) {
+function EditPostModal({ toggleEdit, onClick }) {
   return (
-    <div className={toggle ? styles.modalWrapper : styles.display}>
+    <div className={toggleEdit ? styles.modalWrapper : styles.display}>
       <div>
-        <Link to="">
+        <Link to="/edit-post/:postId">
           <p>Edit Post</p>
         </Link>
       </div>
       <div>
         <p>Hide Responses</p>
       </div>
-      <div>
+      <div onClick={onClick}>
         <p>Delete Post</p>
       </div>
     </div>
@@ -24,6 +24,7 @@ function EditPostModal({ toggle }) {
 export default EditPostModal;
 
 EditPostModal.propTypes = {
-  toggle: PropTypes.bool,
-  setToggle: PropTypes.func
+  toggleEdit: PropTypes.bool,
+  setToggle: PropTypes.func,
+  onClick: PropTypes.func
 };

@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   success: false,
   comment: [],
-  reaction: null
+  reaction: 0
 };
 
 const postsSlice = createSlice({
@@ -88,7 +88,7 @@ const postsSlice = createSlice({
     }),
       builder.addCase(likePost.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.reaction = payload;
+        state.reaction = payload++;
       }),
       builder.addCase(likePost.rejected, (state, { payload }) => {
         state.loading = false;

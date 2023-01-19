@@ -13,8 +13,10 @@ import repost from '../../assets/repost.svg';
 import save from '../../assets/save.svg';
 import more from '../../assets/more.svg';
 import EditPostModal from '../../Components/EditPostModal/EditPostModal';
+import DeleteModal from '../../Components/DeleteModal/DeleteModal';
 function ViewPost() {
   const [toggleLike, setToggleLike] = useState(false);
+  const [toggleEdit, setToggleEdit] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [countLike, setCountLike] = useState(0);
 
@@ -68,15 +70,20 @@ function ViewPost() {
               <div className={styles.homeWrapper__contents__posts__tagIconContainer__options__save}>
                 <img src={save} alt="save for later" />
               </div>
-              <button
+              <div
                 className={styles.homeWrapper__contents__posts__tagIconContainer__options__more}
                 onClick={() => {
-                  setToggle(!toggle);
-                  console.log(toggle, 'Toggle');
+                  setToggleEdit(!toggleEdit);
                 }}>
                 <img src={more} alt="more" />
-              </button>
-              <EditPostModal toggle={toggle} />
+              </div>
+              <EditPostModal
+                toggleEdit={toggleEdit}
+                onClick={() => {
+                  setToggle(!toggle);
+                }}
+              />
+              <DeleteModal toggle={toggle} setToggle={setToggle} text={'Post'} />
             </div>
           </div>
           <MoreFromAuthor />
