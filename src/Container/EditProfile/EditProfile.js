@@ -1,14 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import dummy from '../../assets/dummy.svg';
 import Input from '../../Common/Input/Input';
 import Button from '../../Common/Button/Button';
 import upload from '../../assets/upload.svg';
 import styles from './EditProfile.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { UPDATEUSER } from '../../Features/users/usersActions';
+import { UPDATEUSER, DELETEUSER } from '../../Features/users/usersActions';
+import DeleteModal from '../../Components/DeleteModal/DeleteModal';
 
 function EditProfile() {
+  const { userId } = useParams();
+  console.log(userId, 'ID>>>>>>');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [image, setImage] = useState({ preview: '', raw: '' });
@@ -20,9 +23,7 @@ function EditProfile() {
   });
   const [toggle, setToggle] = useState(false);
 
-  const { userInfo } = useSelector((state) => state.auth);
   const { loading, success } = useSelector((state) => state.users);
-  const authData = userInfo.user.id;
   const fileInput = useRef(null);
 
   // console.log(authData.user.id, 'AUTH DATA');
@@ -52,7 +53,7 @@ function EditProfile() {
         last_name: details.lastName,
         tagline: details.tagLine,
         bio: details.bio,
-        id: authData
+        id: userId
       })
     );
     // console.log(details, 'details');
@@ -64,7 +65,7 @@ function EditProfile() {
 
   useEffect(() => {
     if (success) {
-      navigate(`/profile/${authData}`);
+      navigate(`/profile/${userId}`);
     }
   }, [success]);
   return (
@@ -89,6 +90,16 @@ function EditProfile() {
           />
         </div>
       </div>
+      <DeleteModal
+        toggle={toggle}
+        setToggle={setToggle}
+        text={'Account'}
+        userId={userId}
+        onClick={() => {
+          dispatch(DELETEUSER(userId));
+          navigate('/login');
+        }}
+      />
       <form className={styles.editProfileWrapper__form} onSubmit={handleSubmit}>
         <input
           name="file"

@@ -43,6 +43,8 @@ export const DELETEUSER = createAsyncThunk(
     try {
       const data = await instance.delete(`users/delete_user/${userId}`);
       successToast(`${data.message}`);
+      console.log(data, 'delete');
+      // localStorage.clear();
       return data;
     } catch (error) {
       failureToast(`${error.response?.data?.message}`);

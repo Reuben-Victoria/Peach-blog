@@ -42,6 +42,24 @@ export const addComment = createAsyncThunk(
   }
 );
 
+export const editPost = createAsyncThunk(
+  'post/edit-post',
+  async ({ cover, title, subtitle, post, postId }, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.put(`blogs/edit_post/${postId}`, {
+        cover,
+        title,
+        subtitle,
+        post
+      });
+      return data;
+    } catch (error) {
+      console.log(error.response, 'error');
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const likePost = createAsyncThunk(
   'post/likePost',
   async ({ likePost, postId }, { rejectWithValue }) => {

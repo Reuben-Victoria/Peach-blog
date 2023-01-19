@@ -9,35 +9,57 @@ import notificationIcon from '../../assets/Notification.svg';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 
-function NavBar({ userId }) {
+function NavBar({ userId, toggle }) {
   return (
-    <nav className={styles.navBar}>
-      <SearchBar />
-      <div className={styles.navBar__userProfile}>
-        <Link to={`/profile/${userId}`}>
-          <div>
-            <img src={dummy} alt="profile-picture" />
+    <>
+      {toggle ? (
+        <nav className={styles.navBar}>
+          <h1>Edit Post</h1>
+          <div className={styles.navBar__userProfile}>
+            <Link to={`/profile/${userId}`}>
+              <div>
+                <img src={dummy} alt="profile-picture" />
+              </div>
+            </Link>
+            <div>
+              <img src={notificationIcon} alt="notification" />
+            </div>
+            <Link to="/create-post">
+              <Button theme={'lightPink'} size={'sm'} text={'Update'} type={'submit'} />
+            </Link>
           </div>
-        </Link>
-        <div>
-          <img src={notificationIcon} alt="notification" />
-        </div>
-        <Link to="/create-post">
-          <Button
-            src={editIcon}
-            showImage
-            alt={'editIcon'}
-            theme={'secondary'}
-            size={'md'}
-            text={'Write'}
-          />
-        </Link>
-      </div>
-    </nav>
+        </nav>
+      ) : (
+        <nav className={styles.navBar}>
+          <SearchBar />
+          <div className={styles.navBar__userProfile}>
+            <Link to={`/profile/${userId}`}>
+              <div>
+                <img src={dummy} alt="profile-picture" />
+              </div>
+            </Link>
+            <div>
+              <img src={notificationIcon} alt="notification" />
+            </div>
+            <Link to="/create-post">
+              <Button
+                src={editIcon}
+                showImage
+                alt={'editIcon'}
+                theme={'secondary'}
+                size={'md'}
+                text={'Write'}
+              />
+            </Link>
+          </div>
+        </nav>
+      )}
+    </>
   );
 }
 NavBar.propTypes = {
-  userId: PropTypes.string
+  userId: PropTypes.string,
+  toggle: PropTypes.bool
 };
 
 export default NavBar;

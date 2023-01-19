@@ -1,0 +1,29 @@
+@import '../../Styles/mixins';
+.modalWrapper {
+  width: 202px;
+  height: 197px;
+  background: #ffffff;
+  border-radius: 10px;
+  align-items: center;
+  padding: 24px;
+  z-index: 10;
+  position: absolute;
+  bottom: -230px;
+  right: 31%;
+  position: absolute;
+  -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 3px #ccc;
+
+  div {
+    @include authBodyText($fontSize: 14px, $fontWeight: 400, $color: #111111, $lineHeight: 19px);
+    :hover {
+      height: 35px;
+      background: #f4f2fb;
+      border-radius: 4px;
+    }
+  }
+}
+.display {
+  display: none;
+}

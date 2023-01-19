@@ -11,6 +11,7 @@
 
   &__userProfile {
     @include flex-container($direction: row, $spacing: space-evenly);
+    
 
     div {
       margin-right: 24px;

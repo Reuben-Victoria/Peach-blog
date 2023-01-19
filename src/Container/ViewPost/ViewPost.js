@@ -12,8 +12,10 @@ import like from '../../assets/like.svg';
 import repost from '../../assets/repost.svg';
 import save from '../../assets/save.svg';
 import more from '../../assets/more.svg';
+import EditPostModal from '../../Components/EditPostModal/EditPostModal';
 function ViewPost() {
   const [toggleLike, setToggleLike] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const [countLike, setCountLike] = useState(0);
 
   const handleLike = () => {
@@ -66,9 +68,15 @@ function ViewPost() {
               <div className={styles.homeWrapper__contents__posts__tagIconContainer__options__save}>
                 <img src={save} alt="save for later" />
               </div>
-              <div className={styles.homeWrapper__contents__posts__tagIconContainer__options__more}>
+              <button
+                className={styles.homeWrapper__contents__posts__tagIconContainer__options__more}
+                onClick={() => {
+                  setToggle(!toggle);
+                  console.log(toggle, 'Toggle');
+                }}>
                 <img src={more} alt="more" />
-              </div>
+              </button>
+              <EditPostModal toggle={toggle} />
             </div>
           </div>
           <MoreFromAuthor />
