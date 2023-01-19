@@ -12,14 +12,15 @@ import { userLogin } from '../../Features/authentication/authActions';
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, success } = useSelector((state) => state.auth);
+  const { loading, userInfo } = useSelector((state) => state.auth);
+  console.log(userInfo?.data?.token, 'UUUUUUUUUUUUU');
 
   useEffect(() => {
-    if (success) {
+    if (userInfo?.data?.token) {
       navigate('/');
     }
     // console.log(timer);
-  }, [success]);
+  }, []);
 
   return (
     <Formik

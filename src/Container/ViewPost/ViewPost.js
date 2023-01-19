@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import Posts from '../../Components/Posts/Post';
 import Tags from '../../Components/Tags/Tags';
 import styles from './ViewPost.module.scss';
 import MoreFromAuthor from '../MoreFromAuthor/MoreFromAuthor';
 import TagIcon from '../../Common/TagIcons/TagIcon';
 import Divider from '../../Common/Divider/Divider';
+import favouriteFilled from '../../assets/favouriteFilled.svg';
 import dummy from '../../assets/dummy.svg';
 import comment from '../../assets/comment.svg';
 import like from '../../assets/like.svg';
@@ -12,6 +13,18 @@ import repost from '../../assets/repost.svg';
 import save from '../../assets/save.svg';
 import more from '../../assets/more.svg';
 function ViewPost() {
+  const [toggleLike, setToggleLike] = useState(false);
+  const [countLike, setCountLike] = useState(0);
+
+  const handleLike = () => {
+    setToggleLike(!toggleLike);
+    console.log(toggleLike, 'ToggleLike');
+    if (!toggleLike && countLike === 0) {
+      setCountLike(countLike + 1);
+    } else {
+      setCountLike(countLike - 1);
+    }
+  };
   return (
     <div className={styles.homeWrapper}>
       <div className={styles.homeWrapper__favorites}></div>
@@ -37,7 +50,13 @@ function ViewPost() {
           <p>hdfhfgdgfgddysgygsuhx</p>
           <div className={styles.homeWrapper__contents__posts__tagIconContainer}>
             <div className={styles.homeWrapper__contents__posts__tagIconContainer__tagIcon}>
-              <TagIcon text={'25 likes'} variant={'lgText'} size={'lg'} src={like} />
+              <TagIcon
+                onClick={handleLike}
+                text={`${countLike} likes`}
+                variant={'lgText'}
+                size={'lg'}
+                src={toggleLike ? favouriteFilled : like}
+              />
               <Divider />
               <TagIcon text={'5 comments'} variant={'lgText'} size={'lg'} src={comment} />
               <Divider />

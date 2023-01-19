@@ -10,10 +10,12 @@ import styles from './Home.module.scss';
 function Home() {
   const dispatch = useDispatch();
   const { posts, loading } = useSelector((state) => state.post);
+
   useEffect(() => {
     dispatch(getLatestPost());
     console.log(posts, 'posts');
   }, []);
+
   return (
     <div className={styles.homeWrapper}>
       {loading && <h1>Loading</h1>}

@@ -18,6 +18,7 @@ function EditProfile() {
     tagLine: '',
     bio: ''
   });
+  const [toggle, setToggle] = useState(false);
 
   const { userInfo } = useSelector((state) => state.auth);
   const { loading, success } = useSelector((state) => state.users);
@@ -68,13 +69,26 @@ function EditProfile() {
   }, [success]);
   return (
     <section className={styles.editProfileWrapper}>
-      <h1>Basic Info</h1>
-      <div className={styles.editProfileWrapper__profileImage}>
-        <img src={image.raw ? image.preview : dummy} alt="profile picture" />
+      <div className={styles.topSide}>
+        <div>
+          <h1>Basic Info</h1>
+          <div className={styles.editProfileWrapper__profileImage}>
+            <img src={image.raw ? image.preview : dummy} alt="profile picture" />
+          </div>
+          <button className={styles.editProfileWrapper__upload} onClick={handleClick}>
+            <img src={upload} alt="upload" />
+          </button>
+        </div>
+        <div>
+          <Button
+            text={'Delete'}
+            variant={'md'}
+            onClick={() => {
+              setToggle(!toggle);
+            }}
+          />
+        </div>
       </div>
-      <button className={styles.editProfileWrapper__upload} onClick={handleClick}>
-        <img src={upload} alt="upload" />
-      </button>
       <form className={styles.editProfileWrapper__form} onSubmit={handleSubmit}>
         <input
           name="file"

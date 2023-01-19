@@ -18,9 +18,9 @@ export const GETPROFILE = createAsyncThunk(
 
 export const UPDATEUSER = createAsyncThunk(
   'user/update',
-  async ({ upload_photo, first_name, last_name, tagline, id, bio }, { rejectWithValue }) => {
+  async ({ upload_photo, first_name, last_name, tagline, userId, bio }, { rejectWithValue }) => {
     try {
-      const { data } = await instance.patch(`users/update_user/${id}`, {
+      const { data } = await instance.patch(`users/update_user/${userId}`, {
         upload_photo,
         first_name,
         last_name,
@@ -31,6 +31,20 @@ export const UPDATEUSER = createAsyncThunk(
       return data;
     } catch (error) {
       // console.log(error.response, 'error');
+      failureToast(`${error.response?.data?.message}`);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const DELETEUSER = createAsyncThunk(
+  'user/delete',
+  async ({ userId }, { rejectWithValue }) => {
+    try {
+      const data = await instance.delete(`users/delete_user/${userId}`);
+      successToast(`${data.message}`);
+      return data;
+    } catch (error) {
       failureToast(`${error.response?.data?.message}`);
       return rejectWithValue(error.response.data);
     }

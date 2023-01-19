@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Button from '../../Common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import image from '../../assets/HeaderLogo.svg';
@@ -7,20 +7,15 @@ import styles from './Header.module.scss';
 
 function Header() {
   const token = localStorage.getItem('userToken');
-  const userInfo = localStorage.getItem('userInfo');
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   function logOut() {
     localStorage.removeItem('userToken');
     localStorage.removeItem('userInfo');
-    // delete instance.defaults.headers.common['Authorization'];
     navigate('/login');
+
+    // delete instance.defaults.headers.common['Authorization'];
   }
 
-  useEffect(() => {
-    if (token === '' && userInfo === '') {
-      navigate('/login');
-    }
-  }, [token]);
   return (
     <header>
       <Link to="/">
@@ -28,7 +23,7 @@ function Header() {
           <img src={image} alt="Logo" />
         </div>
       </Link>
-      {token && <Button theme={'primary'} size={'md'} text={'LogOut'} onClick={() => logOut()} />}
+      {token && <Button theme={'primary'} size={'md'} text={'LogOut'} onClick={logOut} />}
     </header>
   );
 }
