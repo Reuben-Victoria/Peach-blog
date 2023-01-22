@@ -5,9 +5,7 @@ const initialState = {
   posts: [],
   loading: false,
   error: null,
-  success: false,
-  comment: [],
-  reaction: 0
+  success: false
 };
 
 const postsSlice = createSlice({
@@ -62,7 +60,7 @@ const postsSlice = createSlice({
       }),
       builder.addCase(addComment.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.comment.push(payload);
+        state.posts.push(payload);
       }),
       builder.addCase(addComment.rejected, (state, { payload }) => {
         state.loading = false;
@@ -75,7 +73,9 @@ const postsSlice = createSlice({
       }),
       builder.addCase(editPost.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.posts = payload;
+        const { id } = payload;
+        const posts = state.posts.filter((post) => post.id !== id);
+        state.posts = [posts, payload];
       }),
       builder.addCase(editPost.rejected, (state, { payload }) => {
         state.error = payload;
@@ -88,7 +88,7 @@ const postsSlice = createSlice({
     }),
       builder.addCase(likePost.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.reaction = payload++;
+        state.posts.push(payload);
       }),
       builder.addCase(likePost.rejected, (state, { payload }) => {
         state.loading = false;

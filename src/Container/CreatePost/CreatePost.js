@@ -68,7 +68,8 @@ function CreatePost() {
         })
       );
     }
-    // console.log(event.target.files[0]);
+
+    console.log(event.target.files[0]);
     // setImageBaseUrl(event.target.files[0]);
   }
 
@@ -92,12 +93,11 @@ function CreatePost() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    let formData = new FormData();
+    const formData = new FormData();
     // formData.append('cover', image.raw),
     //   formData.append('title', 'vgdsvfhjvdhjghjgsd'),
     //   formData.append('subtitle', 'vgdsvfhjvdhjghjgsd'),
-    //   formData.append('post', localStorage.getItem('editor-state')),
-    // console.log('imageBaseUrl', imageBaseUrl);
+    //   formData.append('post', localStorage.getItem('editor-state'));
 
     dispatch(
       postAdded({
@@ -109,6 +109,8 @@ function CreatePost() {
       })
     );
   }
+
+  console.log(image.raw);
 
   const onEditorStateChange = (value) => {
     setEditorState(value);

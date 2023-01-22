@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 // import Posts from '../../Components/Posts/Post';
+import { useDispatch } from 'react-redux';
+import { likePost } from '../../Features/posts/postActions';
 import Tags from '../../Components/Tags/Tags';
 import styles from './ViewPost.module.scss';
 import MoreFromAuthor from '../MoreFromAuthor/MoreFromAuthor';
@@ -19,15 +21,19 @@ function ViewPost() {
   const [toggleEdit, setToggleEdit] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [countLike, setCountLike] = useState(0);
+  const dispatch = useDispatch();
 
   const handleLike = () => {
     setToggleLike(!toggleLike);
     console.log(toggleLike, 'ToggleLike');
     if (!toggleLike && countLike === 0) {
       setCountLike(countLike + 1);
+      console.log(countLike);
     } else {
       setCountLike(countLike - 1);
+      console.log(countLike);
     }
+    dispatch(likePost({ countLike }));
   };
   return (
     <div className={styles.homeWrapper}>
@@ -74,15 +80,19 @@ function ViewPost() {
                 className={styles.homeWrapper__contents__posts__tagIconContainer__options__more}
                 onClick={() => {
                   setToggleEdit(!toggleEdit);
+                }}
+                tabIndex="-1"
+                onBlur={() => {
+                  setTimeout(() => setToggleEdit(false), 200);
                 }}>
                 <img src={more} alt="more" />
+                <EditPostModal
+                  toggleEdit={toggleEdit}
+                  onClick={() => {
+                    setToggle(!toggle);
+                  }}
+                />
               </div>
-              <EditPostModal
-                toggleEdit={toggleEdit}
-                onClick={() => {
-                  setToggle(!toggle);
-                }}
-              />
               <DeleteModal toggle={toggle} setToggle={setToggle} text={'Post'} />
             </div>
           </div>

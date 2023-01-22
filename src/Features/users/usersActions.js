@@ -3,18 +3,15 @@ import instance from '../../api';
 // import { useParams } from 'react-router-dom';
 import { failureToast, successToast } from '../../Authentication/Toast/Toast';
 
-export const GETPROFILE = createAsyncThunk(
-  'user/getProfile',
-  async ({ data }, { rejectWithValue }) => {
-    try {
-      const { id } = data;
-      const { profileData } = await instance.get(`blogs/profile/${id}`);
-      return profileData.data.json();
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
+export const GETPROFILE = createAsyncThunk('user/getProfile', async ({ rejectWithValue }) => {
+  try {
+    const { id } = profileData;
+    const profileData = await instance.get(`blogs/profile/${id}`);
+    return profileData.data.json();
+  } catch (error) {
+    return rejectWithValue(error.response.data);
   }
-);
+});
 
 export const UPDATEUSER = createAsyncThunk(
   'user/update',

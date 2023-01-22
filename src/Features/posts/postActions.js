@@ -25,8 +25,8 @@ export const postAdded = createAsyncThunk(
 
 export const getLatestPost = createAsyncThunk('post/latestPost', async () => {
   const response = await instance.get('/blogs/latest_posts');
-  console.log('fhghfhg', response);
-  return response;
+  console.log('fhghfhg', response.data);
+  return response.data;
 });
 
 export const addComment = createAsyncThunk(

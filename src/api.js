@@ -3,7 +3,9 @@ import axios from 'axios';
 const instance = axios.create({
   // eslint-disable-next-line no-undef
   baseURL: `${process.env.REACT_APP_BASE_URL}/v1`,
-  headers: { 'Access-Control-Allow-Origin': '' }
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }
 });
 
 instance.interceptors.request.use(
