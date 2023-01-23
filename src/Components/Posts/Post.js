@@ -23,7 +23,7 @@ const Posts = ({
   noOfComment
 }) => {
   return (
-    <article>
+    <article onClick={onClick}>
       <div className={styles.postsContainer}>
         <div className={styles.postsContainer__coverImage}>
           <img src={cover} alt="post cover Image" />
@@ -48,9 +48,7 @@ const Posts = ({
               <TagIcon src={comment} alt={'comment'} text={`${noOfComment} Comments`} size={'sm'} />
             </div>
             <div className={styles.postsContainer__postContent__data__options}>
-              <div
-                className={styles.postsContainer__postContent__data__options__save}
-                onClick={onClick}>
+              <div className={styles.postsContainer__postContent__data__options__save}>
                 <img src={save} alt="save for later" />
               </div>
               <div className={styles.postsContainer__postContent__data__options__more}>

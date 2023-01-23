@@ -16,6 +16,7 @@ import save from '../../assets/save.svg';
 import more from '../../assets/more.svg';
 import EditPostModal from '../../Components/EditPostModal/EditPostModal';
 import DeleteModal from '../../Components/DeleteModal/DeleteModal';
+import { deletePost } from '../../Features/posts/postActions';
 function ViewPost() {
   const [toggleLike, setToggleLike] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
@@ -25,15 +26,14 @@ function ViewPost() {
 
   const handleLike = () => {
     setToggleLike(!toggleLike);
-    console.log(toggleLike, 'ToggleLike');
-    if (!toggleLike && countLike === 0) {
-      setCountLike(countLike + 1);
-      console.log(countLike);
-    } else {
+    if (toggleLike) {
       setCountLike(countLike - 1);
-      console.log(countLike);
+      console.log(toggleLike, countLike);
+      dispatch(likePost({ countLike }));
+    } else {
+      setCountLike(countLike + 1);
+      console.log(toggleLike, countLike);
     }
-    dispatch(likePost({ countLike }));
   };
   return (
     <div className={styles.homeWrapper}>
@@ -93,7 +93,14 @@ function ViewPost() {
                   }}
                 />
               </div>
-              <DeleteModal toggle={toggle} setToggle={setToggle} text={'Post'} />
+              <DeleteModal
+                toggle={toggle}
+                setToggle={setToggle}
+                text={'Post'}
+                onClick={() => {
+                  deletePost();
+                }}
+              />
             </div>
           </div>
           <MoreFromAuthor />

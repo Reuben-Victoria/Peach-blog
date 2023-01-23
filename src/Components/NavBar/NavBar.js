@@ -7,9 +7,8 @@ import editIcon from '../../assets/Edit3.svg';
 // import { useSelector } from 'react-redux';
 import notificationIcon from '../../assets/Notification.svg';
 import { Link } from 'react-router-dom';
-import SearchBar from '../SearchBar/SearchBar';
 
-function NavBar({ userId, toggle }) {
+function NavBar({ userId, toggle, component: Component, componentProps }) {
   return (
     <>
       {toggle ? (
@@ -31,7 +30,7 @@ function NavBar({ userId, toggle }) {
         </nav>
       ) : (
         <nav className={styles.navBar}>
-          <SearchBar />
+          <Component {...componentProps} />
           <div className={styles.navBar__userProfile}>
             <Link to={`/profile/${userId}`}>
               <div>
@@ -59,7 +58,9 @@ function NavBar({ userId, toggle }) {
 }
 NavBar.propTypes = {
   userId: PropTypes.string,
-  toggle: PropTypes.bool
+  toggle: PropTypes.bool,
+  component: PropTypes.elementType,
+  componentProps: PropTypes.object
 };
 
 export default NavBar;

@@ -1,5 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { postAdded, getLatestPost, addComment, likePost, editPost } from './postActions';
+import {
+  postAdded,
+  getLatestPost,
+  addComment,
+  likePost,
+  editPost,
+  getAllPosts,
+  getMostLikedPost,
+  getTopViews,
+  readOnePost,
+  deletePost
+} from './postActions';
 
 const initialState = {
   posts: [],
@@ -40,7 +51,7 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = payload;
       }),
-      // getPOST
+      // getLatest POST
       builder.addCase(getLatestPost.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -54,10 +65,23 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = payload;
       }),
-      // addComment
-      builder.addCase(addComment.pending, (state) => {
-        (state.loading = true), (state.error = null);
-      }),
+      // getMostLiked
+      builder.addCase(getMostLikedPost.pending, (state) => {
+        state.loading = false;
+        state.error = null;
+      });
+    builder.addCase(getMostLikedPost, (state, { payload }) => {
+      state.loading = false;
+      state.posts = payload;
+    });
+    builder.addCase(getMostLikedPost.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    });
+    // addComment
+    builder.addCase(addComment.pending, (state) => {
+      (state.loading = true), (state.error = null);
+    }),
       builder.addCase(addComment.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.posts.push(payload);
@@ -94,6 +118,60 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = payload;
       });
+    //getAllPost
+    builder.addCase(getAllPosts.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    }),
+      builder.addCase(getAllPosts.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.posts = state.posts.concat(payload);
+        state.success = true;
+      });
+    builder.addCase(getAllPosts.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    });
+    //readOnePost
+    builder.addCase(readOnePost.pending, (state) => {
+      state.loading = false;
+      state.error = null;
+    });
+    builder.addCase(readOnePost.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.posts = payload;
+      state.error = null;
+    });
+    builder.addCase(readOnePost.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    });
+    // deletePost
+    builder.addCase(deletePost.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(deletePost.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.posts.pop(payload);
+    });
+    builder.addCase(deletePost.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    });
+    // getTopViews
+    builder.addCase(getTopViews.pending, (state) => {
+      state.error = null;
+      state.loading = true;
+    }),
+      builder.addCase(getTopViews.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.posts = payload;
+      });
+    builder.addCase(getTopViews.rejected, (state, { payload }) => {
+      state.error = payload;
+      state.loading = false;
+    });
   }
 });
 

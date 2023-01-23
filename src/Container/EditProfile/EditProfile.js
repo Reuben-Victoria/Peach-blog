@@ -47,13 +47,13 @@ function EditProfile() {
     const formData = new FormData();
     dispatch(
       UPDATEUSER({
+        id: userId,
         ...formData,
         upload_photo: image.raw,
         first_name: details.firstName,
         last_name: details.lastName,
         tagline: details.tagLine,
-        bio: details.bio,
-        id: userId
+        bio: details.bio
       })
     );
     // console.log(details, 'details');

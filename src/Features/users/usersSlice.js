@@ -3,7 +3,7 @@ import { UPDATEUSER, GETPROFILE, DELETEUSER } from './usersActions';
 
 const initialState = {
   loading: false,
-  userData: null,
+  userData: [],
   error: null,
   success: false
 };
@@ -19,7 +19,7 @@ const usersSlice = createSlice({
     }),
       builder.addCase(UPDATEUSER.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userData = payload;
+        state.userData.push(payload);
         state.success = true;
         state.error = false;
       }),
@@ -50,7 +50,7 @@ const usersSlice = createSlice({
       }),
       builder.addCase(DELETEUSER.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userData = payload;
+        state.userData.pop(payload);
         state.success = true;
       }),
       builder.addCase(DELETEUSER.rejected, (state, { payload }) => {
@@ -59,5 +59,9 @@ const usersSlice = createSlice({
       });
   }
 });
+
+export const selectUserById = (state, userId) => {
+  state.userData.find((userData) => userData.user_id === userId);
+};
 
 export default usersSlice.reducer;
