@@ -95,3 +95,90 @@
 .topSide {
   @include flex-container($spacing: space-between, $direction: row, $alignment: null);
 }
+
+@media screen and (max-width: 720px) {
+  .editProfileWrapper {
+    h1 {
+      @include authBodyText($fontWeight: 600, $fontSize: 24px, $lineHeight: 32px, $color: #111111);
+      margin-bottom: 18px;
+    }
+
+    &__profileImage {
+      position: relative;
+      margin-bottom: 20px;
+      border-radius: 50%;
+
+      img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    &__upload {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      position: absolute;
+      top: 252px;
+      left: 39%;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+    &__form {
+      &__name {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(1, 83px);
+        column-gap: 18px;
+      }
+      div {
+        margin-bottom: 20px;
+
+        input {
+          background: #f4f3f8;
+          @include authBodyText(
+            $fontWeight: 400,
+            $fontSize: 13px,
+            $lineHeight: 22px,
+            $color: #111111
+          );
+        }
+        label {
+          @include authBodyText(
+            $fontWeight: 500,
+            $fontSize: 14px,
+            $lineHeight: 22px,
+            $color: #111111
+          );
+          margin-top: 10px;
+        }
+
+        textarea {
+          display: inline-block;
+          background: #f4f3f8;
+          margin-top: 12px;
+          padding: 12px;
+          width: 100%;
+          height: 30vh;
+          border: 1px solid #cbc4de;
+          border-radius: 10px;
+          @include authBodyText(
+            $fontSize: 14px,
+            $fontWeight: 400,
+            $lineHeight: 19px,
+            $color: #57497c
+          );
+        }
+      }
+    }
+  }
+}

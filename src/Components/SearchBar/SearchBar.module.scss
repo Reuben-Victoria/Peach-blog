@@ -24,3 +24,21 @@
     left: 3%;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .input {
+    width: 50%;
+    input {
+      padding: 10px 28px;
+    }
+    &__search {
+      width: 18px;
+      position: absolute;
+      top: 23.5%;
+      left: 4%;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}

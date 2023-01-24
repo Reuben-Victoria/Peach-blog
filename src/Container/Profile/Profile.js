@@ -35,19 +35,37 @@ function Profile() {
             <h1>Vanessa Reuben</h1>
             <Link to={`/edit-profile/${user.id}`}>
               <div className={styles.ProfileContainer__userData__data__userName__editIcon}>
-                <TagIcon src={edit} text={'Edit'} size={'sm'} alt={'Edit'} />
+                <TagIcon src={edit} text={'Edit'} size={'sm'} alt={'Edit'} variant={'mdText'} />
               </div>
             </Link>
           </div>
           <p className={styles.ProfileContainer__userData__data__description}>Writer/Developer</p>
           <div className={styles.ProfileContainer__userData__data__icons}>
-            <TagIcon src={post} text={'50 posts created'} size={'sm'} alt={'Posts'} />
+            <TagIcon
+              src={post}
+              text={'50 posts created'}
+              variant={'lgText'}
+              size={'sm'}
+              alt={'Posts'}
+            />
             <Divider />
-            <TagIcon src={like} text={'posts liked'} size={'sm'} alt={'heart'} />
+            <TagIcon src={like} text={'posts liked'} variant={'lgText'} size={'sm'} alt={'heart'} />
             <Divider />
-            <TagIcon src={comment} text={'5 comments made'} size={'sm'} alt={'comments'} />
+            <TagIcon
+              src={comment}
+              text={'5 comments made'}
+              variant={'lgText'}
+              size={'sm'}
+              alt={'comments'}
+            />
             <Divider />
-            <TagIcon src={repost} text={'20 reposts made'} size={'sm'} alt={'reposts'} />
+            <TagIcon
+              src={repost}
+              text={'20 reposts made'}
+              variant={'lgText'}
+              size={'sm'}
+              alt={'reposts'}
+            />
           </div>
         </div>
       </div>

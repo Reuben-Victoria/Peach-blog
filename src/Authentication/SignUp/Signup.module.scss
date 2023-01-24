@@ -1,9 +1,5 @@
 @import '../../Styles/mixins';
 
-.signUpForm {
-  margin-top: 0px;
-}
-
 .formWrap {
   @include flex-container;
   height: 100%;
@@ -46,6 +42,39 @@
 
     &__links {
       @include links;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .formWrap {
+    padding: 150px 40px;
+    h1 {
+      @include authBodyText(
+        $fontWeight: 700,
+        $fontSize: 23px,
+        $lineHeight: 32px,
+        $color: $text--color--primary,
+        $marginBottom: 16px
+      );
+    }
+    form {
+      width: 100%;
+      row-gap: 20px;
+
+      .name {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 16px;
+      }
+    }
+    &__linksContainer {
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      &__links {
+        font-size: 12px;
+      }
     }
   }
 }

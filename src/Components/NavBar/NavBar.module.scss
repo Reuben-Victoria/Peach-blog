@@ -15,3 +15,28 @@
     }
   }
 }
+
+@media screen and (max-width: 720px) {
+  .navBar {
+    padding: 16px 20px;
+    justify-content: flex-end;
+
+    &__userProfile {
+      div {
+        margin-right: 12px;
+      }
+      &__image {
+        width: 35px;
+        img {
+          width: 100%;
+        }
+      }
+      &__notification {
+        width: 25px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

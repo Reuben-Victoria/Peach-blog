@@ -6,3 +6,12 @@
     // @include flex-container;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .main {
+    &__page {
+      padding: 8px 32px;
+      padding-top: 185px;
+    }
+  }
+}

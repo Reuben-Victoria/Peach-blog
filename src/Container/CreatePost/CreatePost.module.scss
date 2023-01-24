@@ -86,3 +86,66 @@
 .buttonsDisplay {
   display: none;
 }
+
+@media screen and (max-width: 720px) {
+  .createPostContainer {
+    &__body {
+      &__image {
+        width: 100%;
+        height: 347px;
+        margin-bottom: 24px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
+      &__header {
+        height: 48px;
+        width: 100%;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        input {
+          width: 100%;
+          padding: 10px 10px;
+          border: none;
+          @include authBodyText(
+            $fontWeight: 700,
+            $fontSize: 24px,
+            $color: #111111,
+            $lineHeight: 41px
+          );
+        }
+      }
+      &__subtitle {
+        width: 100%;
+        height: 48px;
+        margin-bottom: 20px;
+        input {
+          width: 100%;
+          padding: 10px 10px;
+          border: none;
+          @include authBodyText(
+            $fontWeight: 400,
+            $fontSize: 18px,
+            $color: #111111,
+            $lineHeight: 32px
+          );
+          font-style: italic;
+        }
+      }
+    }
+  }
+  .buttonsContainer {
+    @include flex-container($direction: row, $spacing: space-between);
+    width: 100%;
+    &__buttonsLeft {
+      display: flex;
+
+      button {
+        margin-right: 20px;
+      }
+    }
+  }
+}

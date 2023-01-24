@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 // import Posts from '../../Components/Posts/Post';
 import { useDispatch } from 'react-redux';
 import { likePost } from '../../Features/posts/postActions';
@@ -8,7 +9,7 @@ import MoreFromAuthor from '../MoreFromAuthor/MoreFromAuthor';
 import TagIcon from '../../Common/TagIcons/TagIcon';
 import Divider from '../../Common/Divider/Divider';
 import favouriteFilled from '../../assets/favouriteFilled.svg';
-import dummy from '../../assets/dummy.svg';
+// import dummy from '../../assets/dummy.svg';
 import comment from '../../assets/comment.svg';
 import like from '../../assets/like.svg';
 import repost from '../../assets/repost.svg';
@@ -17,7 +18,7 @@ import more from '../../assets/more.svg';
 import EditPostModal from '../../Components/EditPostModal/EditPostModal';
 import DeleteModal from '../../Components/DeleteModal/DeleteModal';
 import { deletePost } from '../../Features/posts/postActions';
-function ViewPost() {
+function ViewPost({ post }) {
   const [toggleLike, setToggleLike] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -42,7 +43,7 @@ function ViewPost() {
         <div className={styles.homeWrapper__contents__posts}>
           <div className={styles.homeWrapper__articleData}>
             <div>
-              <img src={dummy} alt="profile-picture" />
+              <img src={post.cover} alt="profile-picture" />
             </div>
             <div className={styles.homeWrapper____articleData__articleInfo}>
               <h4>Vanessa Reuben</h4>
@@ -53,11 +54,11 @@ function ViewPost() {
               </div>
             </div>
           </div>
-          <h1>How Title</h1>
+          <h1>{post.title}</h1>
           <div>
             <img />
           </div>
-          <p>hdfhfgdgfgddysgygsuhx</p>
+          <p>{post.post}</p>
           <div className={styles.homeWrapper__contents__posts__tagIconContainer}>
             <div className={styles.homeWrapper__contents__posts__tagIconContainer__tagIcon}>
               <TagIcon
@@ -111,5 +112,9 @@ function ViewPost() {
     </div>
   );
 }
+
+ViewPost.propTypes = {
+  post: PropTypes.any
+};
 
 export default ViewPost;

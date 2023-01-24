@@ -26,6 +26,6 @@ export default PageLayout;
 PageLayout.propTypes = {
   children: PropTypes.node,
   toggle: PropTypes.bool,
-  component: PropTypes.elementType,
+  component: PropTypes.any,
   componentProps: PropTypes.object
 };

@@ -10,7 +10,7 @@
   background-color: #6e6e6d;
   position: absolute;
   z-index: 10;
-  top:108%;
+  top: 108%;
   left: 28.4%;
   box-sizing: border-box;
 }
@@ -301,6 +301,13 @@
   align-items: center;
   margin-bottom: 6px;
   flex-wrap: wrap;
+}
+
+@media screen and (max-width: 720px) {
+  .DraftEditor-root {
+    width: 84vw;
+    padding: 12px 10px 0 10px;
+  }
 }
 
 // .rdw-option-wrapper {

@@ -28,3 +28,33 @@
     }
   }
 }
+
+@media screen and (max-width: 720px) {
+  .footerWrapper {
+    padding: 20px 40px;
+    margin-top: 36px;
+
+    &__footerLogo {
+      width: 83.71px;
+      height: 24px;
+      margin-right: 24.67px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    &__footerText {
+      @include flex-container($direction: row, $alignment: center);
+      @include authBodyText($fontWeight: 400, $fontSize: 12px, $lineHeight: 19px, $color: white);
+      width: 100%;
+      div {
+        width: 2px;
+        height: 15px;
+        background-color: #ffff;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+    }
+  }
+}

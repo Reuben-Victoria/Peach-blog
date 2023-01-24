@@ -32,3 +32,36 @@
     margin-top: 12px;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .formWrap {
+    padding: 2px 40px;
+    h1 {
+      @include authBodyText(
+        $fontWeight: 700,
+        $fontSize: 23px,
+        $lineHeight: 32px,
+        $color: $text--color--primary,
+        $marginBottom: 16px
+      );
+    }
+  
+
+    &__description{
+      text-align:center;
+      width: 100%;
+    }
+    form {
+      width: 100%;
+    }
+    &__linksContainer {
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      &__links {
+        font-size: 12px;
+      }
+    }
+  }
+}
+

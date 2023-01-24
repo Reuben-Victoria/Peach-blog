@@ -83,6 +83,7 @@ function EditProfile() {
         <div>
           <Button
             text={'Delete'}
+            theme={'delete'}
             variant={'md'}
             onClick={() => {
               setToggle(!toggle);

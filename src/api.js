@@ -4,7 +4,8 @@ const instance = axios.create({
   // eslint-disable-next-line no-undef
   baseURL: `${process.env.REACT_APP_BASE_URL}/v1`,
   headers: {
-    'Content-Type': 'multipart/form-data'
+    'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': 'true'
   }
 });
 

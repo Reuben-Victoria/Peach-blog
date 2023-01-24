@@ -26,3 +26,15 @@
     }
   }
 }
+
+@media screen and (max-width: 720px) {
+  h1 {
+    @include authBodyText(
+      $fontWeight: 700,
+      $fontSize: 23px,
+      $lineHeight: 32px,
+      $color: $text--color--primary,
+      $marginBottom: 16px
+    );
+  }
+}

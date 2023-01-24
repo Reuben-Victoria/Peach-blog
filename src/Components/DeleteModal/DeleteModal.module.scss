@@ -25,12 +25,13 @@
   background: rgba(49, 49, 49, 0.8);
 }
 .modalContent {
+  // @include flex-container($alignment: center, $spacing: null);
   position: absolute;
   top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #f1f1f1;
+  background: white;
   padding: 30px 30px;
   border-radius: 10px;
   max-width: 300px;
@@ -52,5 +53,27 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .modalContent {
+    @include flex-container($alignment: center, $spacing: null);
+    h2 {
+      text-align: center;
+      @include authBodyText(
+        $fontWeight: 700,
+        $fontSize: 18px,
+        $lineHeight: 32px,
+        $color: $text--color--primary,
+        $marginBottom: 14px
+      );
+    }
+    &__buttons {
+      display: grid;
+      margin-top: 10px;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 18px;
+    }
   }
 }

@@ -25,3 +25,12 @@ input:focus {
   outline-color: #7557d3 !important;
   border: #7557d3;
 }
+
+@media screen and (max-width: 720px) {
+  #errors {
+    color: rgb(220, 56, 56);
+    font-size: 12px;
+    margin-top: 1px;
+    position: absolute;
+  }
+}

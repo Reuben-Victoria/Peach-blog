@@ -8,7 +8,7 @@ import editIcon from '../../assets/Edit3.svg';
 import notificationIcon from '../../assets/Notification.svg';
 import { Link } from 'react-router-dom';
 
-function NavBar({ userId, toggle, component: Component, componentProps }) {
+function NavBar({ userId, toggle }) {
   return (
     <>
       {toggle ? (
@@ -30,14 +30,14 @@ function NavBar({ userId, toggle, component: Component, componentProps }) {
         </nav>
       ) : (
         <nav className={styles.navBar}>
-          <Component {...componentProps} />
+          {/* <Component {...componentProps} /> */}
           <div className={styles.navBar__userProfile}>
             <Link to={`/profile/${userId}`}>
-              <div>
+              <div className={styles.navBar__userProfile__image}>
                 <img src={dummy} alt="profile-picture" />
               </div>
             </Link>
-            <div>
+            <div className={styles.navBar__userProfile__notification}>
               <img src={notificationIcon} alt="notification" />
             </div>
             <Link to="/create-post">
@@ -58,9 +58,9 @@ function NavBar({ userId, toggle, component: Component, componentProps }) {
 }
 NavBar.propTypes = {
   userId: PropTypes.string,
-  toggle: PropTypes.bool,
-  component: PropTypes.elementType,
-  componentProps: PropTypes.object
+  toggle: PropTypes.bool
+  // component: PropTypes.any,
+  // componentProps: PropTypes.object
 };
 
 export default NavBar;

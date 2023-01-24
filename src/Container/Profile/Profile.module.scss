@@ -37,8 +37,8 @@
         &__editIcon {
           &:hover {
             border-bottom: 2px solid #57497c;
-            border-bottom-left-radius:2px;
-            border-bottom-right-radius:2px;
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
           }
         }
       }
@@ -78,5 +78,91 @@
   h1 {
     @include authBodyText($fontWeight: 700, $fontSize: 20px, $lineHeight: 27px, $color: #111111);
     margin-bottom: 24px;
+  }
+}
+@media screen and (max-width: 720px) {
+  .ProfileContainer {
+    @include flex-container($alignment: null);
+
+    &__userData {
+      @include flex-container($alignment: null, $spacing: space-evenly);
+      margin-bottom: 40px;
+
+      &__profilePicture {
+        width: 140px;
+        height: 140px;
+        margin-right: 29px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      &__data {
+        width: 100%;
+        @include flex-container($alignment: null);
+
+        &__userName {
+          @include flex-container($direction: row, $spacing: center);
+
+          h1 {
+            @include authBodyText(
+              $fontWeight: 700,
+              $fontSize: 24px,
+              $lineHeight: 28px,
+              $color: #111111
+            );
+            width: 100%;
+            margin-bottom: 10px;
+            margin-top: 4px;
+          }
+
+          &__editIcon {
+            &:hover {
+              border-bottom: 2px solid #57497c;
+              border-bottom-left-radius: 2px;
+              border-bottom-right-radius: 2px;
+            }
+          }
+        }
+
+        &__description {
+          @include authBodyText($fontSize: 14px, $fontWeight: 400, $lineHeight: 25px);
+          margin-bottom: 30px;
+        }
+
+        &__icons {
+          @include flex-container($direction: row, $spacing: null);
+          width: 100%;
+
+          p {
+            @include authBodyText(
+              $fontSize: 12px,
+              $fontWeight: 400,
+              $lineHeight: 14px,
+              $color: #57497c
+            );
+          }
+        }
+      }
+    }
+  }
+  .textArea {
+    height: fit-content;
+    width: 100%;
+    border: 1px solid #cbc4de;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    @include authBodyText($fontSize: 14px, $fontWeight: 400, $lineHeight: 19px, $color: #57497c);
+  }
+  .recentActivityContainer {
+    border: 1px solid #cbc4de;
+    border-radius: 10px;
+    padding: 16px 16px;
+
+    h1 {
+      @include authBodyText($fontWeight: 700, $fontSize: 16px, $lineHeight: 24px, $color: #111111);
+      margin-bottom: 20px;
+    }
   }
 }

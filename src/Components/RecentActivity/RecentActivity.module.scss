@@ -27,3 +27,33 @@
     }
   }
 }
+
+@media screen and (max-width: 720px) {
+  .activityContainer {
+    &__dateStamp {
+      @include authBodyText($fontWeight: 700, $fontSize: 12px, $lineHeight: 19px, $color: #57497c);
+      margin-right: 0px;
+      width: 19%;
+    }
+    &__activity {
+      @include flex-container($alignment: null);
+      width: 100%;
+
+      &__description {
+        @include authBodyText(
+          $fontWeight: 700,
+          $fontSize: 14px,
+          $lineHeight: 19px,
+          $color: #111111
+        );
+        margin-top: 11.5px;
+        margin-bottom: 16px;
+      }
+
+      &__divider {
+        border: none;
+        border-top: 1px solid #e9e7ef;
+      }
+    }
+  }
+}

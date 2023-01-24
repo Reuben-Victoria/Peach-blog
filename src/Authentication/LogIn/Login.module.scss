@@ -6,12 +6,17 @@
   height: 100vh;
 
   h1 {
-    @include authBodyText($fontWeight: 700, $fontSize:24px, $lineHeight:32px, $color:$text--color--primary, $marginBottom:16px);
+    @include authBodyText(
+      $fontWeight: 700,
+      $fontSize: 24px,
+      $lineHeight: 32px,
+      $color: $text--color--primary,
+      $marginBottom: 16px
+    );
   }
 
   &__description {
-    @include authBodyText( $marginBottom: 40px);
-   
+    @include authBodyText($marginBottom: 40px);
   }
 
   form {
@@ -31,6 +36,24 @@
 
     &__links {
       @include links;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .formWrap {
+    padding: 2px 40px;
+    form {
+      width: 100%;
+      row-gap: 20px;
+    }
+    &__linksContainer {
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      &__links {
+        font-size: 12px;
+      }
     }
   }
 }
