@@ -8,12 +8,10 @@ article {
   @include flex-container($direction: row, $alignment: null, $spacing: null);
 
   &__coverImage {
-    width: 193px;
-    height: 144px;
-    border-radius: 10px;
-
     img {
-      width: 100%;
+      width: 193px;
+      height: 144px;
+      border-radius: 10px;
     }
   }
   &__postContent {
@@ -59,6 +57,7 @@ article {
       @include authBodyText($fontWeight: 400, $fontSize: 16px, $lineHeight: 22px, $color: #111111);
       text-align: justify;
       width: 75%;
+      height: 66px;
       margin-bottom: 19px;
     }
     &__data {
@@ -106,4 +105,5 @@ article {
 .divider {
   border-top: 1px solid #e5e2ed;
   width: 99%;
+  margin-bottom: 40px;
 }

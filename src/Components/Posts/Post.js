@@ -71,7 +71,7 @@ Posts.propTypes = {
   authorsName: PropTypes.string,
   postContent: PropTypes.string,
   dateStamp: PropTypes.string,
-  noOfLikes: PropTypes.string,
+  noOfLikes: PropTypes.any,
   noOfComment: PropTypes.string
 };
 export default Posts;

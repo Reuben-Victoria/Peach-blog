@@ -23,7 +23,7 @@
 
     &__userProfile {
       div {
-        margin-right: 2px;
+        margin-right: 10px;
       }
       &__image {
         width: 30px;
@@ -36,6 +36,11 @@
         img {
           width: 100%;
         }
+      }
+    }
+    button {
+      div {
+        margin-right: 2px;
       }
     }
   }

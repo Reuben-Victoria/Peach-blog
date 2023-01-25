@@ -70,7 +70,7 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = null;
       });
-    builder.addCase(getMostLikedPost, (state, { payload }) => {
+    builder.addCase(getMostLikedPost.fulfilled, (state, { payload }) => {
       state.loading = false;
       state.posts = payload;
     });

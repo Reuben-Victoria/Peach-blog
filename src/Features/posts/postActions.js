@@ -32,7 +32,7 @@ export const getAllPosts = createAsyncThunk('post/allPost', async ({ params }) =
 
 export const getMostLikedPost = createAsyncThunk('post/mostLiked', async () => {
   const response = await instance.get('blogs/most_liked');
-  console.Consolelog('MostLiked', response);
+  console.log('MostLiked', response.data);
   return response.data;
 });
 

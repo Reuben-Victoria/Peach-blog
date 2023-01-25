@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import dummy from '../../assets/dummy.svg';
+// import dummy from '../../assets/dummy.svg';
 import edit from '../../assets/Edit2.svg';
 import post from '../../assets/Document.svg';
 import comment from '../../assets/comment.svg';
@@ -17,43 +17,62 @@ import { Link } from 'react-router-dom';
 function Profile() {
   const { userData } = useSelector((state) => state.users);
   const dispatch = useDispatch();
-  const user = useParams();
-  // const profileInfo = JSON.parse(userData);
+  const userParams = useParams();
+  const userId = userParams.id;
+
   useEffect(() => {
-    dispatch(GETPROFILE());
-    console.log(user.id, 'profileInfo>>>>>>>');
-    console.log(userData, 'DataInfo>>>>>>>');
+    dispatch(GETPROFILE({ userId }));
+    // console.log(userId, 'profileInfo>>>>>>>');
+    // console.log(userData.data.user[0], 'DataInfo>>>>>>>');
   }, []);
+
+  // const { userInfo } = userData.data.user[0];
+  const { data } = userData;
+  const userInfo = data?.user[0];
+  const comments = data?.comments[0];
+  const posts = data?.posts[0];
+  const reposts = data?.reposts[0];
+  const likes = data?.likes[0];
+  console.log(userInfo, 'jjjjjj>>>');
+
   return (
     <main className={styles.ProfileContainer}>
       <div className={styles.ProfileContainer__userData}>
         <div className={styles.ProfileContainer__userData__profilePicture}>
-          <img src={dummy} alt="Profile picture" />
+          <img src={userInfo?.upload_photo} alt="Profile picture" />
         </div>
         <div className={styles.ProfileContainer__userData__data}>
           <div className={styles.ProfileContainer__userData__data__userName}>
-            <h1>Vanessa Reuben</h1>
-            <Link to={`/edit-profile/${user.id}`}>
+            <h1>{`${userInfo?.first_name} ${userInfo?.last_name}`}</h1>
+            <Link to={`/edit-profile/${userParams.id}`}>
               <div className={styles.ProfileContainer__userData__data__userName__editIcon}>
                 <TagIcon src={edit} text={'Edit'} size={'sm'} alt={'Edit'} variant={'mdText'} />
               </div>
             </Link>
           </div>
-          <p className={styles.ProfileContainer__userData__data__description}>Writer/Developer</p>
+          <p className={styles.ProfileContainer__userData__data__description}>
+            {userInfo?.tagline}
+          </p>
           <div className={styles.ProfileContainer__userData__data__icons}>
             <TagIcon
               src={post}
-              text={'50 posts created'}
+              text={`${posts?.count} posts created`}
               variant={'lgText'}
               size={'sm'}
               alt={'Posts'}
             />
             <Divider />
-            <TagIcon src={like} text={'posts liked'} variant={'lgText'} size={'sm'} alt={'heart'} />
+            <TagIcon
+              src={like}
+              text={`${likes?.count} posts liked`}
+              variant={'lgText'}
+              size={'sm'}
+              alt={'heart'}
+            />
             <Divider />
             <TagIcon
               src={comment}
-              text={'5 comments made'}
+              text={`${comments?.count} comments made`}
               variant={'lgText'}
               size={'sm'}
               alt={'comments'}
@@ -61,7 +80,7 @@ function Profile() {
             <Divider />
             <TagIcon
               src={repost}
-              text={'20 reposts made'}
+              text={`${reposts?.count} reposts made`}
               variant={'lgText'}
               size={'sm'}
               alt={'reposts'}
@@ -69,7 +88,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className={styles.textArea}></div>
+      <div className={styles.textArea}>{userInfo?.bio}</div>
       <div className={styles.recentActivityContainer}>
         <h1>Recent Activity</h1>
         <RecentActivity />

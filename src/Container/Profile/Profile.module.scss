@@ -7,12 +7,12 @@
     margin-bottom: 64px;
 
     &__profilePicture {
-      width: 187px;
-      height: 187px;
       margin-right: 29px;
 
       img {
-        width: 100%;
+        border-radius: 50%;
+        width: 187px;
+      height: 187px;
       }
     }
 
@@ -68,7 +68,8 @@
   border: 1px solid #cbc4de;
   border-radius: 10px;
   margin-bottom: 24px;
-  @include authBodyText($fontSize: 14px, $fontWeight: 400, $lineHeight: 19px, $color: #57497c);
+  padding: 32px 32px;
+  @include authBodyText($fontSize: 18px, $fontWeight: 400, $lineHeight: 22px, $color: #57497c);
 }
 .recentActivityContainer {
   border: 1px solid #cbc4de;
@@ -89,12 +90,13 @@
       margin-bottom: 40px;
 
       &__profilePicture {
-        width: 140px;
-        height: 140px;
         margin-right: 29px;
 
         img {
-          width: 100%;
+          border-radius: 50%;
+          width: 140px;
+          height: 140px;
+          object-fit: cover;
         }
       }
 

@@ -32,17 +32,11 @@ function Home({ inputData }) {
         }
       })
     );
-    // async () => {
-
-    //   // try{
-    //   //   const response = await instance.get('/blogs/latest_posts');
-    //   // }
-    //   // console.log('fhghfhg', response);
-    //   // return response;
-    // };
   }, [inputData]);
 
   console.log(posts, 'posts');
+
+  const { data } = posts;
 
   return (
     <div className={styles.homeWrapper}>
@@ -77,11 +71,23 @@ function Home({ inputData }) {
       </div>
       <div className={styles.homeWrapper__contents}>
         <div className={styles.homeWrapper__contents__posts}>
-          <Posts
-            onClick={() => {
-              dispatch(readOnePost());
-            }}
-          />
+          {data?.map((post) => {
+            return (
+              <Posts
+                key={post.id}
+                cover={post.cover}
+                title={post.title}
+                authorsName={`${post.first_name} ${post.last_name}`}
+                noOfComment={post.count}
+                postContent={post.post}
+                subtitle={post.subtitle}
+                noOfLikes={post.post_likes}
+                onClick={() => {
+                  dispatch(readOnePost(post.id));
+                }}
+              />
+            );
+          })}
         </div>
         <div className={styles.homeWrapper__contents__divider}></div>
         <div className={styles.homeWrapper__contents__tags}>
