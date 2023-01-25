@@ -19,14 +19,14 @@
 @media screen and (max-width: 720px) {
   .navBar {
     padding: 16px 20px;
-    justify-content: flex-end;
+    @include flex-container($direction: row, $spacing: space-between);
 
     &__userProfile {
       div {
-        margin-right: 12px;
+        margin-right: 2px;
       }
       &__image {
-        width: 35px;
+        width: 30px;
         img {
           width: 100%;
         }

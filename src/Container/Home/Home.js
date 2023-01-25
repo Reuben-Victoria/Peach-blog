@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Posts from '../../Components/Posts/Post';
 import Tags from '../../Components/Tags/Tags';
@@ -14,8 +14,10 @@ import {
 } from '../../Features/posts/postActions';
 
 import styles from './Home.module.scss';
+import MoreModal from '../../Components/MoreModal/MoreModal';
 
 function Home({ inputData }) {
+  const [toggle, setToggle] = useState(false);
   const dispatch = useDispatch();
   const { posts, loading } = useSelector((state) => state.post);
   // const [pageNumber, setPageNumber] = useState(1);
@@ -64,6 +66,14 @@ function Home({ inputData }) {
           }}>
           Most Liked
         </p>
+        <div
+          className={styles.homeWrapper__favorites__button}
+          onClick={() => {
+            setToggle(!toggle);
+          }}>
+          <span>More...</span>
+        </div>
+        <MoreModal toggle={toggle} setToggle={setToggle} />
       </div>
       <div className={styles.homeWrapper__contents}>
         <div className={styles.homeWrapper__contents__posts}>
@@ -74,7 +84,9 @@ function Home({ inputData }) {
           />
         </div>
         <div className={styles.homeWrapper__contents__divider}></div>
-        <Tags />
+        <div className={styles.homeWrapper__contents__tags}>
+          <Tags />
+        </div>
       </div>
     </div>
   );
