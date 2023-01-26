@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './NavBar.module.scss';
-import dummy from '../../assets/dummy.svg';
 import Button from '../../Common/Button/Button';
 import editIcon from '../../assets/Edit3.svg';
 // import { useSelector } from 'react-redux';
@@ -9,6 +8,8 @@ import notificationIcon from '../../assets/Notification.svg';
 import { Link } from 'react-router-dom';
 
 function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
+  const profile = localStorage.getItem('profilePicture');
+  console.log(profile, 'PROFILE PICTURE');
   return (
     <>
       {toggle ? (
@@ -16,8 +17,8 @@ function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
           <h1>Edit Post</h1>
           <div className={styles.navBar__userProfile}>
             <Link to={`/profile/${userId}`}>
-              <div>
-                <img src={dummy} alt="profile-picture" />
+              <div className={styles.navBar__userProfile__image}>
+                <img src={profile} alt="profile-picture" />
               </div>
             </Link>
             <div>
@@ -34,7 +35,7 @@ function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
           <div className={styles.navBar__userProfile}>
             <Link to={`/profile/${userId}`}>
               <div className={styles.navBar__userProfile__image}>
-                <img src={dummy} alt="profile-picture" />
+                <img src={profile} alt="profile-picture" />
               </div>
             </Link>
             <div className={styles.navBar__userProfile__notification}>
@@ -59,6 +60,7 @@ function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
 NavBar.propTypes = {
   userId: PropTypes.string,
   toggle: PropTypes.bool,
+  dummy: PropTypes.string,
   component: PropTypes.elementType,
   componentProps: PropTypes.object
 };

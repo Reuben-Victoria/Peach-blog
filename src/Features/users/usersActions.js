@@ -11,6 +11,11 @@ export const GETPROFILE = createAsyncThunk(
       console.log(profileData.data, 'response');
       return profileData.data;
     } catch (error) {
+      console.log(error, 'ERROR>>>');
+      // if (error.message) {
+      //   return failureToast(`{error.message}`);
+      // } else {
+      failureToast(`${error.response?.data?.message}`);
       return rejectWithValue(error.response.data);
     }
   }

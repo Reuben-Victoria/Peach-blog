@@ -15,3 +15,11 @@
     @include authBodyText($fontWeight: 500, $fontSize: 14px, $lineHeight: 19px, $color: #57497c);
   }
 }
+
+@media screen and (max-width:720px){
+  .userData{
+    &__profilePicture {
+      margin-right: 8px;
+    }
+  }
+}

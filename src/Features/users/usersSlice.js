@@ -15,7 +15,7 @@ const usersSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(UPDATEUSER.pending, (state) => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     }),
       builder.addCase(UPDATEUSER.fulfilled, (state, { payload }) => {
         state.loading = false;
@@ -31,14 +31,14 @@ const usersSlice = createSlice({
 
       builder.addCase(GETPROFILE.pending, (state) => {
         state.loading = true;
-        state.error = false;
+        state.error = null;
       }),
       builder.addCase(GETPROFILE.fulfilled, (state, { payload }) => {
+        state.loading = false;
         state.userData = payload;
         state.success = true;
-        state.loading = false;
       }),
-      builder.addCase(GETPROFILE, (state, { payload }) => {
+      builder.addCase(GETPROFILE.rejected, (state, { payload }) => {
         state.error = payload;
         state.loading = false;
       }),

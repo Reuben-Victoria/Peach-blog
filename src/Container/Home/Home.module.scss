@@ -13,6 +13,9 @@
       &:hover {
         border-bottom: 1.5px solid #7557d3;
       }
+      &:active {
+        border-bottom: 1.5px solid #7557d3;
+      }
     }
 
     &__button {
@@ -22,6 +25,7 @@
 
   &__contents {
     @include flex-container($direction: row, $alignment: null, $spacing: null);
+    // min-height: calc(100vh - 90px);
 
     &__posts {
       margin-top: 32px;
@@ -41,7 +45,7 @@
     &__favorites {
       @include flex-container($direction: row, $alignment: center, $spacing: space-evenly);
       p {
-        @include authBodyText($color: #111111, $lineHeight: 22px, $fontSize: 15px);
+        @include authBodyText($color: #111111, $lineHeight: 22px, $fontSize: 13px);
 
         &:hover {
           border-bottom: 1.5px solid #7557d3;
@@ -51,7 +55,7 @@
       &__button {
         display: block;
         span {
-          @include authBodyText($color: #111111, $lineHeight: 22px, $fontSize: 15px);
+          @include authBodyText($color: #111111, $lineHeight: 22px, $fontSize: 13px);
 
           &:hover {
             color: #7557d3;
@@ -61,7 +65,6 @@
     }
     &__contents {
       @include flex-container($alignment: null, $spacing: null);
-      height: 100vh;
 
       &__tags {
         display: none;

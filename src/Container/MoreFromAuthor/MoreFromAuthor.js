@@ -9,29 +9,47 @@ import save from '../../assets/save.svg';
 import more from '../../assets/more.svg';
 import PropTypes from 'prop-types';
 
-function MoreFromAuthor({ post }) {
+function MoreFromAuthor({
+  authorsName,
+  tagline,
+  cover,
+  title,
+  readTime,
+  subtitle,
+  dateStamp,
+  postContent,
+  noOfLikes,
+  noOfComments
+}) {
   return (
     <div className={styles.moreFromAuthor}>
-      <h1 className={styles.moreFromAuthor__header}>More From `${}`</h1>
-      <p className={styles.moreFromAuthor__description}>Writer/Developer</p>
+      <h1 className={styles.moreFromAuthor__header}>More From {authorsName}</h1>
+      <p className={styles.moreFromAuthor__description}>{tagline}</p>
       <div className={styles.postsContainer}>
         <div className={styles.postsContainer__coverImage}>
-          <img src={post.cover} alt="post cover Image" />
+          <img src={cover} alt="post cover Image" />
         </div>
         <div className={styles.postsContainer__postContent}>
           <div className={styles.postsContainer__postContent__postTitle}>
-            <h1>title</h1>
-            <p>2 min read</p>
+            <h1>{title}</h1>
+            <p>{`${readTime} min read`}</p>
           </div>
-          <p className={styles.postsContainer__postContent__postSubTitle}>subtitle</p>
-          <p className={styles.postsContainer__postContent__post}>postContent</p>
+          <p className={styles.postsContainer__postContent__postSubTitle}>{subtitle}</p>
+          <p className={styles.postsContainer__postContent__post}>{postContent}</p>
           <div className={styles.postsContainer__postContent__data}>
             <div className={styles.postsContainer__postContent__data__userData}>
-              <p className={styles.postsContainer__postContent__data__userData__date}>DateStamp</p>
+              <p className={styles.postsContainer__postContent__data__userData__date}>
+                {dateStamp}
+              </p>
               <Divider />
-              <TagIcon src={like} alt={'heart'} text={` likes`} size={'sm'} />
+              <TagIcon src={like} alt={'heart'} text={`${noOfLikes} likes`} size={'sm'} />
               <Divider />
-              <TagIcon src={comment} alt={'comment'} text={`Comments`} size={'sm'} />
+              <TagIcon
+                src={comment}
+                alt={`${noOfComments} comment`}
+                text={`Comments`}
+                size={'sm'}
+              />
             </div>
             <div className={styles.postsContainer__postContent__data__options}>
               <div className={styles.postsContainer__postContent__data__options__save}>
@@ -50,6 +68,15 @@ function MoreFromAuthor({ post }) {
 }
 
 MoreFromAuthor.propTypes = {
-  post: PropTypes.any
+  authorsName: PropTypes.string,
+  cover: PropTypes.string,
+  tagline: PropTypes.string,
+  title: PropTypes.string,
+  readTime: PropTypes.string,
+  subtitle: PropTypes.string,
+  dateStamp: PropTypes.string,
+  postContent: PropTypes.string,
+  noOfLikes: PropTypes.string,
+  noOfComments: PropTypes.string
 };
 export default MoreFromAuthor;

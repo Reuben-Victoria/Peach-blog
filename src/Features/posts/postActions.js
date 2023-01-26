@@ -42,8 +42,8 @@ export const getLatestPost = createAsyncThunk('post/latestPost', async () => {
   return response.data;
 });
 
-export const readOnePost = createAsyncThunk('post/viewPost', async ({ userId }) => {
-  const response = await instance.get(`blogs/view_post/${userId}`);
+export const readOnePost = createAsyncThunk('post/viewPost', async ({ postId }) => {
+  const response = await instance.get(`blogs/view_post/${postId}`);
   console.log('viewPost', response.data);
   return response.data;
 });

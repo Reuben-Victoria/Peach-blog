@@ -20,7 +20,8 @@ const Posts = ({
   postContent,
   dateStamp,
   noOfLikes,
-  noOfComment
+  noOfComment,
+  upload
 }) => {
   return (
     <article onClick={onClick}>
@@ -37,7 +38,7 @@ const Posts = ({
           <p className={styles.postsContainer__postContent__post}>{postContent}</p>
           <div className={styles.postsContainer__postContent__data}>
             <div className={styles.postsContainer__postContent__data__userData}>
-              <ProfileData src={cover} alt="Authors profile picture" name={authorsName} />
+              <ProfileData src={upload} alt="Authors profile picture" name={authorsName} />
               <Divider />
               <p className={styles.postsContainer__postContent__data__userData__date}>
                 {dateStamp}
@@ -72,6 +73,7 @@ Posts.propTypes = {
   postContent: PropTypes.string,
   dateStamp: PropTypes.string,
   noOfLikes: PropTypes.any,
-  noOfComment: PropTypes.string
+  noOfComment: PropTypes.string,
+  upload: PropTypes.string
 };
 export default Posts;

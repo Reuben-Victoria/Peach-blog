@@ -1,7 +1,7 @@
 @import '../../Styles/mixins';
 .homeWrapper {
   @include flex-container($alignment: null, $spacing: null);
-
+  min-height: calc(100vh - 100px);
   &__favorites {
     @include flex-container($direction: row, $alignment: null, $spacing: null);
     border-bottom: 1px solid #e5e2ed;
@@ -11,6 +11,13 @@
     width: 252px;
     height: 56px;
     margin-bottom: 28px;
+    &__proImg {
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
     &__articleInfo {
       p {
         @include authBodyText(
@@ -39,7 +46,7 @@
         @include flex-container($alignment: center, $direction: row, $spacing: space-between);
 
         &__tagIcon {
-          @include flex-container($alignment: null, $direction: row, $spacing: null);
+          @include flex-container($alignment: center, $direction: row, $spacing: center);
         }
 
         &__options {
@@ -67,10 +74,134 @@
         }
       }
     }
+    .profileImage {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      img {
+        width: 846px;
+        height: 413px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
 
     &__divider {
       border-left: 1px solid #e5e2ed;
       margin-right: 28px;
     }
+  }
+}
+@media screen and (max-width: 720px) {
+  .homeWrapper {
+    min-height: calc(100vh - 90px);
+
+    &__favorites {
+      @include flex-container($direction: row, $alignment: null, $spacing: null);
+      border: none;
+    }
+    &__articleData {
+      @include flex-container($direction: row, $spacing: space-between, $alignment: center);
+      width: 173px;
+      height: 56px;
+      margin-bottom: 14px;
+      &__proImg {
+        img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+        }
+      }
+      &__articleInfo {
+        p {
+          @include authBodyText(
+            $fontWeight: 500,
+            $fontSize: 12px,
+            $lineHeight: 24px,
+            $color: #111111
+          );
+        }
+        &__data {
+          @include flex-container($direction: row, $spacing: null);
+          p {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 12px;
+            color: #57497c;
+          }
+        }
+      }
+    }
+    &__contents {
+      @include flex-container($direction: row, $alignment: null, $spacing: null);
+
+      &__posts {
+        margin-top: 0px;
+        width: 100%;
+        margin-right: 0px;
+
+        &__tagIconContainer {
+          margin-top: 40px;
+          @include flex-container($alignment: center, $direction: row, $spacing: space-between);
+
+          &__tagIcon {
+            @include flex-container($alignment: null, $direction: row, $spacing: null);
+          }
+
+          &__options {
+            @include flex-container($alignment: center, $direction: row, $spacing: null);
+
+            &__save {
+              width: 16px;
+              height: 19.5px;
+
+              img {
+                width: 100%;
+              }
+            }
+            &__more {
+              width: 2.5px;
+              height: 15px;
+              position: relative;
+              margin-left: 19px;
+              cursor: pointer;
+
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+      .profileImage {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        img {
+          width: 345px;
+          height: 297px;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
+
+      &__divider {
+        border-left: none;
+        margin-right: 28px;
+      }
+    }
+  }
+  .name {
+    a {
+      h4 {
+        font-size: 14px;
+        color: black;
+      }
+    }
+  }
+  .post {
+    font-size: 12px;
+  }
+  .tags {
+    display: none;
   }
 }

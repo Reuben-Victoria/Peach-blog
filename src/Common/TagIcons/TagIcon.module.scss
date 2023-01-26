@@ -33,9 +33,17 @@
 
 @media screen and (max-width: 720px) {
   .wrapper {
-    &__sm {
+    &__lg {
       width: 18px;
-      margin-right: 4px;
+      margin-right: 8px;
+      img {
+        width: 100%;
+      }
+    }
+  
+    &__sm {
+      width: 14px;
+      margin-right: 3px;
       img {
         width: 100%;
       }

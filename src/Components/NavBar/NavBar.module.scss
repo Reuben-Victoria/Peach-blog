@@ -1,11 +1,10 @@
 @import '../../Styles/mixins';
 .navBar {
   @include flex-container($direction: row, $spacing: space-between);
-  position: absolute;
   background-color: white;
   width: 100%;
   padding: 24px 150px;
-  top: 90px;
+  padding-top: 109px;
 
   &__userProfile {
     @include flex-container($direction: row, $spacing: space-evenly);
@@ -13,12 +12,22 @@
     div {
       margin-right: 24px;
     }
+
+    &__image {
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
   }
 }
 
 @media screen and (max-width: 720px) {
   .navBar {
     padding: 16px 20px;
+    padding-top: 90px;
     @include flex-container($direction: row, $spacing: space-between);
 
     &__userProfile {
@@ -26,9 +35,11 @@
         margin-right: 10px;
       }
       &__image {
-        width: 30px;
         img {
-          width: 100%;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
         }
       }
       &__notification {

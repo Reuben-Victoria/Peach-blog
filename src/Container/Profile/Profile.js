@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import TableLoader from '../../Components/Loader/Loader';
 // import dummy from '../../assets/dummy.svg';
 import edit from '../../assets/Edit2.svg';
 import post from '../../assets/Document.svg';
@@ -15,7 +16,7 @@ import RecentActivity from '../../Components/RecentActivity/RecentActivity';
 import { Link } from 'react-router-dom';
 
 function Profile() {
-  const { userData } = useSelector((state) => state.users);
+  const { userData, loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const userParams = useParams();
   const userId = userParams.id;
@@ -28,73 +29,98 @@ function Profile() {
 
   // const { userInfo } = userData.data.user[0];
   const { data } = userData;
-  const userInfo = data?.user[0];
-  const comments = data?.comments[0];
-  const posts = data?.posts[0];
-  const reposts = data?.reposts[0];
-  const likes = data?.likes[0];
-  console.log(userInfo, 'jjjjjj>>>');
-
-  return (
-    <main className={styles.ProfileContainer}>
-      <div className={styles.ProfileContainer__userData}>
-        <div className={styles.ProfileContainer__userData__profilePicture}>
-          <img src={userInfo?.upload_photo} alt="Profile picture" />
-        </div>
-        <div className={styles.ProfileContainer__userData__data}>
-          <div className={styles.ProfileContainer__userData__data__userName}>
-            <h1>{`${userInfo?.first_name} ${userInfo?.last_name}`}</h1>
-            <Link to={`/edit-profile/${userParams.id}`}>
-              <div className={styles.ProfileContainer__userData__data__userName__editIcon}>
-                <TagIcon src={edit} text={'Edit'} size={'sm'} alt={'Edit'} variant={'mdText'} />
+  const userInfo = data?.user?.[0];
+  const comments = data?.comments?.[0];
+  const posts = data?.posts?.[0];
+  const reposts = data?.reposts?.[0];
+  const likes = data?.likes?.[0];
+  const recentActivity = data?.recent_activity;
+  localStorage.setItem('profilePicture', userInfo?.upload_photo);
+  console.log(loading, 'jjjjjj>>>');
+  {
+    {
+      return loading ? (
+        <TableLoader />
+      ) : (
+        <main className={styles.ProfileContainer}>
+          <div className={styles.ProfileContainer__userData}>
+            <div className={styles.ProfileContainer__userData__profilePicture}>
+              <img src={userInfo?.upload_photo} alt="Profile picture" />
+            </div>
+            <div className={styles.ProfileContainer__userData__data}>
+              <div className={styles.ProfileContainer__userData__data__userName}>
+                <h1>{`${userInfo?.first_name} ${userInfo?.last_name}`}</h1>
+                {userInfo?.id === userId ? (
+                  <Link to={`/edit-profile/${userParams.id}`}>
+                    <div className={styles.ProfileContainer__userData__data__userName__editIcon}>
+                      <TagIcon
+                        src={edit}
+                        text={'Edit'}
+                        size={'sm'}
+                        alt={'Edit'}
+                        variant={'mdText'}
+                      />
+                    </div>
+                  </Link>
+                ) : null}
               </div>
-            </Link>
+              <p className={styles.ProfileContainer__userData__data__description}>
+                {userInfo?.tagline}
+              </p>
+              <div className={styles.ProfileContainer__userData__data__icons}>
+                <TagIcon
+                  src={post}
+                  text={`${posts?.count} posts created`}
+                  variant={'lgText'}
+                  size={'sm'}
+                  alt={'Posts'}
+                />
+                <Divider />
+                <TagIcon
+                  src={like}
+                  text={`${likes?.count} posts liked`}
+                  variant={'lgText'}
+                  size={'sm'}
+                  alt={'heart'}
+                />
+                <Divider />
+                <TagIcon
+                  src={comment}
+                  text={`${comments?.count} comments made`}
+                  variant={'lgText'}
+                  size={'sm'}
+                  alt={'comments'}
+                />
+                <Divider />
+                <TagIcon
+                  src={repost}
+                  text={`${reposts?.count} reposts made`}
+                  variant={'lgText'}
+                  size={'sm'}
+                  alt={'reposts'}
+                />
+              </div>
+            </div>
           </div>
-          <p className={styles.ProfileContainer__userData__data__description}>
-            {userInfo?.tagline}
-          </p>
-          <div className={styles.ProfileContainer__userData__data__icons}>
-            <TagIcon
-              src={post}
-              text={`${posts?.count} posts created`}
-              variant={'lgText'}
-              size={'sm'}
-              alt={'Posts'}
-            />
-            <Divider />
-            <TagIcon
-              src={like}
-              text={`${likes?.count} posts liked`}
-              variant={'lgText'}
-              size={'sm'}
-              alt={'heart'}
-            />
-            <Divider />
-            <TagIcon
-              src={comment}
-              text={`${comments?.count} comments made`}
-              variant={'lgText'}
-              size={'sm'}
-              alt={'comments'}
-            />
-            <Divider />
-            <TagIcon
-              src={repost}
-              text={`${reposts?.count} reposts made`}
-              variant={'lgText'}
-              size={'sm'}
-              alt={'reposts'}
-            />
+          <div className={styles.textArea}>{userInfo?.bio}</div>
+          <div className={styles.recentActivityContainer}>
+            <h1>Recent Activity</h1>
+            {recentActivity?.map((activity) => {
+              return (
+                <RecentActivity
+                  key={activity.activity}
+                  dateStamp={`${activity.to_char.substring(0, 3)} ${activity.to_char.substring(
+                    `${activity.to_char.length - 2}`
+                  )}`}
+                  title={`${activity.activity.substring(`${activity.activity.indexOf(':') + 1}`)}`}
+                />
+              );
+            })}
           </div>
-        </div>
-      </div>
-      <div className={styles.textArea}>{userInfo?.bio}</div>
-      <div className={styles.recentActivityContainer}>
-        <h1>Recent Activity</h1>
-        <RecentActivity />
-      </div>
-    </main>
-  );
+        </main>
+      );
+    }
+  }
 }
 
 export default Profile;

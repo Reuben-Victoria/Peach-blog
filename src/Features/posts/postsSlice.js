@@ -16,7 +16,8 @@ const initialState = {
   posts: [],
   loading: false,
   error: null,
-  success: false
+  success: false,
+  likes: []
 };
 
 const postsSlice = createSlice({
@@ -70,7 +71,7 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = null;
       });
-    builder.addCase(getMostLikedPost.fulfilled, (state, { payload }) => {
+    builder.addCase(getMostLikedPost, (state, { payload }) => {
       state.loading = false;
       state.posts = payload;
     });
@@ -112,7 +113,8 @@ const postsSlice = createSlice({
     }),
       builder.addCase(likePost.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.posts.push(payload);
+        // state.posts = payload;
+        state.likes.push(payload);
       }),
       builder.addCase(likePost.rejected, (state, { payload }) => {
         state.loading = false;

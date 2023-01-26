@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../../Common/Button/Button';
 import { Link } from 'react-router-dom';
 import dummy from '../../assets/dummy.svg';
 import styles from './Tags.module.scss';
 import ProfileData from '../../Common/ProfileData/ProfileData';
+// import { useDispatch, useSelector } from 'react-redux';
 import close from '../../assets/close.svg';
+// import { getLatestPost } from '../../Features/posts/postActions';
 
 function Tags() {
+  // const dispatch = useDispatch();
+  // const [toggle, setToggle] = useState(false);
+  // const { posts } = useSelector((state) => state.post);
+  // const { data } = posts;
+
+  useEffect(() => {
+    // dispatch(getLatestPost());
+    // console.log(data[0]?.title, 'Top Stories');
+  }, []);
   return (
     <div className={styles.publications}>
       <h1>Top Stories</h1>
       <div>
         <ProfileData src={dummy} name={'Jankin Handins'} />
-        <h2>How to earn Money</h2>
+        {/* <h2>{data[0]?.title}</h2> */}
       </div>
       <div>
         <ProfileData src={dummy} name={'Jankin Handins'} />
