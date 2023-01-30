@@ -1,0 +1,26 @@
+.commentContainer {
+  width: 100%;
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: rgb(15 23 42);
+  }
+  form {
+    input {
+      width: 100%;
+      border: none;
+      resize: none;
+      background-color: transparent;
+      line-height: 1.375;
+      color: rgb(15 23 42 / var(--tw-text-opacity));
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+
+      &::placeholder {
+      }
+    }
+    border-bottom: 1px solid #e5e2ed;
+  }
+}

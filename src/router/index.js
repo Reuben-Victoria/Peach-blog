@@ -28,18 +28,18 @@ const Router = () => {
 
         <Routes>
           <Route element={<PreventRoutes />}>
-            <Route path="/create-post" element={<CreatePostPage />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
             <Route exact path="/" element={<HomePage />} />
             <Route path="/edit-profile/:userId" element={<EditProfilePage />} />
+            <Route path="/view-post/:postId" element={<ViewPostPage />} />
+            <Route path="/edit-post/:postId" element={<EditPostPage />} />
+            <Route path="/create-post" element={<CreatePostPage />} />
           </Route>
-          <Route path="/view-post/:postId" element={<ViewPostPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset_password/:token" element={<ResetPassword />} />
           <Route path="/verify-code/:email" element={<Verification />} />
-          <Route path="/edit-post/:postId" element={<EditPostPage />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

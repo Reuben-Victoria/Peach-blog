@@ -13,21 +13,22 @@ import Divider from '../../Common/Divider/Divider';
 import favouriteFilled from '../../assets/favouriteFilled.svg';
 import comment from '../../assets/comment.svg';
 import like from '../../assets/like.svg';
-import repost from '../../assets/repost.svg';
+import repostIcon from '../../assets/repost.svg';
 import save from '../../assets/save.svg';
 import more from '../../assets/more.svg';
 import EditPostModal from '../../Components/EditPostModal/EditPostModal';
 import DeleteModal from '../../Components/DeleteModal/DeleteModal';
-import { deletePost } from '../../Features/posts/postActions';
-import { readOnePost } from '../../Features/posts/postActions';
+import { deletePost, readOnePost, repost } from '../../Features/posts/postActions';
 import { useParams } from 'react-router-dom';
+import MoreModal from '../../Components/MoreModal/MoreModal';
+import Comments from '../../Components/Comments/Comments';
 function ViewPost() {
   const [toggleLike, setToggleLike] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [countLike, setCountLike] = useState(0);
   const dispatch = useDispatch();
-  const { posts, loading } = useSelector((state) => state.post);
+  const { posts } = useSelector((state) => state.post);
   const view = posts.data;
 
   const postParam = useParams();
@@ -37,26 +38,26 @@ function ViewPost() {
   console.log(postId);
   console.log(posts);
 
+  const [toggleComments, setToggleComments] = useState(false);
+
+  const handleToggleComments = () => {
+    setToggleComments((prevState) => !prevState);
+  };
+
   let likesNum = Number(view?.likes?.[0]?.count) + countLike;
   console.log(likesNum, '>>>>>likesNum');
   const handleLike = () => {
-    setToggleLike(!toggleLike);
-
-    if (toggleLike) {
-      setCountLike(countLike - 1);
-      console.log(toggleLike, countLike);
-    } else {
-      setCountLike(countLike + 1);
-      console.log(toggleLike, countLike);
-    }
+    setToggleLike(true);
+    setCountLike(countLike + 1);
     dispatch(likePost({ likesNum, postId }));
+    console.log(toggleLike, countLike);
   };
 
   useEffect(() => {
     dispatch(readOnePost({ postId }));
   }, []);
 
-  return Object.keys(posts?.data ?? {}).length && loading ? (
+  return Object.keys(posts?.data ?? {}).length ? (
     <div className={styles.homeWrapper}>
       <div className={styles.homeWrapper__favorites}></div>
       <div className={styles.homeWrapper__contents}>
@@ -76,8 +77,8 @@ function ViewPost() {
                   text={`Posted ${view?.posts?.[0]?.to_char.substring(
                     0,
                     3
-                  )} ${view?.posts[0]?.to_char.substring(
-                    `${view?.posts[0]?.to_char?.length - 2}`
+                  )} ${view?.posts?.[0]?.to_char.substring(
+                    `${view?.posts?.[0]?.to_char?.length - 2}`
                   )}`}
                   variant={'mdText'}
                 />
@@ -86,11 +87,11 @@ function ViewPost() {
               </div>
             </div>
           </div>
-          <h1>{view?.posts[0]?.title}</h1>
+          <h1>{view?.posts?.[0]?.title}</h1>
           <div className={styles.profileImage}>
-            <img src={view?.posts[0]?.cover} />
+            <img src={view?.posts?.[0]?.cover} />
           </div>
-          <p className={styles.post}>{view?.posts[0]?.post}</p>
+          <p className={styles.post}>{view?.posts?.[0]?.post}</p>
           <div className={styles.homeWrapper__contents__posts__tagIconContainer}>
             <div className={styles.homeWrapper__contents__posts__tagIconContainer__tagIcon}>
               <TagIcon
@@ -101,9 +102,32 @@ function ViewPost() {
                 src={toggleLike ? favouriteFilled : like}
               />
               <Divider />
-              <TagIcon text={'5 comments'} variant={'lgText'} size={'lg'} src={comment} />
+              <TagIcon
+                text={'5 comments'}
+                variant={'lgText'}
+                size={'lg'}
+                src={comment}
+                onClick={handleToggleComments}
+              />
+              {toggleComments && (
+                <MoreModal toggle={toggleComments} setToggle={setToggleComments}>
+                  <Comments
+                    numberOfComments={view?.comments?.[0]?.count}
+                    loggedInUserName={`${view?.users?.[0]?.first_name} ${view?.users?.[0]?.last_name}`}
+                    loggedInUserPhoto={`${view?.users?.[0]?.upload_photo}`}
+                  />
+                </MoreModal>
+              )}
               <Divider />
-              <TagIcon text={'20 reposts'} variant={'lgText'} size={'lg'} src={repost} />
+              <TagIcon
+                text={'20 reposts'}
+                variant={'lgText'}
+                size={'lg'}
+                src={repostIcon}
+                onClick={() => {
+                  dispatch(repost({}));
+                }}
+              />
             </div>
             <div className={styles.homeWrapper__contents__posts__tagIconContainer__options}>
               <div className={styles.homeWrapper__contents__posts__tagIconContainer__options__save}>

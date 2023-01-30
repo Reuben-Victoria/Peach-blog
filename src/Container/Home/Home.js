@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import Posts from '../../Components/Posts/Post';
@@ -11,29 +11,45 @@ import {
   getTopViews,
   readOnePost
 } from '../../Features/posts/postActions';
-
+import PageLoader from '../../Components/PageLoader/PageLoader';
 import styles from './Home.module.scss';
 import MoreModal from '../../Components/MoreModal/MoreModal';
 import TableLoader from '../../Components/Loader/Loader';
 
 function Home({ inputData }) {
   const [toggle, setToggle] = useState(false);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loader = useRef(null);
   const { posts, loading } = useSelector((state) => state.post);
   // const [pageNumber, setPageNumber] = useState(1);
+
+  const handleObserver = useCallback((entries) => {
+    const target = entries[0];
+    if (target.isIntersecting) {
+      setPage((prev) => prev + 1);
+    }
+  }, []);
+
+  const option = {
+    root: null,
+    rootMargin: '20px',
+    threshold: 0
+  };
 
   useEffect(() => {
     dispatch(
       getAllPosts({
         params: {
-          page: 1,
-          per_page: 10,
+          page: page,
           search: inputData
         }
       })
     );
-  }, [inputData]);
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (loader.current) observer.observe(loader.current);
+  }, [inputData, handleObserver, loader]);
 
   console.log(posts, 'posts');
 
@@ -71,7 +87,9 @@ function Home({ inputData }) {
               }}>
               <span>More...</span>
             </div>
-            <MoreModal toggle={toggle} setToggle={setToggle} />
+            <MoreModal toggle={toggle} setToggle={setToggle}>
+              <Tags />
+            </MoreModal>
           </div>
           <div className={styles.homeWrapper__contents}>
             <div className={styles.homeWrapper__contents__posts}>
@@ -103,6 +121,9 @@ function Home({ inputData }) {
             <div className={styles.homeWrapper__contents__tags}>
               <Tags />
             </div>
+          </div>
+          <div ref={loader}>
+            <PageLoader />
           </div>
         </div>
       );

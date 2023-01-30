@@ -8,8 +8,6 @@ function HomePage() {
   const [inputValue, setInputValue] = useState('');
   const inputData = useDebounce(inputValue, 1000);
 
-  console.log('fjfjf', inputData);
-
   return (
     <PageLayout
       component={SearchBar}

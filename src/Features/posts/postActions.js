@@ -38,7 +38,7 @@ export const getMostLikedPost = createAsyncThunk('post/mostLiked', async () => {
 
 export const getLatestPost = createAsyncThunk('post/latestPost', async () => {
   const response = await instance.get('/blogs/latest_posts');
-  console.log('getLatestPost', response.data);
+  localStorage.setItem('LatestPost', JSON.stringify(response.data));
   return response.data;
 });
 
@@ -52,7 +52,7 @@ export const addComment = createAsyncThunk(
   'post/comment',
   async ({ comment, postId }, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post(`blogs/repost/${postId}`, { comment });
+      const { data } = await instance.post(`blogs/comment/${postId}`, { comment });
       return data;
     } catch (error) {
       console.log(error.response, 'error');
@@ -60,6 +60,16 @@ export const addComment = createAsyncThunk(
     }
   }
 );
+
+export const repost = createAsyncThunk('post/repost', async ({ postId }, { rejectWithValue }) => {
+  try {
+    const { data } = await instance.post(`blogs/repost/${postId}`);
+    return data;
+  } catch (error) {
+    console.log(error.response, 'error');
+    return rejectWithValue(error.response.data);
+  }
+});
 
 export const getTopViews = createAsyncThunk('post/topViews', async () => {
   const response = await instance.get('blogs/top_views');

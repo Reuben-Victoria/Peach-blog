@@ -1,6 +1,7 @@
 @import '../../Styles/mixins';
 .userData {
   @include flex-container($direction: row, $spacing: null);
+  cursor: pointer;
   &__profilePicture {
     margin-right: 8px;
 

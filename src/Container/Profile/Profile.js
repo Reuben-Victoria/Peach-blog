@@ -51,7 +51,7 @@ function Profile() {
               <div className={styles.ProfileContainer__userData__data__userName}>
                 <h1>{`${userInfo?.first_name} ${userInfo?.last_name}`}</h1>
                 {userInfo?.id === userId ? (
-                  <Link to={`/edit-profile/${userParams.id}`}>
+                  <Link to={`/edit-profile/${userId}`}>
                     <div className={styles.ProfileContainer__userData__data__userName__editIcon}>
                       <TagIcon
                         src={edit}

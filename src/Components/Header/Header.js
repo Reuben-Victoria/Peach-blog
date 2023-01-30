@@ -9,8 +9,7 @@ function Header() {
   const token = localStorage.getItem('userToken');
   let navigate = useNavigate();
   function logOut() {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('userInfo');
+    localStorage.clear();
     navigate('/login');
 
     // delete instance.defaults.headers.common['Authorization'];

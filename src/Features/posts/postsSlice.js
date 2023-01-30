@@ -9,12 +9,16 @@ import {
   getMostLikedPost,
   getTopViews,
   readOnePost,
-  deletePost
+  deletePost,
+  repost
 } from './postActions';
+
+const latestPost = localStorage.getItem('LatestPost');
 
 const initialState = {
   posts: [],
   loading: false,
+  latestPost,
   error: null,
   success: false,
   likes: []
@@ -60,6 +64,7 @@ const postsSlice = createSlice({
       builder.addCase(getLatestPost.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.posts = payload;
+        state.latestPost = payload;
         state.success = true;
       }),
       builder.addCase(getLatestPost.rejected, (state, { payload }) => {
@@ -91,6 +96,18 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = payload;
       }),
+      // Repost
+      builder.addCase(repost.pending, (state) => {
+        (state.loading = true), (state.error = null);
+      }),
+      builder.addCase(repost.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.posts.push(payload);
+      }),
+      builder.addCase(repost.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      }),
       // EditPost
       builder.addCase(editPost.pending, (state) => {
         state.loading = true;
@@ -113,8 +130,8 @@ const postsSlice = createSlice({
     }),
       builder.addCase(likePost.fulfilled, (state, { payload }) => {
         state.loading = false;
-        // state.posts = payload;
-        state.likes.push(payload);
+        state.posts = payload;
+        // state.likes.push(payload);
       }),
       builder.addCase(likePost.rejected, (state, { payload }) => {
         state.loading = false;

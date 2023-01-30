@@ -1,39 +1,61 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '../../Common/Button/Button';
-import { Link } from 'react-router-dom';
-import dummy from '../../assets/dummy.svg';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { readOnePost } from '../../Features/posts/postActions';
+// import dummy from '../../assets/dummy.svg';
 import styles from './Tags.module.scss';
 import ProfileData from '../../Common/ProfileData/ProfileData';
-// import { useDispatch, useSelector } from 'react-redux';
 import close from '../../assets/close.svg';
-// import { getLatestPost } from '../../Features/posts/postActions';
 
 function Tags() {
-  // const dispatch = useDispatch();
-  // const [toggle, setToggle] = useState(false);
-  // const { posts } = useSelector((state) => state.post);
-  // const { data } = posts;
+  const [toggleList, setToggleList] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const latestPost = JSON.parse(localStorage.getItem('LatestPost'));
 
-  useEffect(() => {
-    // dispatch(getLatestPost());
-    // console.log(data[0]?.title, 'Top Stories');
-  }, []);
+  const initialList = latestPost?.data?.slice(0, 3);
+
+  const handleToggleViewList = () => {
+    setToggleList((prevState) => !prevState);
+  };
+
   return (
     <div className={styles.publications}>
       <h1>Top Stories</h1>
-      <div>
-        <ProfileData src={dummy} name={'Jankin Handins'} />
-        {/* <h2>{data[0]?.title}</h2> */}
-      </div>
-      <div>
-        <ProfileData src={dummy} name={'Jankin Handins'} />
-        <h2>How to earn Money</h2>
-      </div>
-      <div>
-        <ProfileData src={dummy} name={'Jankin Handins'} />
-        <h2>How to earn Money</h2>
-      </div>
-      <p className={styles.publications__list}>View full List</p>
+      {toggleList
+        ? (latestPost?.data ?? [])?.map((list) => {
+            return (
+              <div
+                key={list.id}
+                onClick={() => {
+                  dispatch(readOnePost(list.id));
+                  navigate(`/view-post/${list.id}`);
+                }}>
+                <ProfileData
+                  src={list.upload_photo}
+                  name={`${list.first_name} ${list.last_name}`}
+                />
+                <h2>{list.title}</h2>
+              </div>
+            );
+          })
+        : (initialList ?? [])?.map((list) => {
+            return (
+              <Link to={`/view-post/${list.id}`} key={list.id}>
+                <ProfileData
+                  src={list.upload_photo}
+                  name={`${list.first_name} ${list.last_name}`}
+                />
+                <h2>{list.title}</h2>
+              </Link>
+            );
+          })}
+      <p
+        className={toggleList ? styles.hideList : styles.publications__list}
+        onClick={handleToggleViewList}>
+        View full List
+      </p>
       <div className={styles.publications__faq}>
         <div>
           <h1>Writing on Peach</h1>

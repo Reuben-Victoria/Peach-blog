@@ -10,8 +10,8 @@
 
   h2 {
     @include authBodyText($color: #111111, $lineHeight: 22px, $fontSize: 16px, $fontWeight: 700);
-    margin-top: 10.5px;
-    margin-bottom: 22.5px;
+    margin-top: 6.5px;
+    margin-bottom: 20.5px;
   }
   &__list {
     @include linksContainer($color: #7557d3);
@@ -72,10 +72,24 @@
     }
   }
 }
+.hideList {
+  display: none;
+}
 
 @media screen and (max-width: 720px) {
   .publications {
     width: 90%;
+
+    h1 {
+      @include authBodyText($color: #111111, $lineHeight: 27px, $fontSize: 20px, $fontWeight: 700);
+      margin-bottom: 24.5px;
+    }
+
+    h2 {
+      @include authBodyText($color: #111111, $lineHeight: 22px, $fontSize: 16px, $fontWeight: 700);
+      margin-top: 4.5px;
+      margin-bottom: 18.5px;
+    }
 
     &__recommended {
       h2 {
