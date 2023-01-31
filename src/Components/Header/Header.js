@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../../Common/Button/Button';
+import Button from 'Common/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import image from '../../assets/HeaderLogo.svg';
+import image from 'assets/HeaderLogo.svg';
 import styles from './Header.module.scss';
 // import instance from '../../api';
 

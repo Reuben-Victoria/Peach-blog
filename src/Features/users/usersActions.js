@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import instance from '../../api';
+import instance from 'api';
 // import { useParams } from 'react-router-dom';
-import { failureToast, successToast } from '../../Authentication/Toast/Toast';
+import { failureToast, successToast } from 'Authentication/Toast/Toast';
 
 export const GETPROFILE = createAsyncThunk(
   'user/getProfile',

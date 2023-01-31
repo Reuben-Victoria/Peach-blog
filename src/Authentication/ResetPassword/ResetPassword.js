@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import Successful from '../Successful/Successful';
 import { resetSchema } from './resetSchema';
-import Input from '../../Common/Input/Input';
+import Input from 'Common/Input/Input';
 import styles from './ResetPassword.module.scss';
-import Button from '../../Common/Button/Button';
-import { resetPassword } from '../../Features/authentication/authActions';
+import Button from 'Common/Button/Button';
+import { resetPassword } from 'Features/authentication/authActions';
 
 function ResetPassword() {
   const [toggle, setToggle] = useState(false);

@@ -1,0 +1,14 @@
+@import "../../Styles/mixins";
+.readTime{
+    &__variant1{
+        @include authBodyText(
+          $fontWeight: 400,
+          $fontSize: 14px,
+          $lineHeight: 19px,
+          $color: #57497c
+        );
+    }
+    &__variant2{
+        @include authBodyText($lineHeight: 14px, $fontSize: 12px, $fontWeight: 400, $color: #57497c);
+    }
+}

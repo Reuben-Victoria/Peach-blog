@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import Posts from '../../Components/Posts/Post';
-import TableLoader from '../../Components/Loader/Loader';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertFromRaw, EditorState } from 'draft-js';
+import TableLoader from 'Components/Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { likePost } from '../../Features/posts/postActions';
-import Tags from '../../Components/Tags/Tags';
+import { likePost } from 'Features/posts/postActions';
+import Tags from 'Components/Tags/Tags';
 import styles from './ViewPost.module.scss';
 import MoreFromAuthor from '../MoreFromAuthor/MoreFromAuthor';
-import TagIcon from '../../Common/TagIcons/TagIcon';
-import Divider from '../../Common/Divider/Divider';
-import favouriteFilled from '../../assets/favouriteFilled.svg';
-import comment from '../../assets/comment.svg';
-import like from '../../assets/like.svg';
-import repostIcon from '../../assets/repost.svg';
-import save from '../../assets/save.svg';
-import more from '../../assets/more.svg';
-import EditPostModal from '../../Components/EditPostModal/EditPostModal';
-import DeleteModal from '../../Components/DeleteModal/DeleteModal';
-import { deletePost, readOnePost, repost } from '../../Features/posts/postActions';
+import TagIcon from 'Common/TagIcons/TagIcon';
+import Divider from 'Common/Divider/Divider';
+import favouriteFilled from 'assets/favouriteFilled.svg';
+import comment from 'assets/comment.svg';
+import like from 'assets/like.svg';
+import repostIcon from 'assets/repost.svg';
+import save from 'assets/save.svg';
+import more from 'assets/more.svg';
+import EditPostModal from 'Components/EditPostModal/EditPostModal';
+import DeleteModal from 'Components/DeleteModal/DeleteModal';
+import { deletePost, readOnePost, repost } from 'Features/posts/postActions';
 import { useParams } from 'react-router-dom';
-import MoreModal from '../../Components/MoreModal/MoreModal';
-import Comments from '../../Components/Comments/Comments';
+import MoreModal from 'Components/MoreModal/MoreModal';
+import Comments from 'Components/Comments/Comments';
 function ViewPost() {
   const [toggleLike, setToggleLike] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
@@ -52,7 +54,6 @@ function ViewPost() {
     dispatch(likePost({ likesNum, postId }));
     console.log(toggleLike, countLike);
   };
-
   useEffect(() => {
     dispatch(readOnePost({ postId }));
   }, []);
@@ -91,7 +92,12 @@ function ViewPost() {
           <div className={styles.profileImage}>
             <img src={view?.posts?.[0]?.cover} />
           </div>
-          <p className={styles.post}>{view?.posts?.[0]?.post}</p>
+          {view?.posts?.[0].map((post) => {
+            const contentState = convertFromRaw(JSON.parse(post.post));
+            const editorState = EditorState.createWithContent(contentState);
+            return <Editor editorState={editorState} key={post.post} readOnly={true} />;
+          })}
+          {/* // className={styles.post}>{view?.posts?.[0]?.post}</p> */}
           <div className={styles.homeWrapper__contents__posts__tagIconContainer}>
             <div className={styles.homeWrapper__contents__posts__tagIconContainer__tagIcon}>
               <TagIcon
@@ -103,7 +109,7 @@ function ViewPost() {
               />
               <Divider />
               <TagIcon
-                text={'5 comments'}
+                text={`${view?.comments?.[0]?.count} comments`}
                 variant={'lgText'}
                 size={'lg'}
                 src={comment}
@@ -120,7 +126,7 @@ function ViewPost() {
               )}
               <Divider />
               <TagIcon
-                text={'20 reposts'}
+                text={`${view?.reposts?.[0]?.count} reposts`}
                 variant={'lgText'}
                 size={'lg'}
                 src={repostIcon}

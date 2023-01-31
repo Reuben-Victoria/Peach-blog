@@ -1,6 +1,6 @@
 import React from 'react';
-import TagIcon from '../../Common/TagIcons/TagIcon';
-import editIcon from '../../assets/Edit2.svg';
+import TagIcon from 'Common/TagIcons/TagIcon';
+import editIcon from 'assets/Edit2.svg';
 import styles from './RecentActivity.module.scss';
 import PropTypes from 'prop-types';
 

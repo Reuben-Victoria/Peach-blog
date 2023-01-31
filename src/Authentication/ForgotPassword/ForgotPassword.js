@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import Input from '../../Common/Input/Input';
+import Input from 'Common/Input/Input';
 import styles from './ForgotPassword.module.scss';
-import Button from '../../Common/Button/Button';
-import { forgotPassword } from '../../Features/authentication/authActions';
+import Button from 'Common/Button/Button';
+import { forgotPassword } from 'Features/authentication/authActions';
 
 function ForgotPassword() {
   const dispatch = useDispatch();

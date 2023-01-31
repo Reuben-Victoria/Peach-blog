@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Input from '../../Common/Input/Input';
+import Input from 'Common/Input/Input';
 import styles from './Signup.module.scss';
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { userSignUp } from '../../Features/authentication/authActions';
+import { userSignUp } from 'Features/authentication/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpSchema } from './signUpSchema';
 
-import Button from '../../Common/Button/Button';
+import Button from 'Common/Button/Button';
 
 function Signup() {
   const { success, loading } = useSelector((state) => state.auth);

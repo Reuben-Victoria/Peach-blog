@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { ReactComponent as Loader } from '../../assets/loading.svg';
+import { ReactComponent as Loader } from 'assets/loading.svg';
 import styles from './Button.module.scss';
 
 function Button({ text, type, onClick, theme, size, disabled, loading, variant, src, showImage }) {

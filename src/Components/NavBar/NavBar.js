@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './NavBar.module.scss';
-import Button from '../../Common/Button/Button';
-import editIcon from '../../assets/Edit3.svg';
+import Button from 'Common/Button/Button';
+import editIcon from 'assets/Edit3.svg';
 // import { useSelector } from 'react-redux';
-import notificationIcon from '../../assets/Notification.svg';
+import notificationIcon from 'assets/Notification.svg';
 import { Link } from 'react-router-dom';
 
 function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {

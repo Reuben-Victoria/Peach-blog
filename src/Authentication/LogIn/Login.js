@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import Input from '../../Common/Input/Input';
+import Input from 'Common/Input/Input';
 import styles from './Login.module.scss';
-import Button from '../../Common/Button/Button';
+import Button from 'Common/Button/Button';
 import { loginSchema } from './loginSchema';
 // import { successToast, failureToast } from '../Toast/Toast';
-import { userLogin } from '../../Features/authentication/authActions';
+import { userLogin } from 'Features/authentication/authActions';
 
 function Login() {
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import Posts from '../../Components/Posts/Post';
-import Tags from '../../Components/Tags/Tags';
+import Posts from 'Components/Posts/Post';
+import Tags from 'Components/Tags/Tags';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getAllPosts,
@@ -10,11 +10,11 @@ import {
   getLatestPost,
   getTopViews,
   readOnePost
-} from '../../Features/posts/postActions';
-import PageLoader from '../../Components/PageLoader/PageLoader';
+} from 'Features/posts/postActions';
+import PageLoader from 'Components/PageLoader/PageLoader';
 import styles from './Home.module.scss';
-import MoreModal from '../../Components/MoreModal/MoreModal';
-import TableLoader from '../../Components/Loader/Loader';
+import MoreModal from 'Components/MoreModal/MoreModal';
+import TableLoader from 'Components/Loader/Loader';
 
 function Home({ inputData }) {
   const [toggle, setToggle] = useState(false);
@@ -27,6 +27,7 @@ function Home({ inputData }) {
 
   const handleObserver = useCallback((entries) => {
     const target = entries[0];
+    console.log(entries, 'Entries>>>>');
     if (target.isIntersecting) {
       setPage((prev) => prev + 1);
     }
@@ -51,7 +52,7 @@ function Home({ inputData }) {
     if (loader.current) observer.observe(loader.current);
   }, [inputData, handleObserver, loader]);
 
-  console.log(posts, 'posts');
+  console.log(handleObserver, 'HandleObserver>>>>>');
 
   const { data } = posts;
   {
@@ -99,6 +100,7 @@ function Home({ inputData }) {
                     key={post.id}
                     cover={post.cover}
                     title={post.title}
+                    totalWords={post.post}
                     upload={post.upload_photo}
                     authorsName={`${post.first_name} ${post.last_name}`}
                     noOfComment={post.count}

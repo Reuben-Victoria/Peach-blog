@@ -1,25 +1,147 @@
 @import '../../Styles//mixins';
-.editPostWrapper {
-  @include flex-container($alignment: center, $spacing: center);
-
-  h1 {
-    @include authBodyText($fontSize: 30px, $fontWeight: 700, $color:#111111);
-    margin-bottom: 24px;
+.createPostContainer {
+  @include flex-container($alignment: null);
+  width: 100%;
+  &__icons {
+    @include flex-container($direction: row, $spacing: null);
   }
-
-  &__image {
-    width: 846px;
-    height: 413px;
-    margin-bottom: 40px;
-
-    img {
-      width: 100%;
-      height: 100%;
+  &__post {
+    @include flex-container;
+    width: 100%;
+    input {
+      padding: 20px 20px;
+      border: 1px solid #cbc4de;
+      border-radius: 10px;
+      @include authBodyText($fontWeight: 700);
+      margin-bottom: 24px;
+      margin-top: 30px;
+      width: 70%;
     }
   }
-  &__text {
-    p {
-      @include authBodyText($fontSize: 16px, $fontWeight: 700, $lineHeight: 24px, $color:#111111);
+  &__body {
+    @include flex-container;
+    width: 100%;
+
+    &__image {
+      width: 59vw;
+      height: 413px;
+      margin-bottom: 40px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
+
+    &__header {
+      width: 59vw;
+      height: 56px;
+      margin-bottom: 40px;
+      input {
+        width: 100%;
+        padding: 10px 10px;
+        border: none;
+        @include authBodyText(
+          $fontWeight: 700,
+          $fontSize: 30px,
+          $color: #111111,
+          $lineHeight: 41px
+        );
+      }
+    }
+    &__subtitle {
+      width: 59vw;
+      height: 56px;
+      margin-bottom: 20px;
+      input {
+        width: 100%;
+        padding: 10px 10px;
+        border: none;
+        @include authBodyText(
+          $fontWeight: 400,
+          $fontSize: 24px,
+          $color: #111111,
+          $lineHeight: 41px
+        );
+        font-style: italic;
+      }
+    }
+  }
+}
+.buttonsContainer {
+  @include flex-container($direction: row, $spacing: space-between);
+  width: 70%;
+  &__buttonsLeft {
+    display: flex;
+
+    button {
+      margin-right: 30px;
+    }
+  }
+}
+.buttonsDisplay {
+  display: none;
+}
+
+@media screen and (max-width: 720px) {
+  .createPostContainer {
+    &__body {
+      &__image {
+        width: 100%;
+        height: 347px;
+        margin-bottom: 24px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
+      &__header {
+        height: 48px;
+        width: 100%;
+        margin-bottom: 24px;
+        input {
+          width: 100%;
+          padding: 10px 10px;
+          border: none;
+          @include authBodyText(
+            $fontWeight: 700,
+            $fontSize: 24px,
+            $color: #111111,
+            $lineHeight: 41px
+          );
+        }
+      }
+      &__subtitle {
+        width: 100%;
+        height: 48px;
+        margin-bottom: 20px;
+        input {
+          width: 100%;
+          padding: 10px 10px;
+          border: none;
+          @include authBodyText(
+            $fontWeight: 400,
+            $fontSize: 18px,
+            $color: #111111,
+            $lineHeight: 32px
+          );
+          font-style: italic;
+        }
+      }
+    }
+  }
+  .buttonsContainer {
+    @include flex-container($direction: row, $spacing: space-between);
+    width: 100%;
+    &__buttonsLeft {
+      display: flex;
+
+      button {
+        margin-right: 20px;
+      }
     }
   }
 }

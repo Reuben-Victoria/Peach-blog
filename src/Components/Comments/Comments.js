@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Button from '../../Common/Button/Button';
-import ProfileData from '../../Common/ProfileData/ProfileData';
+import Button from 'Common/Button/Button';
+import ProfileData from 'Common/ProfileData/ProfileData';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { addComment } from '../../Features/posts/postActions';
+import { addComment } from 'Features/posts/postActions';
 import styles from './Comments.module.scss';
 
 function Comments({ numberOfComments, loggedInUserName, loggedInUserPhoto }) {

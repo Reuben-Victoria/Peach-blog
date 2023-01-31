@@ -1,15 +1,13 @@
 import React from 'react';
-// import bookImage from '../../assets/book.svg';
-import Divider from '../../Common/Divider/Divider';
-import TagIcon from '../../Common/TagIcons/TagIcon';
+import Divider from 'Common/Divider/Divider';
+import TagIcon from 'Common/TagIcons/TagIcon';
 import styles from './Posts.module.scss';
-import like from '../../assets/like.svg';
-import comment from '../../assets/comment.svg';
-import save from '../../assets/save.svg';
-import more from '../../assets/more.svg';
-import ProfileData from '../../Common/ProfileData/ProfileData';
+import like from 'assets/like.svg';
+import comment from 'assets/comment.svg';
+import save from 'assets/save.svg';
+import more from 'assets/more.svg';
+import ProfileData from 'Common/ProfileData/ProfileData';
 import PropTypes from 'prop-types';
-// import { blogData } from '../../mock/post';
 
 const Posts = ({
   onClick,
@@ -32,7 +30,7 @@ const Posts = ({
         <div className={styles.postsContainer__postContent}>
           <div className={styles.postsContainer__postContent__postTitle}>
             <h1>{title}</h1>
-            <p>2 min read</p>
+            <p>Read Time</p>
           </div>
           <p className={styles.postsContainer__postContent__postSubTitle}>{subtitle}</p>
           <p className={styles.postsContainer__postContent__post}>{postContent}</p>

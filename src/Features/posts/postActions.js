@@ -1,7 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import instance from '../../api';
-import { successToast, failureToast } from '../../Authentication/Toast/Toast';
-import queryFormatter from '../../utils/queryFormatter';
+import instance from 'api';
+import { successToast, failureToast } from 'Authentication/Toast/Toast';
+import queryFormatter from 'utils/queryFormatter';
+
+// import { apiSlice } from "../api/apiSlice";
+
+// export const extendedApiSice = apiSlice.injectEndpoints({
+//   endpoints.builder => ({
+
+//   })
+// })
 
 // let formData = new FormData();
 export const postAdded = createAsyncThunk(

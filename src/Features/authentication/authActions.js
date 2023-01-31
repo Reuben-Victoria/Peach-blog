@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import instance from '../../api';
-import { failureToast, successToast } from '../../Authentication/Toast/Toast';
+import instance from 'api';
+import { failureToast, successToast } from 'Authentication/Toast/Toast';
 
 export const userSignUp = createAsyncThunk(
   'auth/signup',
