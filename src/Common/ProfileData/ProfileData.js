@@ -3,10 +3,18 @@ import PropTypes from 'prop-types';
 import styles from './ProfileData.module.scss';
 
 function ProfileData({ src, alt, name }) {
+  const data = JSON.parse(localStorage.getItem('userInfo'));
+  console.log(data.user, 'USER>>>>>');
   return (
     <div className={styles.userData}>
       <div className={styles.userData__profilePicture}>
-        <img src={src} alt={alt} />
+        {src ? (
+          <img src={src} alt={alt} />
+        ) : (
+          <h1>{`${data.user.first_name.charAt(0).toUpperCase} ${
+            data.user.last_name.charAt(0).toUpperCase
+          }`}</h1>
+        )}
       </div>
       <p className={styles.userData__userName}>{name}</p>
     </div>

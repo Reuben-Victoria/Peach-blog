@@ -42,13 +42,18 @@ function Tags() {
           })
         : (initialList ?? [])?.map((list) => {
             return (
-              <Link to={`/view-post/${list.id}`} key={list.id}>
+              <div
+                onClick={() => {
+                  dispatch(readOnePost(list.id));
+                  navigate(`/view-post/${list.id}`);
+                }}
+                key={list.id}>
                 <ProfileData
                   src={list.upload_photo}
                   name={`${list.first_name} ${list.last_name}`}
                 />
                 <h2>{list.title}</h2>
-              </Link>
+              </div>
             );
           })}
       <p

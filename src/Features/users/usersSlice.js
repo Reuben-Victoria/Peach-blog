@@ -19,7 +19,7 @@ const usersSlice = createSlice({
     }),
       builder.addCase(UPDATEUSER.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userData.push(payload);
+        state.userData = payload;
         state.success = true;
         state.error = false;
       }),
@@ -46,11 +46,11 @@ const usersSlice = createSlice({
 
       builder.addCase(DELETEUSER.pending, (state) => {
         state.loading = true;
-        state.error = null;
+        state.error = false;
       }),
       builder.addCase(DELETEUSER.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.userData.pop(payload);
+        state.userData = payload;
         state.success = true;
       }),
       builder.addCase(DELETEUSER.rejected, (state, { payload }) => {

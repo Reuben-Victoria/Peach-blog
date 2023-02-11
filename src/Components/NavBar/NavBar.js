@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
   const profile = localStorage.getItem('profilePicture');
-  console.log(profile, 'PROFILE PICTURE');
+  const data = JSON.parse(localStorage.getItem('userInfo'));
   return (
     <>
       {toggle ? (
@@ -18,7 +18,13 @@ function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
           <div className={styles.navBar__userProfile}>
             <Link to={`/profile/${userId}`}>
               <div className={styles.navBar__userProfile__image}>
-                <img src={profile} alt="profile-picture" />
+                {profile ? (
+                  <img src={profile} alt="profile-picture" />
+                ) : (
+                  <h2>{`${data.user.first_name.charAt(0).toUpperCase()} ${data.user.last_name
+                    .charAt(0)
+                    .toUpperCase()}`}</h2>
+                )}
               </div>
             </Link>
             <div>
@@ -35,7 +41,13 @@ function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
           <div className={styles.navBar__userProfile}>
             <Link to={`/profile/${userId}`}>
               <div className={styles.navBar__userProfile__image}>
-                <img src={profile} alt="profile-picture" />
+                {profile ? (
+                  <img src={profile} alt="profile-picture" />
+                ) : (
+                  <h2>{`${data.user.first_name.charAt(0).toUpperCase()} ${data.user.last_name
+                    .charAt(0)
+                    .toUpperCase()}`}</h2>
+                )}
               </div>
             </Link>
             <div className={styles.navBar__userProfile__notification}>

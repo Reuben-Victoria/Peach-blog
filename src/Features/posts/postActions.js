@@ -108,7 +108,7 @@ export const deletePost = createAsyncThunk(
   async ({ postId }, { rejectWithValue }) => {
     try {
       const response = await instance.delete(`blogs/delete_post/${postId}`);
-      successToast(`${response.message}`);
+      successToast(`${response?.data?.message}`);
       console.log('delePost', response);
       return response.data;
     } catch (error) {

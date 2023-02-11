@@ -17,6 +17,19 @@
         height: 40px;
         border-radius: 50%;
       }
+      h2 {
+        background-color: #c8bde6;
+        border-radius: 50%;
+        @include flex-container($alignment: center);
+        width: 40px;
+        @include authBodyText(
+          $fontSize: 18px,
+          $fontWeight: 500,
+          $lineHeight: 27px,
+          $color: #745abc
+        );
+        height: 40px;
+      }
     }
     &__articleInfo {
       p {

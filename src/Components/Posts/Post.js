@@ -21,6 +21,8 @@ const Posts = ({
   noOfComment,
   upload
 }) => {
+  const data = JSON.parse(localStorage.getItem('userInfo'));
+  console.log(data.user, 'DATA>>>>>');
   return (
     <article onClick={onClick}>
       <div className={styles.postsContainer}>
@@ -36,7 +38,13 @@ const Posts = ({
           <p className={styles.postsContainer__postContent__post}>{postContent}</p>
           <div className={styles.postsContainer__postContent__data}>
             <div className={styles.postsContainer__postContent__data__userData}>
-              <ProfileData src={upload} alt="Authors profile picture" name={authorsName} />
+              {upload ? (
+                <ProfileData src={upload} alt="Authors profile picture" name={authorsName} />
+              ) : (
+                <h1>{`${data.user.first_name.charAt(0).toUpperCase()} ${data.user.last_name
+                  .charAt(0)
+                  .toUpperCase()}`}</h1>
+              )}
               <Divider />
               <p className={styles.postsContainer__postContent__data__userData__date}>
                 {dateStamp}

@@ -1,9 +1,10 @@
 @import '../Styles/mixins';
 .main {
   @include flex-container($spacing: space-between, $alignment: null);
-  height: 100vh;
+  // height: 100vh;
   &__page {
     padding: 56px 150px;
+    flex-grow: 1;
     // min-height: calc(100vh - 64px);
     padding-top: 40px;
   }
@@ -13,7 +14,6 @@
   .main {
     &__page {
       padding: 8px 30px;
-      // min-height: calc(100vh - 90px);
       flex-grow: 1;
     }
   }

@@ -6,20 +6,18 @@ import Input from 'Common/Input/Input';
 import styles from './Login.module.scss';
 import Button from 'Common/Button/Button';
 import { loginSchema } from './loginSchema';
-// import { successToast, failureToast } from '../Toast/Toast';
 import { userLogin } from 'Features/authentication/authActions';
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, userInfo, success } = useSelector((state) => state.auth);
+  const { loading, userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (userInfo?.data?.token) {
       navigate('/');
     }
-    // console.log(timer);
-  }, [success]);
+  }, [userInfo?.data?.token]);
 
   return (
     <Formik

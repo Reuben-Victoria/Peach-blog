@@ -14,6 +14,16 @@
         width: 187px;
         height: 187px;
       }
+
+      h2 {
+        background-color: #c8bde6;
+        border-radius: 50%;
+        @include flex-container($alignment: center);
+        width: 187px;
+        @include authBodyText($fontSize: 50px, $fontWeight: 700, $lineHeight: 27px, $color: #745abc);
+        margin-bottom: 57px;
+        height: 187px;
+      }
     }
 
     &__data {

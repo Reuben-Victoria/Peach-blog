@@ -10,9 +10,13 @@
   background-color: #6e6e6d;
   position: absolute;
   z-index: 10;
-  top: 108%;
+  bottom: -10%;
+  // top: 0%;
   left: 28.4%;
   box-sizing: border-box;
+}
+.rdw-editor-main{
+position: relative;
 }
 .rdw-option-wrapper {
   border: none;
@@ -25,7 +29,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
   text-transform: capitalize;
 }
 .rdw-option-wrapper:hover {
@@ -273,7 +276,7 @@
   width: 59vw;
   padding: 15px 25px 0 25px;
   overflow-y: scroll;
-  position: relative;
+  // position: relative;
   border: 1px solid #cbc4de;
 
   :focus {
@@ -307,6 +310,20 @@
   .DraftEditor-root {
     width: 84vw;
     padding: 12px 10px 0 10px;
+  }
+  .rdw-editor-toolbar {
+    display: flex;
+    padding: 8px 8px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    background-color: #6e6e6d;
+    position: absolute;
+    z-index: 10;
+    top: 84%;
+    left: 28.4%;
+    box-sizing: border-box;
   }
 }
 

@@ -9,21 +9,26 @@ import styles from './EditPost.module.scss';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function EditPost({ title, subtitle, editCover }) {
+function EditPost() {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.post);
-  console.log(posts);
   const params = useParams();
-  const postId = params.id;
-  useEffect(() => {
-    dispatch(readOnePost(postId));
-  }, []);
-  const [coverImage, setCoverImage] = useState({ preview: editCover, raw: editCover });
-  const fileInput = useRef(null);
+  const { postId } = params;
   const [inputValues, setInputValues] = useState({
-    title: { title },
-    subtitle: { subtitle }
+    title: posts?.data?.posts?.[0]?.title,
+    subtitle: posts?.data?.posts?.[0]?.subtitle
   });
+
+  useEffect(() => {
+    dispatch(readOnePost({ postId }));
+  }, []);
+  console.log(posts?.data?.posts?.[0]?.title);
+  const [coverImage, setCoverImage] = useState({
+    preview: posts?.data?.posts?.[0]?.cover,
+    raw: posts?.data?.posts?.[0]?.cover
+  });
+  const fileInput = useRef(null);
+
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const handleOnChange = (event) => {
@@ -88,9 +93,9 @@ function EditPost({ title, subtitle, editCover }) {
         />
       </div>
       {/* <div className={styles.editPostWrapper__image}> */}
-      {cover.preview && (
+      {coverImage.preview && (
         <div className={styles.createPostContainer__body__image}>
-          <img src={coverImage} alt="image" />
+          <img src={coverImage.preview} alt="image" />
         </div>
       )}
       <div className={styles.createPostContainer__body__subtitle}>
@@ -119,8 +124,6 @@ function EditPost({ title, subtitle, editCover }) {
   );
 }
 EditPost.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  editCover: PropTypes.string
+  onSubmit: PropTypes.func
 };
 export default EditPost;

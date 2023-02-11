@@ -1,11 +1,12 @@
 .commentContainer {
   width: 100%;
-  h2 {
+  h1 {
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 500;
     letter-spacing: -0.025em;
     color: rgb(15 23 42);
+    margin-bottom: 30px;
   }
   form {
     input {
@@ -15,12 +16,51 @@
       background-color: transparent;
       line-height: 1.375;
       color: rgb(15 23 42 / var(--tw-text-opacity));
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding: 14px 14px;
+      margin-top: 15px;
+      margin-bottom: 15px;
 
       &::placeholder {
       }
     }
+    button {
+      padding: 4px 12px;
+      margin-bottom: 14px;
+    }
     border-bottom: 1px solid #e5e2ed;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .commentContainer {
+    width: 100%;
+    h1 {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: rgb(15 23 42);
+      margin-bottom: 30px;
+    }
+    form {
+      input {
+        width: 100%;
+        border: none;
+        resize: none;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: transparent;
+        line-height: 1.375;
+        color: rgb(15 23 42 / var(--tw-text-opacity));
+        padding: 0.5rem;
+
+        &::placeholder {
+        }
+      }
+      button {
+        margin-bottom: 20px;
+      }
+      border-bottom: 1px solid #e5e2ed;
+    }
   }
 }

@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { convertToRaw, convertFromRaw, EditorState } from 'draft-js';
 import styles from './CreatePost.module.scss';
@@ -10,7 +11,10 @@ import { postAdded } from 'Features/posts/postActions';
 
 function CreatePost() {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.post);
+  const { loading, posts } = useSelector((state) => state.post);
+  const postId = posts?.data?.id;
+  const navigate = useNavigate();
+  console.log(postId);
   const [editorState, setEditorState] = useState(() => {
     if (localStorage.getItem('editor-state')) {
       return EditorState.createWithContent(
@@ -23,6 +27,12 @@ function CreatePost() {
     title: '',
     subtitle: ''
   });
+
+  useEffect(() => {
+    if (posts?.status === 'Successful') {
+      navigate(`/view-post/${postId}`);
+    }
+  }, [posts?.status]);
 
   const [toggle, setToggle] = useState(false);
 
@@ -76,7 +86,7 @@ function CreatePost() {
     );
   };
 
-  console.log(image.raw);
+  console.log(posts?.status, 'POST>>>>>');
 
   const onEditorStateChange = (value) => {
     setEditorState(value);

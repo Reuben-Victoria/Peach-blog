@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 // import Posts from '../../Components/Posts/Post';
-import { Editor } from 'react-draft-wysiwyg';
-import { convertFromRaw, EditorState } from 'draft-js';
+// import { Editor } from 'react-draft-wysiwyg';
+// import { convertFromRaw, EditorState } from 'draft-js';
 import TableLoader from 'Components/Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { likePost } from 'Features/posts/postActions';
+import { Link, useNavigate } from 'react-router-dom';
 import Tags from 'Components/Tags/Tags';
 import styles from './ViewPost.module.scss';
 import MoreFromAuthor from '../MoreFromAuthor/MoreFromAuthor';
 import TagIcon from 'Common/TagIcons/TagIcon';
 import Divider from 'Common/Divider/Divider';
 import favouriteFilled from 'assets/favouriteFilled.svg';
-import comment from 'assets/comment.svg';
+import commentIcon from 'assets/comment.svg';
 import like from 'assets/like.svg';
 import repostIcon from 'assets/repost.svg';
 import save from 'assets/save.svg';
 import more from 'assets/more.svg';
 import EditPostModal from 'Components/EditPostModal/EditPostModal';
 import DeleteModal from 'Components/DeleteModal/DeleteModal';
-import { deletePost, readOnePost, repost } from 'Features/posts/postActions';
+import { deletePost, readOnePost, repost, likePost, addComment } from 'Features/posts/postActions';
 import { useParams } from 'react-router-dom';
 import MoreModal from 'Components/MoreModal/MoreModal';
 import Comments from 'Components/Comments/Comments';
@@ -29,34 +28,56 @@ function ViewPost() {
   const [toggleEdit, setToggleEdit] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [countLike, setCountLike] = useState(0);
+  const [countComment, setCountComment] = useState(0);
+  const [countReposts, setCountRepost] = useState(0);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { posts } = useSelector((state) => state.post);
-  const view = posts.data;
+  const view = posts?.data;
 
   const postParam = useParams();
   const user = JSON.parse(localStorage.getItem('userInfo'));
-  console.log(user.user.id, 'USER>>>>>>');
   const postId = postParam.postId;
-  console.log(postId);
-  console.log(posts);
 
   const [toggleComments, setToggleComments] = useState(false);
+  const [comment, setComment] = useState('');
+
+  const handleChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addComment({ comment, postId }));
+    setCountComment(countComment + 1);
+    console.log(comment);
+  };
 
   const handleToggleComments = () => {
     setToggleComments((prevState) => !prevState);
   };
 
   let likesNum = Number(view?.likes?.[0]?.count) + countLike;
-  console.log(likesNum, '>>>>>likesNum');
-  const handleLike = () => {
+  let commentNum = Number(view?.comments?.[0]?.count) + countComment;
+  let repostNum = Number(view?.reposts?.[0]?.count) + countReposts;
+  const handleLike = (e) => {
+    e.preventDefault();
     setToggleLike(true);
     setCountLike(countLike + 1);
+    localStorage.setItem('like', toggleLike);
     dispatch(likePost({ likesNum, postId }));
     console.log(toggleLike, countLike);
   };
+  const getToggle = localStorage.getItem('like');
   useEffect(() => {
     dispatch(readOnePost({ postId }));
   }, []);
+
+  useLayoutEffect(() => {
+    if (posts?.status === 'Success') {
+      navigate('/');
+    }
+  }, [posts?.status]);
 
   return Object.keys(posts?.data ?? {}).length ? (
     <div className={styles.homeWrapper}>
@@ -66,7 +87,13 @@ function ViewPost() {
           <div className={styles.homeWrapper__articleData}>
             <div className={styles.homeWrapper__articleData__proImg}>
               <Link to={`/profile/${view?.posts?.[0]?.id}`}>
-                {view?.posts && <img src={view.posts?.[0]?.upload_photo} alt="profile-picture" />}
+                {view?.posts?.[0]?.upload_photo ? (
+                  <img src={view.posts?.[0]?.upload_photo} alt="profile-picture" />
+                ) : (
+                  <h2>{`${view?.posts?.[0]?.first_name
+                    .charAt(0)
+                    .toUpperCase()} ${view?.posts?.[0]?.last_name.charAt(0).toUpperCase()}`}</h2>
+                )}
               </Link>
             </div>
             <div className={styles.name}>
@@ -92,12 +119,12 @@ function ViewPost() {
           <div className={styles.profileImage}>
             <img src={view?.posts?.[0]?.cover} />
           </div>
-          {view?.posts?.[0].map((post) => {
+          {/* {view?.posts?.[0].map((post) => {
             const contentState = convertFromRaw(JSON.parse(post.post));
             const editorState = EditorState.createWithContent(contentState);
             return <Editor editorState={editorState} key={post.post} readOnly={true} />;
-          })}
-          {/* // className={styles.post}>{view?.posts?.[0]?.post}</p> */}
+          })} */}
+          <p className={styles.post}>{view?.posts?.[0]?.post}</p>
           <div className={styles.homeWrapper__contents__posts__tagIconContainer}>
             <div className={styles.homeWrapper__contents__posts__tagIconContainer__tagIcon}>
               <TagIcon
@@ -105,33 +132,37 @@ function ViewPost() {
                 text={`${likesNum} likes`}
                 variant={'lgText'}
                 size={'lg'}
-                src={toggleLike ? favouriteFilled : like}
+                src={getToggle ? favouriteFilled : like}
               />
               <Divider />
               <TagIcon
-                text={`${view?.comments?.[0]?.count} comments`}
+                text={`${commentNum} comments`}
                 variant={'lgText'}
                 size={'lg'}
-                src={comment}
+                src={commentIcon}
                 onClick={handleToggleComments}
               />
               {toggleComments && (
                 <MoreModal toggle={toggleComments} setToggle={setToggleComments}>
                   <Comments
-                    numberOfComments={view?.comments?.[0]?.count}
+                    numberOfComments={commentNum}
                     loggedInUserName={`${view?.users?.[0]?.first_name} ${view?.users?.[0]?.last_name}`}
                     loggedInUserPhoto={`${view?.users?.[0]?.upload_photo}`}
+                    comment={comment}
+                    handleSubmit={handleSubmit}
+                    handleChange={handleChange}
                   />
                 </MoreModal>
               )}
               <Divider />
               <TagIcon
-                text={`${view?.reposts?.[0]?.count} reposts`}
+                text={`${repostNum} reposts`}
                 variant={'lgText'}
                 size={'lg'}
                 src={repostIcon}
                 onClick={() => {
-                  dispatch(repost({}));
+                  dispatch(repost({ postId }));
+                  setCountRepost(countReposts + 1);
                 }}
               />
             </div>
@@ -152,6 +183,7 @@ function ViewPost() {
                 {view?.posts?.[0]?.id === user.user.id ? (
                   <EditPostModal
                     toggleEdit={toggleEdit}
+                    postId={postId}
                     onClick={() => {
                       setToggle(!toggle);
                     }}
@@ -163,7 +195,8 @@ function ViewPost() {
                 setToggle={setToggle}
                 text={'Post'}
                 onClick={() => {
-                  deletePost();
+                  dispatch(deletePost({ postId }));
+                  console.log(posts);
                 }}
               />
             </div>

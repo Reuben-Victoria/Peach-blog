@@ -23,10 +23,8 @@ function EditProfile() {
   });
   const [toggle, setToggle] = useState(false);
 
-  const { loading, success } = useSelector((state) => state.users);
+  const { loading, userData } = useSelector((state) => state.users);
   const fileInput = useRef(null);
-
-  // console.log(authData.user.id, 'AUTH DATA');
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -47,7 +45,7 @@ function EditProfile() {
     const formData = new FormData();
     dispatch(
       UPDATEUSER({
-        id: userId,
+        userId: userId,
         ...formData,
         upload_photo: image.raw,
         first_name: details.firstName,
@@ -56,18 +54,14 @@ function EditProfile() {
         bio: details.bio
       })
     );
-    // console.log(details, 'details');
-    // // console.log(formData, 'formData');
-    // for (var keys of formData.entries()) {
-    //   console.log(keys[0] + ',' + keys[1]);
-    // }
+    console.log(userData?.status, '>>>>>');
   };
 
   useEffect(() => {
-    if (success) {
+    if (userData?.status === 'Success') {
       navigate(`/profile/${userId}`);
     }
-  }, [success]);
+  }, [userData?.status]);
   return (
     <section className={styles.editProfileWrapper}>
       <div className={styles.topSide}>
@@ -97,7 +91,7 @@ function EditProfile() {
         text={'Account'}
         userId={userId}
         onClick={() => {
-          dispatch(DELETEUSER(userId));
+          dispatch(DELETEUSER({ userId }));
           navigate('/login');
         }}
       />

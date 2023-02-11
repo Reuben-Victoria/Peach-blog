@@ -17,6 +17,8 @@ const latestPost = localStorage.getItem('LatestPost');
 
 const initialState = {
   posts: [],
+  comments: [],
+  reposts: [],
   loading: false,
   latestPost,
   error: null,
@@ -49,7 +51,7 @@ const postsSlice = createSlice({
     }),
       builder.addCase(postAdded.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.posts.push(payload);
+        state.posts = payload;
         state.success = true;
       }),
       builder.addCase(postAdded.rejected, (state, { payload }) => {
@@ -90,7 +92,7 @@ const postsSlice = createSlice({
     }),
       builder.addCase(addComment.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.posts.push(payload);
+        state.comments = payload;
       }),
       builder.addCase(addComment.rejected, (state, { payload }) => {
         state.loading = false;
@@ -102,7 +104,7 @@ const postsSlice = createSlice({
       }),
       builder.addCase(repost.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.posts.push(payload);
+        state.reposts = payload;
       }),
       builder.addCase(repost.rejected, (state, { payload }) => {
         state.loading = false;
@@ -130,7 +132,7 @@ const postsSlice = createSlice({
     }),
       builder.addCase(likePost.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.posts = payload;
+        state.likes = payload;
         // state.likes.push(payload);
       }),
       builder.addCase(likePost.rejected, (state, { payload }) => {
@@ -172,7 +174,8 @@ const postsSlice = createSlice({
     });
     builder.addCase(deletePost.fulfilled, (state, { payload }) => {
       state.loading = false;
-      state.posts.pop(payload);
+      state.posts = payload;
+      state.success = true;
     });
     builder.addCase(deletePost.rejected, (state, { payload }) => {
       state.loading = false;

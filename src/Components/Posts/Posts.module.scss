@@ -82,6 +82,14 @@ article {
             $color: #57497c
           );
         }
+        h1 {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          background-color: rgb(239, 244, 244);
+          @include flex-container($direction: row, $spacing: center);
+          @include authBodyText($fontSize: 13px, $fontWeight: 500);
+        }
       }
 
       &__options {

@@ -20,6 +20,14 @@
         border-radius: 50%;
         object-fit: cover;
       }
+      h2 {
+        width: 50px;
+        @include authBodyText($fontSize:16px, $fontWeight:500);
+        height: 50px;
+        background-color: rgb(239, 244, 244);
+        border-radius: 50%;
+        @include flex-container($direction: row, $spacing: center);
+      }
     }
   }
 }

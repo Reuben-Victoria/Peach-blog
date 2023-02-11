@@ -1,33 +1,28 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import TableLoader from '../../Components/Loader/Loader';
-// import dummy from '../../assets/dummy.svg';
-import edit from '../../assets/Edit2.svg';
-import post from '../../assets/Document.svg';
-import comment from '../../assets/comment.svg';
-import repost from '../../assets/repost.svg';
-import like from '../../assets/like.svg';
-import Divider from '../../Common/Divider/Divider';
-import TagIcon from '../../Common/TagIcons/TagIcon';
+import { useParams, Link } from 'react-router-dom';
+import TableLoader from 'Components/Loader/Loader';
+import edit from 'assets/Edit2.svg';
+import post from 'assets/Document.svg';
+import comment from 'assets/comment.svg';
+import repost from 'assets/repost.svg';
+import like from 'assets/like.svg';
+import Divider from 'Common/Divider/Divider';
+import TagIcon from 'Common/TagIcons/TagIcon';
 import styles from './Profile.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { GETPROFILE } from '../../Features/users/usersActions';
-import RecentActivity from '../../Components/RecentActivity/RecentActivity';
-import { Link } from 'react-router-dom';
+import { GETPROFILE } from 'Features/users/usersActions';
+import RecentActivity from 'Components/RecentActivity/RecentActivity';
 
 function Profile() {
   const { userData, loading } = useSelector((state) => state.users);
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const userParams = useParams();
   const userId = userParams.id;
 
   useEffect(() => {
     dispatch(GETPROFILE({ userId }));
-    // console.log(userId, 'profileInfo>>>>>>>');
-    // console.log(userData.data.user[0], 'DataInfo>>>>>>>');
   }, []);
-
-  // const { userInfo } = userData.data.user[0];
   const { data } = userData;
   const userInfo = data?.user?.[0];
   const comments = data?.comments?.[0];
@@ -35,8 +30,6 @@ function Profile() {
   const reposts = data?.reposts?.[0];
   const likes = data?.likes?.[0];
   const recentActivity = data?.recent_activity;
-  localStorage.setItem('profilePicture', userInfo?.upload_photo);
-  console.log(loading, 'jjjjjj>>>');
   {
     {
       return loading ? (
@@ -45,7 +38,13 @@ function Profile() {
         <main className={styles.ProfileContainer}>
           <div className={styles.ProfileContainer__userData}>
             <div className={styles.ProfileContainer__userData__profilePicture}>
-              <img src={userInfo?.upload_photo} alt="Profile picture" />
+              {userInfo?.upload_photo ? (
+                <img src={userInfo?.upload_photo} alt="Profile picture" />
+              ) : (
+                <h2>{`${userInfo?.first_name.charAt(0).toUpperCase()} ${userInfo?.last_name
+                  .charAt(0)
+                  .toUpperCase()}`}</h2>
+              )}
             </div>
             <div className={styles.ProfileContainer__userData__data}>
               <div className={styles.ProfileContainer__userData__data__userName}>

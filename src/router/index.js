@@ -1,24 +1,24 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import '../App.css';
-import Signup from '../Authentication/SignUp/Signup';
-import Login from '../Authentication/LogIn/Login';
-import ForgotPassword from '../Authentication/ForgotPassword/ForgotPassword';
-import Verification from '../Authentication/VerificationCode/Verification';
-import ViewPostPage from '../pages/ViewPostPage';
+import Signup from 'Authentication/SignUp/Signup';
+import Login from 'Authentication/LogIn/Login';
+import ForgotPassword from 'Authentication/ForgotPassword/ForgotPassword';
+import Verification from 'Authentication/VerificationCode/Verification';
+import ViewPostPage from 'pages/ViewPostPage';
 // import Header from '../Components/Header/Header';
 // import Success from '../Components/Success/Success';
-import CreatePostPage from '../pages/CreatePostPage';
-import ProfilePage from '../pages/ProfilePage';
-import HomePage from '../pages/HomePage';
-import ResetPassword from '../Authentication/ResetPassword/ResetPassword';
-import EditProfilePage from '../pages/EditProfilePage';
-import EditPostPage from '../pages/EditPostPage';
+import CreatePostPage from 'pages/CreatePostPage';
+import ProfilePage from 'pages/ProfilePage';
+import HomePage from 'pages/HomePage';
+import ResetPassword from 'Authentication/ResetPassword/ResetPassword';
+import EditProfilePage from 'pages/EditProfilePage';
+import EditPostPage from 'pages/EditPostPage';
 // import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PreventRoutes from '../utils/PreventRoutes';
+import PreventRoutes from 'utils/PreventRoutes';
 import { ToastContainer } from 'react-toastify';
-import Header from '../Components/Header/Header';
+import Header from 'Components/Header/Header';
 
 const Router = () => {
   return (
