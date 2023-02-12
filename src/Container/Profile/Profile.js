@@ -30,6 +30,7 @@ function Profile() {
   const reposts = data?.reposts?.[0];
   const likes = data?.likes?.[0];
   const recentActivity = data?.recent_activity;
+  localStorage.setItem('profilePicture', userInfo?.upload_photo);
   {
     {
       return loading ? (
@@ -74,7 +75,9 @@ function Profile() {
                   size={'sm'}
                   alt={'Posts'}
                 />
-                <Divider />
+                <div className={styles.ProfileContainer__userData__data__icons__divider}>
+                  <Divider />
+                </div>
                 <TagIcon
                   src={like}
                   text={`${likes?.count} posts liked`}
@@ -82,7 +85,10 @@ function Profile() {
                   size={'sm'}
                   alt={'heart'}
                 />
-                <Divider />
+                <div className={styles.ProfileContainer__userData__data__icons__divider}>
+                  <Divider />
+                </div>
+
                 <TagIcon
                   src={comment}
                   text={`${comments?.count} comments made`}
@@ -90,7 +96,9 @@ function Profile() {
                   size={'sm'}
                   alt={'comments'}
                 />
-                <Divider />
+                <div className={styles.ProfileContainer__userData__data__icons__divider}>
+                  <Divider />
+                </div>
                 <TagIcon
                   src={repost}
                   text={`${reposts?.count} reposts made`}

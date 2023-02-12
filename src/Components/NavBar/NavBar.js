@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 
 function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
   const profile = localStorage.getItem('profilePicture');
+  const profilePicture = profile ?? profile;
+  console.log(profilePicture, 'Profile>>>');
   const data = JSON.parse(localStorage.getItem('userInfo'));
   return (
     <>
@@ -18,8 +20,8 @@ function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
           <div className={styles.navBar__userProfile}>
             <Link to={`/profile/${userId}`}>
               <div className={styles.navBar__userProfile__image}>
-                {profile ? (
-                  <img src={profile} alt="profile-picture" />
+                {profilePicture ? (
+                  <img src={profilePicture} alt="profile-picture" />
                 ) : (
                   <h2>{`${data.user.first_name.charAt(0).toUpperCase()} ${data.user.last_name
                     .charAt(0)
@@ -41,8 +43,8 @@ function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
           <div className={styles.navBar__userProfile}>
             <Link to={`/profile/${userId}`}>
               <div className={styles.navBar__userProfile__image}>
-                {profile ? (
-                  <img src={profile} alt="profile-picture" />
+                {profilePicture ? (
+                  <img src={profilePicture} alt="profile-picture" />
                 ) : (
                   <h2>{`${data.user.first_name.charAt(0).toUpperCase()} ${data.user.last_name
                     .charAt(0)

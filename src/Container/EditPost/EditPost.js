@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from 'Common/Button/Button';
 import { convertToRaw, EditorState } from 'draft-js';
@@ -17,9 +17,10 @@ function EditPost() {
   const [inputValues, setInputValues] = useState({
     title: posts?.data?.posts?.[0]?.title,
     subtitle: posts?.data?.posts?.[0]?.subtitle
+    // post: posts?.data?.posts?.[0]?.post
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(readOnePost({ postId }));
   }, []);
   console.log(posts?.data?.posts?.[0]?.title);

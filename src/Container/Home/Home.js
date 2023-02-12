@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import Posts from 'Components/Posts/Post';
 import Tags from 'Components/Tags/Tags';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  // getAllPosts,
+  getAllPosts,
   getMostLikedPost,
   getLatestPost,
   getTopViews,
@@ -15,44 +15,45 @@ import PageLoader from 'Components/PageLoader/PageLoader';
 import styles from './Home.module.scss';
 import MoreModal from 'Components/MoreModal/MoreModal';
 import TableLoader from 'Components/Loader/Loader';
+import PostsNotFound from 'Container/PostsNotFound/PostsNotFound';
 
 function Home({ inputData }) {
   const [toggle, setToggle] = useState(false);
-  // const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loader = useRef(null);
   const { posts, loading } = useSelector((state) => state.post);
-  const userInfoData = JSON.parse(localStorage.getItem('userInfo'));
-  const photo = userInfoData.user.upload_photo;
-  localStorage.setItem('profilePicture', photo);
+  // const userInfoData = JSON.parse(localStorage.getItem('userInfo'));
+  // const photo = userInfoData.user.upload_photo;
+  // localStorage.setItem('profilePicture', photo);
   // const [pageNumber, setPageNumber] = useState(1);
 
-  // const handleObserver = useCallback((entries) => {
-  //   const target = entries[0];
-  //   console.log(entries, 'Entries>>>>');
-  //   if (target.isIntersecting) {
-  //     setPage((prev) => prev + 1);
-  //   }
-  // }, []);
+  const handleObserver = useCallback((entries) => {
+    const target = entries[0];
+    console.log(entries, 'Entries>>>>');
+    if (target.isIntersecting) {
+      setPage((prev) => prev + 1);
+    }
+  }, []);
 
-  // const option = {
-  //   root: null,
-  //   rootMargin: '20px',
-  //   threshold: 0
-  // };
+  const option = {
+    root: null,
+    rootMargin: '20px',
+    threshold: 0
+  };
 
   useEffect(() => {
-    // dispatch(
-    //   getAllPosts({
-    //     params: {
-    //       page: page,
-    //       search: inputData
-    //     }
-    //   })
-    dispatch(getLatestPost());
-    // const observer = new IntersectionObserver(handleObserver, option);
-    // if (loader.current) observer.observe(loader.current);
+    dispatch(
+      getAllPosts({
+        params: {
+          page: page,
+          search: inputData
+        }
+      })
+    );
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (loader.current) observer.observe(loader.current);
   }, [inputData, loader]);
 
   // console.log(handleObserver, 'HandleObserver>>>>>');
@@ -60,11 +61,17 @@ function Home({ inputData }) {
   const { data } = posts;
   {
     {
-      return Object.keys(posts?.data ?? {}).length ? (
+      return loading ? (
+        <TableLoader />
+      ) : Object.keys(posts?.data ?? {}).length ? (
         <div className={styles.homeWrapper}>
-          {loading && <h1>Loading</h1>}
           <div className={styles.homeWrapper__favorites}>
-            <p>Latest Posts</p>
+            <p
+              onClick={() => {
+                dispatch(getLatestPost());
+              }}>
+              Latest Posts
+            </p>
             <p
               onClick={() => {
                 dispatch(getTopViews());
@@ -125,7 +132,7 @@ function Home({ inputData }) {
           </div>
         </div>
       ) : (
-        <TableLoader />
+        <PostsNotFound />
       );
     }
   }

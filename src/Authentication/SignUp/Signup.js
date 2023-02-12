@@ -11,7 +11,7 @@ import { signUpSchema } from './signUpSchema';
 import Button from 'Common/Button/Button';
 
 function Signup() {
-  const { success, loading } = useSelector((state) => state.auth);
+  const { posts, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,10 +24,10 @@ function Signup() {
   };
 
   useEffect(() => {
-    if (success) {
+    if (posts?.status === 'success') {
       navigate('/login');
     }
-  }, [success]);
+  }, [posts?.status]);
 
   return (
     <section className={styles.signUpForm}>

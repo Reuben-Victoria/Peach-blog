@@ -32,8 +32,8 @@
   .activityContainer {
     &__dateStamp {
       @include authBodyText($fontWeight: 700, $fontSize: 12px, $lineHeight: 19px, $color: #57497c);
-      margin-right: 0px;
-      width: 19%;
+      margin-right: 14px;
+      width: 20%;
     }
     &__activity {
       @include flex-container($alignment: null);

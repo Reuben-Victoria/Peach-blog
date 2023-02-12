@@ -20,7 +20,12 @@
         border-radius: 50%;
         @include flex-container($alignment: center);
         width: 187px;
-        @include authBodyText($fontSize: 50px, $fontWeight: 700, $lineHeight: 27px, $color: #745abc);
+        @include authBodyText(
+          $fontSize: 50px,
+          $fontWeight: 700,
+          $lineHeight: 27px,
+          $color: #745abc
+        );
         margin-bottom: 57px;
         height: 187px;
       }
@@ -144,8 +149,13 @@
         }
 
         &__icons {
-          @include flex-container($direction: row, $spacing: null);
-          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(2, auto);
+          row-gap: 20px;
+
+          &__divider {
+            display: none;
+          }
 
           p {
             @include authBodyText(

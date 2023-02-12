@@ -92,7 +92,8 @@ function EditProfile() {
         userId={userId}
         onClick={() => {
           dispatch(DELETEUSER({ userId }));
-          navigate('/login');
+          localStorage.clear();
+          navigate('/signup');
         }}
       />
       <form className={styles.editProfileWrapper__form} onSubmit={handleSubmit}>

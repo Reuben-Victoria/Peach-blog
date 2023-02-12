@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PreventRoutes from 'utils/PreventRoutes';
 import { ToastContainer } from 'react-toastify';
 import Header from 'Components/Header/Header';
+import PostsNotFoundPage from 'pages/PostsNotFoundPage';
 
 const Router = () => {
   return (
@@ -31,6 +32,7 @@ const Router = () => {
             <Route path="/profile/:id" element={<ProfilePage />} />
             <Route exact path="/" element={<HomePage />} />
             <Route path="/edit-profile/:userId" element={<EditProfilePage />} />
+            <Route path="/not-found" element={<PostsNotFoundPage />} />
             <Route path="/view-post/:postId" element={<ViewPostPage />} />
             <Route path="/edit-post/:postId" element={<EditPostPage />} />
             <Route path="/create-post" element={<CreatePostPage />} />
