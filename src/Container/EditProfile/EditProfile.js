@@ -11,13 +11,16 @@ import DeleteModal from '../../Components/DeleteModal/DeleteModal';
 
 function EditProfile() {
   const { userId } = useParams();
-  console.log(userId, 'ID>>>>>>');
+  const value = JSON.parse(localStorage.getItem('userInfo'));
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [image, setImage] = useState({ preview: '', raw: '' });
+  const [image, setImage] = useState({
+    preview: value.user.upload_photo,
+    raw: value.user.upload_photo
+  });
   const [details, setDetails] = useState({
-    firstName: '',
-    lastName: '',
+    firstName: value.user.first_name,
+    lastName: value.user.last_name,
     tagLine: '',
     bio: ''
   });

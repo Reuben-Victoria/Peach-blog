@@ -4,7 +4,18 @@ import styles from './Input.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
-function Input({ label, id, onChange, placeholder, value, name, type, showPassword }) {
+function Input({
+  label,
+  id,
+  onChange,
+  placeholder,
+  value,
+  name,
+  type,
+  showPassword,
+  onFocus,
+  onBlur
+}) {
   const [togglePassword, setTogglePassword] = useState(false);
 
   function toggleVisibility() {
@@ -19,6 +30,8 @@ function Input({ label, id, onChange, placeholder, value, name, type, showPasswo
           placeholder={placeholder}
           onChange={onChange}
           value={value}
+          onFocus={onFocus}
+          onBlur={onBlur}
           name={name}
           type={showPassword && togglePassword ? 'password' : type}
         />
@@ -37,6 +50,8 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   id: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   type: PropTypes.string,
   showPassword: PropTypes.bool,
   name: PropTypes.string

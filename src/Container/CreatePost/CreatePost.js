@@ -73,20 +73,19 @@ function CreatePost() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    const data = editorState.getCurrentContent();
-    console.log(JSON.stringify(convertToRaw(data)), 'DATA>>>>>>>>>>>');
+    // const contentState = convertFromRaw(editorState.getCurrentContent());
+    // const data = EditorState.getCurrentContent(contentState);
+    // console.log(data, 'DATA>>>>>>>>>>>');
     dispatch(
       postAdded({
         ...formData,
         cover: image.raw,
         title: inputValues.title,
         subtitle: inputValues.subtitle,
-        post: JSON.stringify(convertToRaw(data))
+        post: JSON.stringify(convertToRaw(editorState.getCurrentContent()))
       })
     );
   };
-
-  console.log(posts?.status, 'POST>>>>>');
 
   const onEditorStateChange = (value) => {
     setEditorState(value);
@@ -94,6 +93,7 @@ function CreatePost() {
       'editor-state',
       JSON.stringify(convertToRaw(editorState.getCurrentContent()))
     );
+    console.log(convertToRaw(editorState.getCurrentContent()), '>>>>>');
   };
 
   return (

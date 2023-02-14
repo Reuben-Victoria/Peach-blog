@@ -10,10 +10,10 @@ import ViewPostPage from 'pages/ViewPostPage';
 // import Success from '../Components/Success/Success';
 import CreatePostPage from 'pages/CreatePostPage';
 import ProfilePage from 'pages/ProfilePage';
-import HomePage from 'pages/HomePage';
+import Home from 'Container/Home/Home';
 import ResetPassword from 'Authentication/ResetPassword/ResetPassword';
 import EditProfilePage from 'pages/EditProfilePage';
-import EditPostPage from 'pages/EditPostPage';
+import EditPost from 'Container/EditPost/EditPost';
 // import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PreventRoutes from 'utils/PreventRoutes';
@@ -30,11 +30,11 @@ const Router = () => {
         <Routes>
           <Route element={<PreventRoutes />}>
             <Route path="/profile/:id" element={<ProfilePage />} />
-            <Route exact path="/" element={<HomePage />} />
+            <Route exact path="/" element={<Home />} />
             <Route path="/edit-profile/:userId" element={<EditProfilePage />} />
             <Route path="/not-found" element={<PostsNotFoundPage />} />
             <Route path="/view-post/:postId" element={<ViewPostPage />} />
-            <Route path="/edit-post/:postId" element={<EditPostPage />} />
+            <Route path="/edit-post/:postId" element={<EditPost />} />
             <Route path="/create-post" element={<CreatePostPage />} />
           </Route>
           <Route path="/signup" element={<Signup />} />

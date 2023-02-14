@@ -19,6 +19,8 @@ function Profile() {
   const dispatch = useDispatch();
   const userParams = useParams();
   const userId = userParams.id;
+  const userValue = JSON.parse(localStorage.getItem('userInfo'));
+  console.log(userValue.user.id);
 
   useEffect(() => {
     dispatch(GETPROFILE({ userId }));
@@ -31,6 +33,7 @@ function Profile() {
   const likes = data?.likes?.[0];
   const recentActivity = data?.recent_activity;
   localStorage.setItem('profilePicture', userInfo?.upload_photo);
+  console.log(userInfo?.id === userId, '>>>Bool');
   {
     {
       return loading ? (
@@ -50,7 +53,7 @@ function Profile() {
             <div className={styles.ProfileContainer__userData__data}>
               <div className={styles.ProfileContainer__userData__data__userName}>
                 <h1>{`${userInfo?.first_name} ${userInfo?.last_name}`}</h1>
-                {userInfo?.id === userId ? (
+                {userInfo?.id === userValue.user.id && (
                   <Link to={`/edit-profile/${userId}`}>
                     <div className={styles.ProfileContainer__userData__data__userName__editIcon}>
                       <TagIcon
@@ -62,7 +65,7 @@ function Profile() {
                       />
                     </div>
                   </Link>
-                ) : null}
+                )}
               </div>
               <p className={styles.ProfileContainer__userData__data__description}>
                 {userInfo?.tagline}

@@ -30,9 +30,6 @@ function Login() {
             password: values.password.replace(/^\s+|\s+$/gm, '')
           })
         );
-        setTimeout(() => {
-          localStorage.clear();
-        }, 12000);
       }}>
       {(formik) => {
         const { touched, errors } = formik;

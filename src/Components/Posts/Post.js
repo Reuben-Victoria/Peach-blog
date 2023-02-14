@@ -8,6 +8,7 @@ import save from 'assets/save.svg';
 import more from 'assets/more.svg';
 import ProfileData from 'Common/ProfileData/ProfileData';
 import PropTypes from 'prop-types';
+// import ReadTime from 'Components/ReadTime/ReadTime';
 
 const Posts = ({
   onClick,
@@ -20,6 +21,7 @@ const Posts = ({
   noOfLikes,
   noOfComment,
   upload
+  // totalWords
 }) => {
   const data = JSON.parse(localStorage.getItem('userInfo'));
   console.log(data.user, 'DATA>>>>>');
@@ -32,7 +34,7 @@ const Posts = ({
         <div className={styles.postsContainer__postContent}>
           <div className={styles.postsContainer__postContent__postTitle}>
             <h1>{title}</h1>
-            <p>Read Time</p>
+            {/* <ReadTime totalWords={totalWords} /> */}
           </div>
           <p className={styles.postsContainer__postContent__postSubTitle}>{subtitle}</p>
           <p className={styles.postsContainer__postContent__post}>{postContent}</p>
@@ -79,6 +81,7 @@ Posts.propTypes = {
   postContent: PropTypes.string,
   dateStamp: PropTypes.string,
   noOfLikes: PropTypes.any,
+  totalWords: PropTypes.any,
   noOfComment: PropTypes.string,
   upload: PropTypes.string
 };

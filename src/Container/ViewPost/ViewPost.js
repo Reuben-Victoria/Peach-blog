@@ -119,11 +119,13 @@ function ViewPost() {
           <div className={styles.profileImage}>
             <img src={view?.posts?.[0]?.cover} />
           </div>
-          {/* {view?.posts?.[0].map((post) => {
-            const contentState = convertFromRaw(JSON.parse(post.post));
-            const editorState = EditorState.createWithContent(contentState);
-            return <Editor editorState={editorState} key={post.post} readOnly={true} />;
-          })} */}
+          {/* <div className={styles.post}>
+            {JSON.parse(view?.posts?.[0].post)?.map((post) => {
+              const contentState = convertFromRaw(post.post);
+              const editorState = EditorState.createWithContent(contentState);
+              return <Editor editorState={editorState} key={post.post} readOnly={true} />;
+            })}
+          </div> */}
           <p className={styles.post}>{view?.posts?.[0]?.post}</p>
           <div className={styles.homeWrapper__contents__posts__tagIconContainer}>
             <div className={styles.homeWrapper__contents__posts__tagIconContainer__tagIcon}>

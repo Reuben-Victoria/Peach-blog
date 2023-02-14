@@ -54,6 +54,14 @@
           border-radius: 50%;
           object-fit: cover;
         }
+        h2 {
+          width: 30px;
+          @include authBodyText($fontSize: 14px, $fontWeight: 500);
+          height: 30px;
+          background-color: rgb(239, 244, 244);
+          border-radius: 50%;
+          @include flex-container($direction: row, $spacing: center);
+        }
       }
       &__notification {
         width: 25px;

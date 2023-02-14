@@ -34,7 +34,6 @@ export const postAdded = createAsyncThunk(
 
 export const getAllPosts = createAsyncThunk('post/allPost', async ({ params }) => {
   const response = await instance.get(`blogs/all_posts?${queryFormatter(params)}`);
-  console.log('response', response.data);
   return response.data;
 });
 

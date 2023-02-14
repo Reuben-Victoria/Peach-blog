@@ -8,6 +8,7 @@ import EditorBar from 'Components/Editor/EditorBar';
 import styles from './EditPost.module.scss';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import PageLayout from 'Layouts/PageLayout';
 
 function EditPost() {
   const dispatch = useDispatch();
@@ -30,7 +31,15 @@ function EditPost() {
   });
   const fileInput = useRef(null);
 
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [editorState, setEditorState] = useState(() => {
+    // posts?.data?.posts?.[0]?.posts.map((post) => {
+    //   const blocksFromHTML = convertFromRaw(post);
+    //   const contentState = ContentState.createFromBlockArray(
+    //     blocksFromHTML.contentBlocks,
+    //     blocksFromHTML.entityMap
+    //   );
+    return EditorState.createEmpty();
+  });
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -43,6 +52,7 @@ function EditPost() {
     const data = editorState.getCurrentContent();
     dispatch(
       editPost({
+        postId: postId,
         ...formData,
         cover: coverImage.raw,
         title: inputValues.title,
@@ -76,52 +86,54 @@ function EditPost() {
     setEditorState(value);
   };
   return (
-    <form className={styles.createPostContainer__body} onSubmit={handleSubmit}>
-      <div className={styles.createPostContainer__body__header}>
-        <input
-          placeholder="Add Post Title... "
-          name="title"
-          onChange={handleOnChange}
-          value={inputValues.title}
-        />
-        <input
-          ref={fileInput}
-          type="file"
-          accept="image/*"
-          name="file"
-          onChange={handleImage}
-          style={{ display: 'none' }}
-        />
-      </div>
-      {/* <div className={styles.editPostWrapper__image}> */}
-      {coverImage.preview && (
-        <div className={styles.createPostContainer__body__image}>
-          <img src={coverImage.preview} alt="image" />
+    <PageLayout onClick={handleSubmit} toggle>
+      <form className={styles.createPostContainer__body}>
+        <div className={styles.createPostContainer__body__header}>
+          <input
+            placeholder="Add Post Title... "
+            name="title"
+            onChange={handleOnChange}
+            value={inputValues.title}
+          />
+          <input
+            ref={fileInput}
+            type="file"
+            accept="image/*"
+            name="file"
+            onChange={handleImage}
+            style={{ display: 'none' }}
+          />
         </div>
-      )}
-      <div className={styles.createPostContainer__body__subtitle}>
-        <input
-          placeholder="Add Subtitle... "
-          name="subtitle"
-          onChange={handleOnChange}
-          value={inputValues.subtitle}
-        />
-      </div>
-      <div className={styles.editPostWrapper__text}>
-        <EditorBar editorState={editorState} onEditorStateChange={onEditorStateChange} />
-      </div>
-      <div className={styles.buttonsContainer}>
-        <Button
-          onClick={handleClick}
-          showImage
-          src={cover}
-          alt={'Cover'}
-          theme={'primary'}
-          text={'Add Cover'}
-          size={'md'}
-        />
-      </div>
-    </form>
+        {/* <div className={styles.editPostWrapper__image}> */}
+        {coverImage.preview && (
+          <div className={styles.createPostContainer__body__image}>
+            <img src={coverImage.preview} alt="image" />
+          </div>
+        )}
+        <div className={styles.createPostContainer__body__subtitle}>
+          <input
+            placeholder="Add Subtitle... "
+            name="subtitle"
+            onChange={handleOnChange}
+            value={inputValues.subtitle}
+          />
+        </div>
+        <div className={styles.editPostWrapper__text}>
+          <EditorBar editorState={editorState} onEditorStateChange={onEditorStateChange} />
+        </div>
+        <div className={styles.buttonsContainer}>
+          <Button
+            onClick={handleClick}
+            showImage
+            src={cover}
+            alt={'Cover'}
+            theme={'primary'}
+            text={'Add Cover'}
+            size={'md'}
+          />
+        </div>
+      </form>
+    </PageLayout>
   );
 }
 EditPost.propTypes = {

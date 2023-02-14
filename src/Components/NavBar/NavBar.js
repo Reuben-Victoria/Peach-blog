@@ -7,10 +7,11 @@ import editIcon from 'assets/Edit3.svg';
 import notificationIcon from 'assets/Notification.svg';
 import { Link } from 'react-router-dom';
 
-function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
+function NavBar({ userId, onClick, toggle, component: ComponentInput, componentProps }) {
   const profile = localStorage.getItem('profilePicture');
   const profilePicture = profile ?? profile;
   console.log(profilePicture, 'Profile>>>');
+  console.log(profile);
   const data = JSON.parse(localStorage.getItem('userInfo'));
   return (
     <>
@@ -33,7 +34,7 @@ function NavBar({ userId, toggle, component: ComponentInput, componentProps }) {
               <img src={notificationIcon} alt="notification" />
             </div>
             <Link to="/create-post">
-              <Button theme={'lightPink'} size={'sm'} text={'Update'} type={'submit'} />
+              <Button theme={'lightPink'} size={'sm'} text={'Update'} onClick={onClick} />
             </Link>
           </div>
         </nav>
@@ -75,6 +76,7 @@ NavBar.propTypes = {
   userId: PropTypes.string,
   toggle: PropTypes.bool,
   dummy: PropTypes.string,
+  onClick: PropTypes.func,
   component: PropTypes.elementType,
   componentProps: PropTypes.object
 };
