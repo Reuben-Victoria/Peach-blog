@@ -10,7 +10,6 @@ function ReadTime({ totalWords, variant }) {
       numberOfWords += post.split('').length;
     });
     let readTime = numberOfWords / averageWPM;
-    console.log(readTime, '>>>>hhhhh');
     return Math.round(readTime);
   };
   return (
