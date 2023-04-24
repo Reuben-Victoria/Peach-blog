@@ -36,7 +36,7 @@ function Input({
           type={showPassword && togglePassword ? 'password' : type}
         />
         <div onClick={toggleVisibility} className={showPassword ? styles.icon : styles.display}>
-          {<FontAwesomeIcon icon={togglePassword ? faEye : faEyeSlash} />}
+          {<FontAwesomeIcon icon={togglePassword ? faEyeSlash : faEye} />}
         </div>
       </div>
     </div>
