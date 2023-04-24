@@ -1,6 +1,6 @@
 import React from 'react';
-import PageLayout from '../Layouts/PageLayout';
-import Profile from '../Container/Profile/Profile';
+import PageLayout from 'layouts/PageLayout';
+import Profile from 'container/profile/Profile';
 
 function ProfilePage() {
   return (
