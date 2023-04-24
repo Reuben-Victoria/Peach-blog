@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import SearchBar from '../Components/SearchBar/SearchBar';
-import Home from '../Container/Home/Home';
-import { useDebounce } from '../Hooks/debounce';
-import PageLayout from '../Layouts/PageLayout';
+import SearchBar from 'components/searchBar/SearchBar';
+import Home from 'container/home/Home';
+import { useDebounce } from 'hooks/debounce';
+import PageLayout from 'layouts/PageLayout';
 
 function HomePage() {
   const [inputValue, setInputValue] = useState('');
