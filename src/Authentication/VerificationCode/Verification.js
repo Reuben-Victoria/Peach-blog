@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Input from 'Common/Input/Input';
+import Input from 'common/input/Input';
 import styles from './Verification.module.scss';
-import Button from 'Common/Button/Button';
-import { verifyCode } from 'Features/authentication/authActions';
+import Button from 'common/button/Button';
+import { verifyCode } from 'features/authentication/authActions';
 function Verification() {
   const dispatch = useDispatch();
   const { email } = useParams();
@@ -43,6 +43,7 @@ function Verification() {
           theme={'secondary'}
           size={'lg'}
           text={'Verify Code'}
+          disabled={loading}
           loading={loading}
         />
       </form>
