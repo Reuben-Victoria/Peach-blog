@@ -1,28 +1,26 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
-// import Posts from '../../Components/Posts/Post';
-// import { Editor } from 'react-draft-wysiwyg';
-// import { convertFromRaw, EditorState } from 'draft-js';
-import TableLoader from 'Components/Loader/Loader';
+
+import TableLoader from 'components/loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import Tags from 'Components/Tags/Tags';
+import Tags from 'components/tags/Tags';
 import styles from './ViewPost.module.scss';
-import MoreFromAuthor from '../MoreFromAuthor/MoreFromAuthor';
-import TagIcon from 'Common/TagIcons/TagIcon';
-import Divider from 'Common/Divider/Divider';
+import MoreFromAuthor from '../moreFromAuthor/MoreFromAuthor';
+import TagIcon from 'common/tagIcons/TagIcon';
+import Divider from 'common/divider/Divider';
 import favouriteFilled from 'assets/favouriteFilled.svg';
 import commentIcon from 'assets/comment.svg';
 import like from 'assets/like.svg';
 import repostIcon from 'assets/repost.svg';
 import save from 'assets/save.svg';
 import more from 'assets/more.svg';
-import EditPostModal from 'Components/EditPostModal/EditPostModal';
-import DeleteModal from 'Components/DeleteModal/DeleteModal';
-import { deletePost, readOnePost, repost, likePost, addComment } from 'Features/posts/postActions';
+import EditPostModal from 'components/editPostModal/EditPostModal';
+import DeleteModal from 'components/deleteModal/DeleteModal';
+import { deletePost, readOnePost, repost, likePost, addComment } from 'features/posts/postActions';
 import { useParams } from 'react-router-dom';
-import MoreModal from 'Components/MoreModal/MoreModal';
-import Comments from 'Components/Comments/Comments';
+import MoreModal from 'components/moreModal/MoreModal';
+import Comments from 'components/comments/Comments';
 function ViewPost() {
   const [toggleLike, setToggleLike] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
@@ -50,7 +48,6 @@ function ViewPost() {
     e.preventDefault();
     dispatch(addComment({ comment, postId }));
     setCountComment(countComment + 1);
-    console.log(comment);
   };
 
   const handleToggleComments = () => {
@@ -66,7 +63,6 @@ function ViewPost() {
     setCountLike(countLike + 1);
     localStorage.setItem('like', toggleLike);
     dispatch(likePost({ likesNum, postId }));
-    console.log(toggleLike, countLike);
   };
   const getToggle = localStorage.getItem('like');
   useEffect(() => {
@@ -198,7 +194,6 @@ function ViewPost() {
                 text={'Post'}
                 onClick={() => {
                   dispatch(deletePost({ postId }));
-                  console.log(posts);
                 }}
               />
             </div>
