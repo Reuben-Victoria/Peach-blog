@@ -1,5 +1,5 @@
-import Button from 'Common/Button/Button';
-import ProfileData from 'Common/ProfileData/ProfileData';
+import Button from 'common/button/Button';
+import ProfileData from 'common/profileData/ProfileData';
 import PropTypes from 'prop-types';
 import styles from './Comments.module.scss';
 
