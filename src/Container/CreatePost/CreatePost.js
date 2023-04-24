@@ -160,16 +160,4 @@ function CreatePost() {
   );
 }
 
-// const Code = ({ value, language }) => {
-//   return (
-//     <SyntaxHighlighter language={language} style={dracula}>
-//       {value}
-//     </SyntaxHighlighter>
-//   );
-// };
-
 export default CreatePost;
-// Code.propTypes = {
-//   value: PropTypes.any,
-//   language: PropTypes.string
-// };
