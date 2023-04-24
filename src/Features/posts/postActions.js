@@ -3,15 +3,6 @@ import instance from 'api';
 import { successToast, failureToast } from 'authentication/toast/Toast';
 import queryFormatter from 'utils/queryFormatter';
 
-// import { apiSlice } from "../api/apiSlice";
-
-// export const extendedApiSice = apiSlice.injectEndpoints({
-//   endpoints.builder => ({
-
-//   })
-// })
-
-// let formData = new FormData();
 export const postAdded = createAsyncThunk(
   'post/postAdded',
   async ({ cover, title, subtitle, post }, { rejectWithValue }) => {
