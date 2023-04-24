@@ -1,14 +1,14 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from 'Common/Button/Button';
+import Button from 'common/button/Button';
 import { convertToRaw, EditorState } from 'draft-js';
 import cover from 'assets/cover.svg';
-import { readOnePost, editPost } from 'Features/posts/postActions';
-import EditorBar from 'Components/Editor/EditorBar';
+import { readOnePost, editPost } from 'features/posts/postActions';
+import EditorBar from 'components/editor/EditorBar';
 import styles from './EditPost.module.scss';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import PageLayout from 'Layouts/PageLayout';
+import PageLayout from 'layouts/PageLayout';
 
 function EditPost() {
   const dispatch = useDispatch();
@@ -24,7 +24,6 @@ function EditPost() {
   useLayoutEffect(() => {
     dispatch(readOnePost({ postId }));
   }, []);
-  console.log(posts?.data?.posts?.[0]?.title);
   const [coverImage, setCoverImage] = useState({
     preview: posts?.data?.posts?.[0]?.cover,
     raw: posts?.data?.posts?.[0]?.cover
@@ -104,7 +103,6 @@ function EditPost() {
             style={{ display: 'none' }}
           />
         </div>
-        {/* <div className={styles.editPostWrapper__image}> */}
         {coverImage.preview && (
           <div className={styles.createPostContainer__body__image}>
             <img src={coverImage.preview} alt="image" />
