@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './NavBar.module.scss';
-import Button from 'Common/Button/Button';
+import Button from 'common/button/Button';
 import editIcon from 'assets/Edit3.svg';
 // import { useSelector } from 'react-redux';
 import notificationIcon from 'assets/Notification.svg';
@@ -10,8 +10,7 @@ import { Link } from 'react-router-dom';
 function NavBar({ userId, onClick, toggle, component: ComponentInput, componentProps }) {
   const profile = localStorage.getItem('profilePicture');
   const profilePicture = profile ?? profile;
-  console.log(profilePicture, 'Profile>>>');
-  console.log(profile);
+
   const data = JSON.parse(localStorage.getItem('userInfo'));
   return (
     <>
