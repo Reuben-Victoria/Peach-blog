@@ -1,6 +1,6 @@
 import React from 'react';
-import PageLayout from '../Layouts/PageLayout';
-import ViewPost from '../Container/ViewPost/ViewPost';
+import PageLayout from 'layouts/PageLayout';
+import ViewPost from 'container/viewPost/ViewPost';
 
 function ViewPostPage() {
   return (
