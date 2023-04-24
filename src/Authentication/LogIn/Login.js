@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import Input from 'Common/Input/Input';
+import Input from 'common/input/Input';
 import styles from './Login.module.scss';
-import Button from 'Common/Button/Button';
+import Button from 'common/button/Button';
 import { loginSchema } from './loginSchema';
-import { userLogin } from 'Features/authentication/authActions';
+import { userLogin } from 'features/authentication/authActions';
 
 function Login() {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function Login() {
         );
       }}>
       {(formik) => {
-        const { touched, errors } = formik;
+        const { touched, errors, isValid, dirty } = formik;
         return (
           <div className={styles.formWrap}>
             <h1>Great to see you again</h1>
@@ -70,6 +70,7 @@ function Login() {
                 size={'lg'}
                 text={'Log In'}
                 loading={loading}
+                disabled={(!isValid && dirty) || loading}
               />
             </form>
 
