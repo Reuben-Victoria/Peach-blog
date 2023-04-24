@@ -35,6 +35,6 @@ Button.propTypes = {
   src: PropTypes.string,
   onClick: PropTypes.func,
   showImage: PropTypes.bool,
-  disabled: PropTypes.string
+  disabled: PropTypes.bool
 };
 export default Button;
