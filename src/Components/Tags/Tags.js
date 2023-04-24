@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Button from '../../Common/Button/Button';
+import Button from 'common/button/Button';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { readOnePost } from '../../Features/posts/postActions';
-// import dummy from '../../assets/dummy.svg';
+import { readOnePost } from 'features/posts/postActions';
 import styles from './Tags.module.scss';
-import ProfileData from '../../Common/ProfileData/ProfileData';
-import close from '../../assets/close.svg';
+import ProfileData from 'common/profileData/ProfileData';
+import close from 'assets/close.svg';
 
 function Tags() {
   const [toggleList, setToggleList] = useState(false);
