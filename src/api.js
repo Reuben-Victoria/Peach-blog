@@ -6,8 +6,7 @@ const instance = axios.create({
   headers: {
     'Content-Type': 'application/json',
     // eslint-disable-next-line no-dupe-keys
-    'Content-Type': 'multipart/form-data',
-    'ngrok-skip-browser-warning': 'true'
+    'Content-Type': 'multipart/form-data'
   }
 });
 
