@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import postsReducer from '../Features/posts/postsSlice';
+import postsReducer from './posts/postsSlice';
 import authSlice from './authentication/authSlice';
 import usersSlice from './users/usersSlice';
 const appReducer = combineReducers({
