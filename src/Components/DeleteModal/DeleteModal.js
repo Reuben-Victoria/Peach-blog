@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Button from 'Common/Button/Button';
+import Button from 'common/button/Button';
 import { useSelector } from 'react-redux';
 import styles from './DeleteModal.module.scss';
 
