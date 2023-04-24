@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './MoreFromAuthor.module.scss';
-import Divider from 'Common/Divider/Divider';
-import TagIcon from 'Common/TagIcons/TagIcon';
+import Divider from 'common/divider/Divider';
+import TagIcon from 'common/tagIcons/TagIcon';
 import like from 'assets/like.svg';
-// import cover from '../../assets/cover.svg';
 import comment from 'assets/comment.svg';
 import save from 'assets/save.svg';
 import more from 'assets/more.svg';
