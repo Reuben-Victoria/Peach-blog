@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import instance from 'api';
-import { successToast, failureToast } from 'Authentication/Toast/Toast';
+import { successToast, failureToast } from 'authentication/toast/Toast';
 import queryFormatter from 'utils/queryFormatter';
 
 // import { apiSlice } from "../api/apiSlice";
@@ -25,7 +25,6 @@ export const postAdded = createAsyncThunk(
       successToast(`${data.message}`);
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
       failureToast(`${error.response?.data?.message}`);
       return rejectWithValue(error.response.data);
     }
@@ -39,7 +38,6 @@ export const getAllPosts = createAsyncThunk('post/allPost', async ({ params }) =
 
 export const getMostLikedPost = createAsyncThunk('post/mostLiked', async () => {
   const response = await instance.get('blogs/most_liked');
-  console.log('MostLiked', response.data);
   return response.data;
 });
 
@@ -51,7 +49,6 @@ export const getLatestPost = createAsyncThunk('post/latestPost', async () => {
 
 export const readOnePost = createAsyncThunk('post/viewPost', async ({ postId }) => {
   const response = await instance.get(`blogs/view_post/${postId}`);
-  console.log('viewPost', response.data);
   return response.data;
 });
 
@@ -62,7 +59,6 @@ export const addComment = createAsyncThunk(
       const { data } = await instance.post(`blogs/comment/${postId}`, { comment });
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
       return rejectWithValue(error.response.data);
     }
   }
@@ -73,14 +69,12 @@ export const repost = createAsyncThunk('post/repost', async ({ postId }, { rejec
     const { data } = await instance.post(`blogs/repost/${postId}`);
     return data;
   } catch (error) {
-    console.log(error.response, 'error');
     return rejectWithValue(error.response.data);
   }
 });
 
 export const getTopViews = createAsyncThunk('post/topViews', async () => {
   const response = await instance.get('blogs/top_views');
-  console.log('top Views', response.data);
   return response.data;
 });
 
@@ -96,7 +90,6 @@ export const editPost = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
       return rejectWithValue(error.response.data);
     }
   }
@@ -108,7 +101,6 @@ export const deletePost = createAsyncThunk(
     try {
       const response = await instance.delete(`blogs/delete_post/${postId}`);
       successToast(`${response?.data?.message}`);
-      console.log('delePost', response);
       return response.data;
     } catch (error) {
       failureToast(`${error.response?.data?.message}`);
@@ -124,7 +116,6 @@ export const likePost = createAsyncThunk(
       const { data } = await instance.post(`blogs/like/${postId}`, { likePost });
       return data;
     } catch (error) {
-      console.log(error.response, 'error');
       return rejectWithValue(error.response.data);
     }
   }
