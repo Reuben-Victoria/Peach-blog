@@ -4,7 +4,6 @@ import styles from './ProfileData.module.scss';
 
 function ProfileData({ src, alt, name }) {
   const data = JSON.parse(localStorage.getItem('userInfo'));
-  console.log(data.user, 'USER>>>>>');
   return (
     <div className={styles.userData}>
       <div className={styles.userData__profilePicture}>
