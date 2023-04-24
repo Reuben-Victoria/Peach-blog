@@ -1,5 +1,5 @@
-import PageLayout from 'Layouts/PageLayout';
-import PostsNotFound from 'Container/PostsNotFound/PostsNotFound';
+import PageLayout from 'layouts/PageLayout';
+import PostsNotFound from 'container/postsNotFound/PostsNotFound';
 
 function PostsNotFoundPage() {
   return (
