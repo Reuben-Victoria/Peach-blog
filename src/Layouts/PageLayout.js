@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { Outlet } from 'react-router-dom';
-import NavBar from '../Components/NavBar/NavBar';
-import Footer from '../Components/Footer/Footer';
+import NavBar from 'components/navBar/NavBar';
+import Footer from 'components/footer/Footer';
 import styles from './PageLayout.module.scss';
 
 function PageLayout({ children, toggle, component, componentProps, onClick }) {
   const authData = JSON.parse(localStorage.getItem('userInfo'));
-  console.log(authData.user.id);
   return (
     <div className={styles.main}>
       <NavBar
