@@ -3,18 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { convertToRaw, convertFromRaw, EditorState } from 'draft-js';
 import styles from './CreatePost.module.scss';
-import Button from 'Common/Button/Button';
+import Button from 'common/button/Button';
 import Tvector from 'assets/TVector.svg';
 import cover from 'assets/cover.svg';
-import EditorBar from 'Components/Editor/EditorBar';
-import { postAdded } from 'Features/posts/postActions';
+import EditorBar from 'components/editor/EditorBar';
+import { postAdded } from 'features/posts/postActions';
 
 function CreatePost() {
   const dispatch = useDispatch();
   const { loading, posts } = useSelector((state) => state.post);
   const postId = posts?.data?.id;
   const navigate = useNavigate();
-  console.log(postId);
   const [editorState, setEditorState] = useState(() => {
     if (localStorage.getItem('editor-state')) {
       return EditorState.createWithContent(
@@ -66,8 +65,6 @@ function CreatePost() {
         })
       );
     }
-
-    console.log(event.target.files[0]);
   }
 
   const handleSubmit = (event) => {
@@ -75,7 +72,6 @@ function CreatePost() {
     const formData = new FormData();
     // const contentState = convertFromRaw(editorState.getCurrentContent());
     // const data = EditorState.getCurrentContent(contentState);
-    // console.log(data, 'DATA>>>>>>>>>>>');
     dispatch(
       postAdded({
         ...formData,
@@ -93,7 +89,6 @@ function CreatePost() {
       'editor-state',
       JSON.stringify(convertToRaw(editorState.getCurrentContent()))
     );
-    console.log(convertToRaw(editorState.getCurrentContent()), '>>>>>');
   };
 
   return (
