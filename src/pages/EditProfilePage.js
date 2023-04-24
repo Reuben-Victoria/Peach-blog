@@ -1,6 +1,6 @@
 import React from 'react';
-import PageLayout from '../Layouts/PageLayout';
-import EditProfile from '../Container/EditProfile/EditProfile';
+import PageLayout from 'layouts/PageLayout';
+import EditProfile from 'container/editProfile/EditProfile';
 
 function EditProfilePage() {
   return (
