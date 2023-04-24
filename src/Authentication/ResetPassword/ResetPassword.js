@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import Successful from '../Successful/Successful';
+import Successful from '../successful/Successful';
 import { resetSchema } from './resetSchema';
-import Input from 'Common/Input/Input';
+import Input from 'common/input/Input';
 import styles from './ResetPassword.module.scss';
-import Button from 'Common/Button/Button';
-import { resetPassword } from 'Features/authentication/authActions';
+import Button from 'common/button/Button';
+import { resetPassword } from 'features/authentication/authActions';
 
 function ResetPassword() {
   const [toggle, setToggle] = useState(false);
@@ -39,7 +39,7 @@ function ResetPassword() {
         );
       }}>
       {(formik) => {
-        const { touched, errors } = formik;
+        const { touched, errors, isValid, dirty } = formik;
         return (
           <div className={styles.formWrap}>
             <h1>Create new password</h1>
@@ -78,6 +78,7 @@ function ResetPassword() {
                 theme="secondary"
                 size={'lg'}
                 text={'Proceed'}
+                disabled={(!isValid && dirty) || loading}
                 loading={loading}
               />
             </form>
