@@ -1,12 +1,12 @@
 import React from 'react';
-import Divider from 'Common/Divider/Divider';
-import TagIcon from 'Common/TagIcons/TagIcon';
+import Divider from 'common/divider/Divider';
+import TagIcon from 'common/tagIcons/TagIcon';
 import styles from './Posts.module.scss';
 import like from 'assets/like.svg';
 import comment from 'assets/comment.svg';
 import save from 'assets/save.svg';
 import more from 'assets/more.svg';
-import ProfileData from 'Common/ProfileData/ProfileData';
+import ProfileData from 'common/profileData/ProfileData';
 import PropTypes from 'prop-types';
 // import ReadTime from 'Components/ReadTime/ReadTime';
 
@@ -24,7 +24,6 @@ const Posts = ({
   // totalWords
 }) => {
   const data = JSON.parse(localStorage.getItem('userInfo'));
-  console.log(data.user, 'DATA>>>>>');
   return (
     <article onClick={onClick}>
       <div className={styles.postsContainer}>
