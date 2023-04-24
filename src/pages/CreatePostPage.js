@@ -1,6 +1,6 @@
 import React from 'react';
-import PageLayout from '../Layouts/PageLayout';
-import CreatePost from '../Container/CreatePost/CreatePost';
+import PageLayout from 'layouts/PageLayout';
+import CreatePost from 'container/createPost/CreatePost';
 
 function CreatePostPage() {
   return (
