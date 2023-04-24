@@ -1,73 +1,65 @@
-import React, { useLayoutEffect, useState, useRef } from 'react';
+import React, { useLayoutEffect, useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import Posts from 'Components/Posts/Post';
-import Tags from 'Components/Tags/Tags';
-import { useDebounce } from 'Hooks/debounce';
-import SearchBar from 'Components/SearchBar/SearchBar';
+import Posts from 'components/posts/Post';
+import Tags from 'components/tags/Tags';
+import { useDebounce } from 'hooks/debounce';
+import SearchBar from 'components/searchBar/SearchBar';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  // getAllPosts,
+  getAllPosts,
   getMostLikedPost,
   getLatestPost,
   getTopViews,
   readOnePost
-} from 'Features/posts/postActions';
-import PageLoader from 'Components/PageLoader/PageLoader';
+} from 'features/posts/postActions';
+import PageLoader from 'components/pageLoader/PageLoader';
 import styles from './Home.module.scss';
-import MoreModal from 'Components/MoreModal/MoreModal';
-import TableLoader from 'Components/Loader/Loader';
-import PostsNotFound from 'Container/PostsNotFound/PostsNotFound';
-import PageLayout from 'Layouts/PageLayout';
+import MoreModal from 'components/moreModal/MoreModal';
+import TableLoader from 'components/loader/Loader';
+import PostsNotFound from 'container/postsNotFound/PostsNotFound';
+import PageLayout from 'layouts/PageLayout';
 
 function Home() {
   const [toggle, setToggle] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const inputData = useDebounce(inputValue, 1000);
-  // const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loader = useRef(null);
   const { posts, loading } = useSelector((state) => state.post);
-  // const userInfoData = JSON.parse(localStorage.getItem('userInfo'));
-  // const photo = userInfoData.user.upload_photo;
-  // localStorage.setItem('profilePicture', photo);
-  // const [pageNumber, setPageNumber] = useState(1);
+  const userInfoData = JSON.parse(localStorage.getItem('userInfo'));
+  const photo = userInfoData.user.upload_photo;
+  localStorage.setItem('profilePicture', photo);
 
-  // const handleObserver = useCallback((entries) => {
-  //   const target = entries[0];
-  //   console.log(entries, 'Entries>>>>');
-  //   if (target.isIntersecting) {
-  //     setPage((prev) => prev + 1);
-  //   }
-  // }, []);
+  const handleObserver = useCallback((entries) => {
+    const target = entries[0];
+    if (target.isIntersecting) {
+      setPage((prev) => prev + 1);
+    }
+  }, []);
 
-  // const option = {
-  //   root: null,
-  //   rootMargin: '20px',
-  //   threshold: 0
-  // };
+  const option = {
+    root: null,
+    rootMargin: '20px',
+    threshold: 0
+  };
 
   useLayoutEffect(() => {
     dispatch(
-      // getAllPosts({
-      //   params: {
-      //     page: page,
-      //     search: inputData
-      //   }
-      // })
-      getLatestPost()
+      getAllPosts({
+        params: {
+          page: page,
+          search: inputData
+        }
+      })
     );
-    // const observer = new IntersectionObserver(handleObserver, option);
-    // if (loader.current) observer.observe(loader.current);
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (loader.current) observer.observe(loader.current);
   }, []);
 
-  console.log({ posts }, '>>>>');
-
-  // console.log(handleObserver, 'HandleObserver>>>>>');
-
   const { data } = posts;
-  console.log(inputData);
   return (
     <PageLayout
       component={SearchBar}
@@ -111,7 +103,7 @@ function Home() {
           </div>
           <div className={styles.homeWrapper__contents}>
             <div className={styles.homeWrapper__contents__posts}>
-              {(data ?? [])?.map((post) => {
+              {(posts ?? [])?.map((post) => {
                 return (
                   <Posts
                     key={post.id}
