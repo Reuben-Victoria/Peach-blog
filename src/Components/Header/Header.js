@@ -1,18 +1,18 @@
 import React from 'react';
-import Button from 'Common/Button/Button';
+import Button from 'common/button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import image from 'assets/HeaderLogo.svg';
 import styles from './Header.module.scss';
-// import instance from '../../api';
+import instance from 'api';
 
 function Header() {
   const token = localStorage.getItem('userToken');
   let navigate = useNavigate();
   function logOut() {
     localStorage.clear();
+    delete instance.defaults.headers.common['Authorization'];
     navigate('/login');
-
-    // delete instance.defaults.headers.common['Authorization'];
+    location.reload();
   }
 
   return (
