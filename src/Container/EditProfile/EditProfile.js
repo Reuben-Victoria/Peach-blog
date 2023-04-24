@@ -1,13 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import dummy from '../../assets/dummy.svg';
-import Input from '../../Common/Input/Input';
-import Button from '../../Common/Button/Button';
-import upload from '../../assets/upload.svg';
+import dummy from 'assets/dummy.svg';
+import Input from 'common/input/Input';
+import Button from 'common/button/Button';
+import upload from 'assets/upload.svg';
 import styles from './EditProfile.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { UPDATEUSER, DELETEUSER } from '../../Features/users/usersActions';
-import DeleteModal from '../../Components/DeleteModal/DeleteModal';
+import { UPDATEUSER, DELETEUSER } from 'features/users/usersActions';
+import DeleteModal from 'components/deleteModal/DeleteModal';
 
 function EditProfile() {
   const { userId } = useParams();
@@ -57,7 +57,6 @@ function EditProfile() {
         bio: details.bio
       })
     );
-    console.log(userData?.status, '>>>>>');
   };
 
   useEffect(() => {
@@ -143,7 +142,14 @@ function EditProfile() {
           />
         </div>
         <div className={styles.editProfileWrapper__form__buttons}>
-          <Button theme={'lightPink'} size={'sm'} text={'Save'} type={'submit'} loading={loading} />
+          <Button
+            theme={'lightPink'}
+            size={'sm'}
+            text={'Save'}
+            type={'submit'}
+            loading={loading}
+            disabled={loading}
+          />
         </div>
       </form>
     </section>
