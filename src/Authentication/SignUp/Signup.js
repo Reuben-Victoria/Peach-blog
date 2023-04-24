@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Input from 'Common/Input/Input';
+import Input from 'common/input/Input';
 import styles from './Signup.module.scss';
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { userSignUp } from 'Features/authentication/authActions';
+import { userSignUp } from 'features/authentication/authActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpSchema } from './signUpSchema';
 
-import Button from 'Common/Button/Button';
+import Button from 'common/button/Button';
 
 function Signup() {
   const { posts, loading } = useSelector((state) => state.auth);
@@ -46,7 +46,7 @@ function Signup() {
           resetForm({ values: '' });
         }}>
         {(formik) => {
-          const { errors, touched } = formik;
+          const { errors, touched, isValid, dirty } = formik;
           return (
             <div className={styles.formWrap}>
               <h1>Enter your Email to Sign up</h1>
@@ -125,6 +125,7 @@ function Signup() {
                   type={'submit'}
                   theme={'secondary'}
                   size={'lg'}
+                  disabled={(!isValid && dirty) || loading}
                   text={'Sign Up'}
                   loading={loading}
                 />
