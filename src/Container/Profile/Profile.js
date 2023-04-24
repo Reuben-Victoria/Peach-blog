@@ -1,26 +1,24 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import TableLoader from 'Components/Loader/Loader';
+import TableLoader from 'components/loader/Loader';
 import edit from 'assets/Edit2.svg';
 import post from 'assets/Document.svg';
 import comment from 'assets/comment.svg';
 import repost from 'assets/repost.svg';
 import like from 'assets/like.svg';
-import Divider from 'Common/Divider/Divider';
-import TagIcon from 'Common/TagIcons/TagIcon';
+import Divider from 'common/divider/Divider';
+import TagIcon from 'common/tagIcons/TagIcon';
 import styles from './Profile.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { GETPROFILE } from 'Features/users/usersActions';
-import RecentActivity from 'Components/RecentActivity/RecentActivity';
+import { GETPROFILE } from 'features/users/usersActions';
+import RecentActivity from 'components/recentActivity/RecentActivity';
 
 function Profile() {
   const { userData, loading } = useSelector((state) => state.users);
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const userParams = useParams();
   const userId = userParams.id;
   const userValue = JSON.parse(localStorage.getItem('userInfo'));
-  console.log(userValue.user.id);
 
   useEffect(() => {
     dispatch(GETPROFILE({ userId }));
@@ -33,7 +31,6 @@ function Profile() {
   const likes = data?.likes?.[0];
   const recentActivity = data?.recent_activity;
   localStorage.setItem('profilePicture', userInfo?.upload_photo);
-  console.log(userInfo?.id === userId, '>>>Bool');
   {
     {
       return loading ? (
