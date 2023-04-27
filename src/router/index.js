@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import '../App.css';
-// import Signup from 'authentication/signUp/Signup';
+import Signup from 'authentication/signUp/Signup';
 import Login from 'authentication/logIn/Login';
 import ForgotPassword from 'authentication/forgotPassword/ForgotPassword';
 import Verification from 'authentication/verificationCode/Verification';
@@ -36,7 +36,7 @@ const Router = () => {
             <Route path="/edit-post/:postId" element={<EditPost />} />
             <Route path="/create-post" element={<CreatePostPage />} />
           </Route>
-          {/* <Route path="/signup" element={<Signup />} /> */}
+          <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset_password/:token" element={<ResetPassword />} />
