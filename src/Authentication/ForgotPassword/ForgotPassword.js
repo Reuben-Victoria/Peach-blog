@@ -5,8 +5,8 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import Input from 'common/input/Input';
 import styles from './ForgotPassword.module.scss';
-import Button from 'common/button/Button';
-import { forgotPassword } from 'features/authentication/authActions';
+import Button from '../../common/button';
+import { forgotPassword } from '.../../features/authentication/authActions';
 
 function ForgotPassword() {
   const dispatch = useDispatch();
