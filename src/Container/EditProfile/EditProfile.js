@@ -4,6 +4,7 @@ import dummy from 'assets/dummy.svg';
 import Input from 'common/input/Input';
 import Button from 'common/button/Button';
 import upload from 'assets/upload.svg';
+import { wordsCount } from 'utils/stringFormatter';
 import styles from './EditProfile.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPDATEUSER, DELETEUSER } from 'features/users/usersActions';
@@ -134,10 +135,12 @@ function EditProfile() {
         </div>
         <div>
           <label>About You</label>
+          <span>{wordsCount(details.bio)}/100</span>
           <textarea
             placeholder="Add Bio"
             onChange={handleOnChange}
             name={'bio'}
+            maxLength="100"
             value={details.bio}
           />
         </div>
