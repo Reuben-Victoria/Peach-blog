@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Tags from 'components/tags/Tags';
 import styles from './ViewPost.module.scss';
-import MoreFromAuthor from '../moreFromAuthor/MoreFromAuthor';
+// import MoreFromAuthor from '../moreFromAuthor/MoreFromAuthor';
 import TagIcon from 'common/tagIcons/TagIcon';
 import Divider from 'common/divider/Divider';
 import favouriteFilled from 'assets/favouriteFilled.svg';
@@ -198,10 +198,10 @@ function ViewPost() {
               />
             </div>
           </div>
-          <MoreFromAuthor
+          {/* <MoreFromAuthor
             authorsName={`${view?.posts?.[0]?.first_name} ${view?.posts?.[0]?.last_name} `}
             tagline={view?.posts?.[0]?.tagline}
-          />
+          /> */}
         </div>
         <div className={styles.homeWrapper__contents__divider}></div>
         <div className={styles.tags}>
