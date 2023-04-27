@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import postsReducer from './posts/postsSlice';
-import authSlice from './authentication/authSlice';
-import usersSlice from './users/usersSlice';
+import postsReducer from 'features/posts/postsSlice';
+import authSlice from 'features/authentication/authSlice';
+import usersSlice from 'features/users/usersSlice';
 const appReducer = combineReducers({
   post: postsReducer,
   auth: authSlice,
