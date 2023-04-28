@@ -65,6 +65,7 @@ function ForgotPassword() {
                 size={'lg'}
                 text={'Reset Password'}
                 loading={loading}
+                disabled={loading}
                 type={'submit'}
               />
             </form>
